@@ -8,6 +8,11 @@
     <artifactId>springBootDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!--生成war包-->
+    <packaging>war</packaging>
+    <name>zhiyi</name>
+    <description>SpringBootDemo</description>
+
     <!-- Inherit defaults from Spring Boot -->
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -20,7 +25,33 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+
+            <!--以下，在spring-boot-starter-web里排除了spring-boot-starter-tomcat-->
+            <exclusions>
+                <exclusion>
+                    <artifactId>log4j-over-slf4j</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
+        <!--以下配置，仅仅是方便本地测试-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.38</version>
+        </dependency>
+
     </dependencies>
 
     <!-- Package as an executable JAR -->
@@ -30,6 +61,15 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <!--可定义打包以后的war包名称，以免maven默认地起了一个带版本号的war包名称-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-war-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<warName>yemao</warName>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
