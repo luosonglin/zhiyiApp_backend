@@ -12,7 +12,8 @@ import org.springframework.context.annotation.Configuration;
  * Created by luosonglin on 23/11/2016.
  */
 @Configuration
-@ComponentScan("cn.luosonglin.test.domain") //缺少的话，@autowired无法注解，http://stackoverflow.com/questions/36470655/spring-boot-can-not-autowired-dao
+@ComponentScan
+//@ComponentScan("cn.luosonglin.test.domain") //缺少的话，@autowired无法注解，http://stackoverflow.com/questions/36470655/spring-boot-can-not-autowired-dao
 @EnableAutoConfiguration
 public class Application extends SpringBootServletInitializer {
     public static void main(String[] args) {
