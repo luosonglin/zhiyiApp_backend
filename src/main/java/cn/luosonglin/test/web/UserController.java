@@ -21,24 +21,55 @@ public class UserController {
 
     static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
 
+    @Autowired
+    private UserMapper userMapper;
+
+
     @ApiOperation(value="获取用户列表", notes="")
     @RequestMapping(value="/", method= RequestMethod.GET)
     public List<User> getUserList() {
         // 处理"/users/"的GET请求，用来获取用户列表
         // 还可以通过@RequestParam从页面中传递参数来进行查询条件或者翻页信息的传递
-        List<User> r = new ArrayList<User>(users.values());
-        return r;
+//        List<User> r = new ArrayList<User>(users.values());
+//        return r;
+        return userMapper.findAll();
     }
 
     @ApiOperation(value="创建用户", notes="根据User对象创建用户")
     @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
-    @RequestMapping(value="/", method=RequestMethod.POST)
+    @RequestMapping(value="/addUser", method=RequestMethod.POST)
     public String postUser(@ModelAttribute User user) {
         // 处理"/users/"的POST请求，用来创建User
         // 除了@ModelAttribute绑定参数之外，还可以通过@RequestParam从页面中传递参数
-        users.put(user.getId(), user);
+//        users.put(user.getId(), user);
+        userMapper.insertByUser(user);
+
+        //以下2种方式报错：org.springframework.dao.DataIntegrityViolationException
+//        userMapper.insertByUser(user);
+//        userMapper.insert(user.getName(), user.getAge());
+
+//        Map<String, Object> map = new HashMap<>();
+////        map.put("name", user.getName());
+////        map.put("age", user.getAge());
+//        map.put("name", "luosonglin");
+//        map.put("age", 11);
+//        userMapper.insertByMap(map);
+
         return "success";
     }
+
+//    @ApiOperation(value="创建用户", notes="根据User对象创建用户")
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(name = "name", value = "用户name", required = true, dataType = "String", paramType = "path"),
+//            @ApiImplicitParam(name = "age", value = "用户age", required = true, dataType = "int", paramType = "path")
+//    })
+//    @RequestMapping(value="/addUser", method=RequestMethod.POST)
+//    public String postUser(@RequestParam String name, @RequestParam Integer age) {
+//
+//        userMapper.insert("luo", 12);
+//
+//        return "success";
+//    }
 
     @ApiOperation(value="获取用户详细信息", notes="根据url的id来获取用户详细信息")
     @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long", paramType = "path")//如不添加paramType="path"，所有的参数类型都会是body，获取不到请求参数。参考swagger的api
@@ -46,7 +77,9 @@ public class UserController {
     public User getUser(@PathVariable Long id) {
         // 处理"/users/{id}"的GET请求，用来获取url中id值的User信息
         // url中的id可通过@PathVariable绑定到函数的参数中
-        return users.get(id);
+//        return users.get(id);
+
+        return userMapper.findById(id);
     }
 
     @ApiOperation(value="更新用户详细信息", notes="根据url的id来指定更新对象，并根据传过来的user信息来更新用户详细信息")
@@ -57,10 +90,15 @@ public class UserController {
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
     public String putUser(@PathVariable Long id, @ModelAttribute User user) {
         // 处理"/users/{id}"的PUT请求，用来更新User信息
-        User u = users.get(id);
+//        User u = users.get(id);
+//        u.setName(user.getName());
+//        u.setAge(user.getAge());
+//        users.put(id, u);
+
+        User u = userMapper.findById(id);
         u.setName(user.getName());
         u.setAge(user.getAge());
-        users.put(id, u);
+        userMapper.update(u);
         return "success";
     }
 
@@ -69,7 +107,10 @@ public class UserController {
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public String deleteUser(@PathVariable Long id) {
         // 处理"/users/{id}"的DELETE请求，用来删除User
-        users.remove(id);
+//        users.remove(id);
+//        return "success";
+
+        userMapper.delete(id);
         return "success";
     }
 }
