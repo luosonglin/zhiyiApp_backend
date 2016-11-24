@@ -13,9 +13,11 @@ public class HelloController {
 
     @RequestMapping("/hello")
     public String index() {
-        TestProperties testProperties = new TestProperties();
-        testProperties.setName("luosonglin");
-        return "Hello World "+testProperties.getName();
+//        TestProperties testProperties = new TestProperties();
+//        testProperties.setName("luosonglin");
+//        return "Hello World "+testProperties.getName();
+
+        return "Hello World";
     }
 
 }
