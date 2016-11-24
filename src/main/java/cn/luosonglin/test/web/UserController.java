@@ -1,15 +1,19 @@
 package cn.luosonglin.test.web;
 
 import cn.luosonglin.test.domain.User;
+import cn.luosonglin.test.domain.UserMapper;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
 /**
  * Created by luosonglin on 24/11/2016.
+ *
+ * 本地controller
  */
 @RestController
 @RequestMapping(value="/users")     // 通过这里配置使下面的映射都在/users下，可去除

@@ -22,6 +22,8 @@ import static org.hamcrest.Matchers.equalTo;
 
 /**
  * Created by luosonglin on 24/11/2016.
+ *
+ * 本地单元测试
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MockServletContext.class)
