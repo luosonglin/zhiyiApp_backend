@@ -1,10 +1,12 @@
 package cn.luosonglin.test.web;
 
+import cn.luosonglin.test.base.ResultDate;
 import cn.luosonglin.test.domain.User;
 import cn.luosonglin.test.domain.UserMapper;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.omg.PortableInterceptor.USER_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,12 +28,20 @@ public class UserController {
 
     @ApiOperation(value="获取用户列表", notes="")
     @RequestMapping(value="/", method= RequestMethod.GET)
-    public List<User> getUserList() {
+    public ResultDate getUserList() {
         // 处理"/users/"的GET请求，用来获取用户列表
         // 还可以通过@RequestParam从页面中传递参数来进行查询条件或者翻页信息的传递
 //        List<User> r = new ArrayList<User>(users.values());
 //        return r;
-        return userMapper.findAll();
+
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        resultDate.setCode(200);
+        responseMap.put("users", userMapper.findAll());
+        resultDate.setData(responseMap);
+
+        return resultDate;
     }
 
     @ApiOperation(value="创建用户", notes="根据User对象创建用户")
