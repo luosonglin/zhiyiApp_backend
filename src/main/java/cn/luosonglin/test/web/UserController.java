@@ -62,12 +62,15 @@ public class UserController {
     @ApiOperation(value="获取用户详细信息", notes="根据url的id来获取用户详细信息")
     @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long", paramType = "path")//如不添加paramType="path"，所有的参数类型都会是body，获取不到请求参数。参考swagger的api
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
-    public User getUser(@PathVariable Long id) {
+    public ResultDate getUser(@PathVariable Long id) {
         // 处理"/users/{id}"的GET请求，用来获取url中id值的User信息
         // url中的id可通过@PathVariable绑定到函数的参数中
 //        return users.get(id);
 
-        return userMapper.findById(id);
+        ResultDate resultDate = new ResultDate();
+        resultDate.setCode(200);
+        resultDate.setData(userMapper.findById(id));
+        return resultDate;
     }
 
     @ApiOperation(value="更新用户详细信息", notes="根据url的id来指定更新对象，并根据传过来的user信息来更新用户详细信息")
