@@ -57,7 +57,7 @@ public class UserControllerTest {
 //                .andExpect(content().string(equalTo("[]")));
 
         // 2、post提交一个user
-        request = post("/users/addUser")
+        request = post("/users/")
                 .param("id", "1")
                 .param("name", "测试大师")
                 .param("age", "20");
