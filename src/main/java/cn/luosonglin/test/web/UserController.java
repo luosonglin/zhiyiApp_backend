@@ -31,9 +31,6 @@ public class UserController {
     public ResultDate getUserList() {
         // 处理"/users/"的GET请求，用来获取用户列表
         // 还可以通过@RequestParam从页面中传递参数来进行查询条件或者翻页信息的传递
-//        List<User> r = new ArrayList<User>(users.values());
-//        return r;
-
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
@@ -47,13 +44,18 @@ public class UserController {
     @ApiOperation(value="创建用户", notes="根据User对象创建用户")
     @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
     @RequestMapping(value="/", method=RequestMethod.POST)
-    public String postUser(@ModelAttribute User user) {
+    public ResultDate postUser(@ModelAttribute User user) {
         // 处理"/users/"的POST请求，用来创建User
         // 除了@ModelAttribute绑定参数之外，还可以通过@RequestParam从页面中传递参数
 //        users.put(user.getId(), user);
-        userMapper.insertByUser(user);
 
-        return "success";
+        ResultDate resultDate = new ResultDate();
+
+        userMapper.insertByUser(user);
+        resultDate.setCode(200);
+        resultDate.setData("success");
+
+        return resultDate;
     }
 
 
