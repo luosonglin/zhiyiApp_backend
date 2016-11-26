@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * Created by luosonglin on 24/11/2016.
  */
-@SpringBootApplication
+//@SpringBootApplication
 @ComponentScan("cn.luosonglin.test.domain") //缺少的话，@autowired无法注解，http://stackoverflow.com/questions/36470655/spring-boot-can-not-autowired-dao
 public class MybatisApplication {
 
