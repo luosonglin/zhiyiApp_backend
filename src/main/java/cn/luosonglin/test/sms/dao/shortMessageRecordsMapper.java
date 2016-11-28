@@ -12,10 +12,12 @@ import java.util.Map;
  */
 @Mapper
 public interface shortMessageRecordsMapper {
-    @Insert("INSERT INTO shor_message_records(message_record_id, user_id, event_id, phone, return_value, message_content, send_time, send_type) " +
-            "VALUES(#{message_record_id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{event_id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}}, " +
-            "#{return_value,jdbcType=VARCHAR}}, #{message_content,jdbcType=VARCHAR}}, #{send_time,jdbcType=TIMESTAMP}, #{send_type,jdbcType=VARCHAR})")
-    int insertShortMessageRecords(ShorMessageRecords shorMessageRecords);
+
+    // 报错，原因不明
+//    @Insert("INSERT INTO shor_message_records(message_record_id, user_id, event_id, phone, return_value, message_content, send_time, send_type) " +
+//            "VALUES(#{message_record_id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{event_id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}}, " +
+//            "#{return_value,jdbcType=VARCHAR}}, #{message_content,jdbcType=VARCHAR}}, #{send_time,jdbcType=TIMESTAMP}, #{send_type,jdbcType=VARCHAR})")
+//    int insertShortMessageRecords(ShorMessageRecords shorMessageRecords);
 
     @Insert("INSERT INTO shor_message_records(message_record_id, user_id, event_id, phone, return_value, message_content, send_time, send_type) " +
             "VALUES(#{message_record_id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{event_id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, " +

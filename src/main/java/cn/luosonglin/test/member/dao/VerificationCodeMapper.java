@@ -1,10 +1,10 @@
 package cn.luosonglin.test.member.dao;
 
-import cn.luosonglin.test.domain.User;
 import cn.luosonglin.test.member.entity.VerificationCode;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by luosonglin on 26/11/2016.
@@ -30,4 +30,8 @@ public interface VerificationCodeMapper {
 
     @Update("UPDATE ver_code SET send_date=#{send_date}, phone = #{phone}, code_content = #{codeContent}, sub_date = #{subDate}, source = #{source} WHERE id=#{id}")
     void updateVerificationCode(VerificationCode verificationCode);
+
+    @Update("UPDATE ver_code SET send_date=#{send_date,jdbcType=TIMESTAMP}, phone = #{phone,jdbcType=VARCHAR}, " +
+            "code_content = #{code_content,jdbcType=VARCHAR}, sub_date = #{sub_date,jdbcType=TIMESTAMP}, source = #{source,jdbcType=VARCHAR} WHERE id=#{id,jdbcType=INTEGER}")
+    void updateVerificationCodeByMap(Map<String, Object> map);
 }

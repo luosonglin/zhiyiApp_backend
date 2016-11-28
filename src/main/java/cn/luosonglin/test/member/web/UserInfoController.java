@@ -14,6 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,8 +37,6 @@ public class UserInfoController {
 
     @ApiOperation(value = "手机号登录", notes = "手机号获取验证码登录")
     @ApiImplicitParam(name = "phone", value = "用户phone", required = true, dataType = "String", paramType = "path")
-//    @RequestMapping(value = "/", method = RequestMethod.POST)
-//    private ResultDate registerUser(@ModelAttribute String phone) throws CustomizedException { //   @RequestParam("phone")
     @RequestMapping(value = "/{phone}", method = RequestMethod.GET)
     private ResultDate registerUser(@PathVariable String phone) throws CustomizedException { //   @RequestParam("phone")
 
@@ -59,14 +58,27 @@ public class UserInfoController {
         //检查手机号是否存在验证码表中
         VerificationCode verCodeInfo = verificationCodeMapper.getVerificationCodeByPhone(phone);
 
-//        if (verCodeInfo == null) {
-//            verificationCodeMapper.insertVerificationCode(verCode);
-//        } else {
-//            verificationCodeMapper.updateVerificationCode(verCode);
-//        }
 
         ResultDate resultDate = new ResultDate();
         Map<Object, Object> responseMap = new HashMap<>();
+
+        if (verCodeInfo == null) {
+            //借陈Mindy 的测试
+            verificationCodeMapper.insertVerificationCode(verCode);
+        } else {
+            responseMap.put("verCode", verCodeInfo.getId()+" "+verCodeInfo.getPhone());
+//            verificationCodeMapper.updateVerificationCode(verCode);
+
+            //更新ver_code表
+            Map<String, Object> map = new HashMap<>();
+            map.put("id",verCodeInfo.getId());
+            map.put("phone", verCode.getPhone());
+            map.put("send_date", new Date());
+            map.put("send_time", null);
+            map.put("code_content", codeMessage);
+            verificationCodeMapper.updateVerificationCodeByMap(map);
+        }
+
 
         try {
             //发送验证码
@@ -102,6 +114,10 @@ public class UserInfoController {
                 throw new CustomizedException("产品ID异常或产品禁用");
             } else if ("12".equals(result)) {
                 throw new CustomizedException("参数异常");
+            } else if ("13".equals(result)) {
+                throw new CustomizedException("12小时内重复提交");
+            } else if ("14".equals(result)) {
+                throw new CustomizedException("sms异常，需联系客服人员");  //用户名或密码不正确，产品余额为0，禁止提交，联系客服
             } else if ("15".equals(result)) {
                 throw new CustomizedException("Ip验证失败");
             } else if ("19".equals(result)) {
