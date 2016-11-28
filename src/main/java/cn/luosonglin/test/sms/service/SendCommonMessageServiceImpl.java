@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -48,7 +50,15 @@ public class SendCommonMessageServiceImpl implements SendCommonMessageService {
         shorMessageRecords.setSendType(sendType);   //2种类型："yzm"，"tz"
 
         //将短信发送记录保存到数据库中
-        shortMessageRecordsMapper.insertShortMessageRecords(shorMessageRecords);
+//        shortMessageRecordsMapper.insertShortMessageRecords(shorMessageRecords);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("phone", phone);
+        map.put("return_value", result.substring(0,result.indexOf(",")));
+        map.put("send_time", new Date());
+        map.put("message_content", message);
+        map.put("send_type", sendType);//2种类型："yzm"，"tz"
+        shortMessageRecordsMapper.insertShortMessageRecordsByMap(map);
 //        shorMessageRecordsService.saveShorMessageRecords(shorMessageRecords ,"add");
 
         return result.substring(0,result.indexOf(","));

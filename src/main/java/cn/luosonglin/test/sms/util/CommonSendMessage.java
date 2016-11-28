@@ -28,7 +28,8 @@ public class CommonSendMessage {
         String password="FnSB0R";  //密码
         String tkey= TimeUtil.getNowTime("yyyyMMddHHmmss");
         String mobile=phone;  //发送的手机号
-        String content="【知医网络科技】验证码"+code+"，有效期10分钟。您正在进行医会宝登录，如非本人操作，建议立即更改账户密码。";//助通科技
+//        String content="【知医网络科技】验证码"+code+"，有效期10分钟。您正在进行医会宝登录，如非本人操作，建议立即更改账户密码。";//助通科技
+        String content="您的验证码是:"+code+" 10分钟内有效【助通科技】";
 
         //String time="2016-09-06 17:48:22";//定时信息所需参数时间格式为yyyy-MM-dd HH:mm:ss
         String xh="";

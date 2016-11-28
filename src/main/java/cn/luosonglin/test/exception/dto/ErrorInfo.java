@@ -13,7 +13,7 @@ package cn.luosonglin.test.exception.dto;
 public class ErrorInfo<T> {
 
     public static final Integer OK = 0;
-    public static final Integer ERROR = 100;
+    public static final Integer ERROR = 400;
 
     private Integer code;
     private String message;

@@ -3,7 +3,6 @@ package cn.luosonglin.test.member.dao;
 import cn.luosonglin.test.domain.User;
 import cn.luosonglin.test.member.entity.VerificationCode;
 import org.apache.ibatis.annotations.*;
-import org.mapstruct.Mapper;
 
 import java.util.List;
 
@@ -26,9 +25,9 @@ public interface VerificationCodeMapper {
     @Select("select * from ver_code where phone = #{phone}")
     VerificationCode getVerificationCodeByPhone(@Param("phone") String phone);
 
-//    @Insert("INSERT INTO ver_code(id, send_date, phone, code_content, sub_date, source) VALUES(#{id}, #{send_date}, #{phone}, #{code_centent}, #{sub_date}, #{source})")
-//    int insertVerificationCode(VerificationCode verificationCode);
-//
-//    @Update("UPDATE ver_code SET send_date=#{send_date}, phone = #{phone}, code_content = #{codeContent}, sub_date = #{subDate}, source = #{source} WHERE id=#{id}")
-//    void updateVerificationCode(VerificationCode verificationCode);
+    @Insert("INSERT INTO ver_code(id, send_date, phone, code_content, sub_date, source) VALUES(#{id}, #{send_date}, #{phone}, #{code_centent}, #{sub_date}, #{source})")
+    int insertVerificationCode(VerificationCode verificationCode);
+
+    @Update("UPDATE ver_code SET send_date=#{send_date}, phone = #{phone}, code_content = #{codeContent}, sub_date = #{subDate}, source = #{source} WHERE id=#{id}")
+    void updateVerificationCode(VerificationCode verificationCode);
 }

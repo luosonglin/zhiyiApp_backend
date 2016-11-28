@@ -1,6 +1,5 @@
 package cn.luosonglin.test.member.dao;
 
-import cn.luosonglin.test.member.entity.VerificationCode;
 import org.apache.ibatis.annotations.*;
 
 /**
