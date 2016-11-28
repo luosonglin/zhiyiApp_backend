@@ -198,11 +198,10 @@ public class UserInfoController {
             resultDate.setCode(200);
             resultDate.setData(responseMap);
 
+        } else if (verificationCode == null) {
+            throw new CustomizedException("请先获取验证码");
         } else {
-//            throw new CustomizedException("验证码错误");
-            resultDate.setCode(400);
-            responseMap.put("users", verificationCode.getCodeContent());
-            resultDate.setData(responseMap);
+            throw new CustomizedException("验证码错误");
         }
 
         return resultDate;

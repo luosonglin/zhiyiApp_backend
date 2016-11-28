@@ -38,16 +38,16 @@ public class SendCommonMessageServiceImpl implements SendCommonMessageService {
         ShorMessageRecords shorMessageRecords = new ShorMessageRecords();
 
         shorMessageRecords.setPhone(phone);
-        shorMessageRecords.setReturnValue(result.substring(0,result.indexOf(",")));
-        shorMessageRecords.setSendTime(new Date());
-        shorMessageRecords.setMessageContent(message);
+        shorMessageRecords.setReturn_value(result.substring(0,result.indexOf(",")));
+        shorMessageRecords.setSend_time(new Date());
+        shorMessageRecords.setMessage_content(message);
 
 //        if("yzm".equals(sendType)){
 //            shorMessageRecords.setSendType("yzm");
 //        }else if("tz".equals(sendType)){
 //            shorMessageRecords.setSendType("tz");
 //        }
-        shorMessageRecords.setSendType(sendType);   //2种类型："yzm"，"tz"
+        shorMessageRecords.setSend_type(sendType);   //2种类型："yzm"，"tz"
 
         //将短信发送记录保存到数据库中
 //        shortMessageRecordsMapper.insertShortMessageRecords(shorMessageRecords);

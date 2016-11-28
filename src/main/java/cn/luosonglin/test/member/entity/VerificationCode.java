@@ -9,10 +9,10 @@ import java.util.Date;
  */
 public class VerificationCode {
     private Integer id;
-    private java.util.Date sendDate;
+    private java.util.Date send_date;
     private String phone;
-    private String codeContent;
-    private java.util.Date subDate;
+    private String code_content;
+    private java.util.Date sub_date;
     private String source;
 
     public Integer getId() {
@@ -24,11 +24,11 @@ public class VerificationCode {
     }
 
     public Date getSendDate() {
-        return sendDate;
+        return send_date;
     }
 
-    public void setSendDate(Date sendDate) {
-        this.sendDate = sendDate;
+    public void setSendDate(Date send_date) {
+        this.send_date = send_date;
     }
 
     public String getPhone() {
@@ -40,19 +40,19 @@ public class VerificationCode {
     }
 
     public String getCodeContent() {
-        return codeContent;
+        return code_content;
     }
 
-    public void setCodeContent(String codeContent) {
-        this.codeContent = codeContent;
+    public void setCodeContent(String code_content) {
+        this.code_content = code_content;
     }
 
     public Date getSubDate() {
-        return subDate;
+        return sub_date;
     }
 
-    public void setSubDate(Date subDate) {
-        this.subDate = subDate;
+    public void setSubDate(Date sub_date) {
+        this.sub_date = sub_date;
     }
 
     public String getSource() {
