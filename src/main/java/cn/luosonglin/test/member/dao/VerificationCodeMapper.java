@@ -40,4 +40,5 @@ public interface VerificationCodeMapper {
     @Update("UPDATE ver_code SET send_date=#{send_date,jdbcType=TIMESTAMP}, phone = #{phone,jdbcType=VARCHAR}, " +
             "code_content = #{code_content,jdbcType=VARCHAR}, sub_date = #{sub_date,jdbcType=TIMESTAMP}, source = #{source,jdbcType=VARCHAR} WHERE id=#{id,jdbcType=INTEGER}")
     void updateVerificationCodeByMap(Map<String, Object> map);
+
 }
