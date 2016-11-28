@@ -1,6 +1,6 @@
 package cn.luosonglin.test.member.web;
 
-import cn.luosonglin.test.base.ResultDate;
+import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.base.util.PhoneUtil;
 import cn.luosonglin.test.exception.CustomizedException;
 import cn.luosonglin.test.member.dao.UserInfoMapper;
@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import static cn.luosonglin.test.util.RandUtil.array;
 
 /**
  * Created by luosonglin on 25/11/2016.
@@ -48,7 +50,7 @@ public class UserInfoController {
             throw new CustomizedException("请填写正确的手机号");
 
         //生成验证码
-        String codeMessage = RandUtil.rand(4);
+        String codeMessage = RandUtil.rand(4, array);
 
         VerificationCode verCode = new VerificationCode();
         verCode.setPhone(phone);
@@ -61,16 +63,24 @@ public class UserInfoController {
 
         ResultDate resultDate = new ResultDate();
         Map<Object, Object> responseMap = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
 
         if (verCodeInfo == null) {
             //借陈Mindy 的测试
-            verificationCodeMapper.insertVerificationCode(verCode);
+//            verificationCodeMapper.insertVerificationCode(verCode);
+
+            //插入ver_code表
+            map.put("phone", verCode.getPhone());
+            map.put("send_date", new Date());
+            map.put("send_time", null);
+            map.put("code_content", codeMessage);
+            verificationCodeMapper.insertVerificationCodeByMap(map);
+
         } else {
             responseMap.put("verCode", verCodeInfo.getId()+" "+verCodeInfo.getPhone());
 //            verificationCodeMapper.updateVerificationCode(verCode);
 
             //更新ver_code表
-            Map<String, Object> map = new HashMap<>();
             map.put("id",verCodeInfo.getId());
             map.put("phone", verCode.getPhone());
             map.put("send_date", new Date());

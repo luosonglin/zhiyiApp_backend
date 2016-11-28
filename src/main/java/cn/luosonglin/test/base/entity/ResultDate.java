@@ -1,4 +1,4 @@
-package cn.luosonglin.test.base;
+package cn.luosonglin.test.base.entity;
 
 /**
  * Created by luosonglin on 25/11/2016.

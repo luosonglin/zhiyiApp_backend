@@ -25,9 +25,15 @@ public interface VerificationCodeMapper {
     @Select("select * from ver_code where phone = #{phone}")
     VerificationCode getVerificationCodeByPhone(@Param("phone") String phone);
 
-    @Insert("INSERT INTO ver_code(id, send_date, phone, code_content, sub_date, source) VALUES(#{id}, #{send_date}, #{phone}, #{code_centent}, #{sub_date}, #{source})")
-    int insertVerificationCode(VerificationCode verificationCode);
+//    @Insert("INSERT INTO ver_code(id, send_date, phone, code_content, sub_date, source) VALUES(#{id}, #{send_date}, #{phone}, #{code_centent}, #{sub_date}, #{source})")
+//    int insertVerificationCode(VerificationCode verificationCode);
 
+    @Insert("INSERT INTO ver_code(id, send_date, phone, code_content, sub_date, source) " +
+            "VALUES(#{id,jdbcType=INTEGER}, #{send_date,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR}, #{code_centent,jdbcType=VARCHAR}, " +
+            "#{sub_date,jdbcType=TIMESTAMP}, #{source,jdbcType=VARCHAR})")
+    int insertVerificationCodeByMap(Map<String, Object> map);
+
+    //测试无效，原因不明
     @Update("UPDATE ver_code SET send_date=#{send_date}, phone = #{phone}, code_content = #{codeContent}, sub_date = #{subDate}, source = #{source} WHERE id=#{id}")
     void updateVerificationCode(VerificationCode verificationCode);
 

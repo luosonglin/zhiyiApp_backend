@@ -1,4 +1,4 @@
-package cn.luosonglin.test.entity;
+package cn.luosonglin.test.member.entity;
 
 import java.util.Date;
 

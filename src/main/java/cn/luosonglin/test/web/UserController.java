@@ -1,6 +1,6 @@
 package cn.luosonglin.test.web;
 
-import cn.luosonglin.test.base.ResultDate;
+import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.domain.User;
 import cn.luosonglin.test.domain.UserMapper;
 import io.swagger.annotations.ApiImplicitParam;

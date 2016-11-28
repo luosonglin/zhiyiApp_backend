@@ -1,4 +1,4 @@
-package cn.luosonglin.test.sms.util;
+package cn.luosonglin.test.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

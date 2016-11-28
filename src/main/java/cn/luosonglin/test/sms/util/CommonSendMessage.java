@@ -1,5 +1,8 @@
 package cn.luosonglin.test.sms.util;
 
+import cn.luosonglin.test.util.MD5Gen;
+import cn.luosonglin.test.util.TimeUtil;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -34,7 +37,7 @@ public class CommonSendMessage {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        String param="username="+username+"&password="+MD5Gen.getMD5(MD5Gen.getMD5(password)+tkey)+"&tkey="+tkey+"&mobile="+mobile+"&content="+content+"&xh="+xh;
+        String param="username="+username+"&password="+ MD5Gen.getMD5(MD5Gen.getMD5(password)+tkey)+"&tkey="+tkey+"&mobile="+mobile+"&content="+content+"&xh="+xh;
         //String param="url="+url+"&username="+username+"&password="+MD5Gen.getMD5(MD5Gen.getMD5(password)+tkey)+"&tkey="+tkey+"&time="+time+"&mobile="+mobile+"&content="+content+"&xh="+xh;//定时信息url输出
         String ret=HttpRequest.sendPost(url,param);//定时信息只可为post方式提交
         System.out.println("ret:"+ret);
