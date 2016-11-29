@@ -183,6 +183,7 @@
         </plugins>
     </build>
 
+
     <!-- Allow access to Spring milestones and snapshots -->
     <!-- (you don't need this if you are using anything after 0.5.0.RELEASE) -->
     <!--<repositories>-->

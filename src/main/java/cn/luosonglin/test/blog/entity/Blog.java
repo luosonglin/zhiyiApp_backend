@@ -1,5 +1,6 @@
 package cn.luosonglin.test.blog.entity;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 /**
@@ -50,6 +51,7 @@ public class Blog {
 
     public void setContent(String content) {
         this.content = content;
+//        this.content = content.getBytes("gbk");
     }
 
     public Integer getCommentCount() {
