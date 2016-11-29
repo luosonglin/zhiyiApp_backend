@@ -96,21 +96,6 @@ public class BlogController {
 //        return resultDate;
 //    }
 
-    //    @ApiOperation(value="获取某个用户的全部微博信息", notes="根据url的user_id来获取")
-//    @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "Integer", paramType = "path")//如不添加paramType="path"，所有的参数类型都会是body，获取不到请求参数。参考swagger的api
-//    @RequestMapping(value="/{user_id}", method=RequestMethod.GET)
-//    public ResultDate getBlogByUserId(@PathVariable Integer user_id) {
-//
-//        ResultDate resultDate = new ResultDate();
-//        Map<String, Object> responseMap = new HashMap<>();
-//
-//        resultDate.setCode(200);
-//        responseMap.put("msg", "success");
-//        responseMap.put("blog", blogMapper.findBlogById(user_id));
-//        resultDate.setData(responseMap);
-//        return resultDate;
-//    }
-
     @ApiOperation(value = "获取某个用户的全部微博信息", notes = "根据url的user_id来获取")
     @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "int", paramType = "path")
     @RequestMapping(value = "/{user_id}", method = RequestMethod.GET)

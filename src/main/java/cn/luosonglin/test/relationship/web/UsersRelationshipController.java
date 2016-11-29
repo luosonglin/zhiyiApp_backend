@@ -1,7 +1,9 @@
 package cn.luosonglin.test.relationship.web;
 
 import cn.luosonglin.test.base.entity.ResultDate;
+import cn.luosonglin.test.exception.CustomizedException;
 import cn.luosonglin.test.member.dao.UserInfoMapper;
+import cn.luosonglin.test.member.entity.UserInfo;
 import cn.luosonglin.test.relationship.dao.UsersRelationshipMapper;
 import cn.luosonglin.test.relationship.entity.UsersRelationship;
 import io.swagger.annotations.ApiImplicitParam;
@@ -9,7 +11,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,7 +31,6 @@ public class UsersRelationshipController {
     @ApiOperation(value="获取所有潜在关注对象的列表", notes="")
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResultDate getUsersInfo() {
-
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
@@ -42,10 +45,15 @@ public class UsersRelationshipController {
     @ApiOperation(value="加关注", notes="根据Relationship对象创建关注关系")
     @ApiImplicitParam(name = "usersRelationship", value = "关系详细实体usersRelationship", required = true, dataType = "UsersRelationship")
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResultDate follow(@ModelAttribute UsersRelationship usersRelationship) {
+    public ResultDate follow(@ModelAttribute UsersRelationship usersRelationship) throws CustomizedException {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
+        //判断对方是否是已关注对象
+        if (usersRelationshipMapper.isFollowed(usersRelationship) != 0)
+            throw new CustomizedException("不可重复关注同一用户");
+
+        //关系表插入新记录
         usersRelationshipMapper.insertByRelationShip(usersRelationship);
 
         resultDate.setCode(200);
@@ -60,7 +68,7 @@ public class UsersRelationshipController {
     @RequestMapping(value="/", method=RequestMethod.DELETE)
     public ResultDate deleteUser(@ModelAttribute UsersRelationship usersRelationship) {
         ResultDate resultDate = new ResultDate();
-        Map<Object, Object> responseMap = new HashMap<>();
+        Map<String, Object> responseMap = new HashMap<>();
 
         usersRelationshipMapper.deleteByRelationShip(usersRelationship);
 
@@ -68,6 +76,36 @@ public class UsersRelationshipController {
         responseMap.put("mag", "success");
         resultDate.setData(responseMap);
 
+        return resultDate;
+    }
+
+
+    @ApiOperation(value="获取我的粉丝信息", notes="根据user_id来获取我的粉丝详细信息")
+    @ApiImplicitParam(name = "id", value = "用户自己的ID", required = true, dataType = "int", paramType = "path")
+    @RequestMapping(value="/{id}", method=RequestMethod.GET)
+    public ResultDate getMyFans(@PathVariable Integer id) {
+
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        //获取关注我的所有用户信息
+        List<UsersRelationship> fans = usersRelationshipMapper.getMyFans(id);
+
+
+        //获取关注我的所有用户id
+        List<Integer> fanIds = new ArrayList<>();
+        for (UsersRelationship i: fans)
+            fanIds.add(i.getFromuid());
+
+        //获取所有关注我的用户详细信息
+        List<UserInfo> fanInfos = new ArrayList<>();
+        for (Integer u : fanIds)
+            fanInfos.add(userInfoMapper.getUserInfoByUserId(u));
+
+        resultDate.setCode(200);
+        responseMap.put("msg", "success");
+        responseMap.put("fans", fanInfos);
+        resultDate.setData(responseMap);
         return resultDate;
     }
 

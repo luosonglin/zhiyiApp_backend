@@ -44,6 +44,7 @@ public interface UserInfoMapper {
             "#{user_pic,jdbcType=VARCHAR}, #{authen_status,jdbcType=VARCHAR}, #{token_id,jdbcType=VARCHAR})")
     int insertUserInfoByMap(Map<String, Object> map);
 
-
+    @Select("select * from user_info where id = #{id}")
+    UserInfo getUserInfoByUserId(@Param("id") Integer id);
 
 }
