@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,19 +20,21 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping(value="/${cn.luosonglin.test.project.type}/${cn.luosonglin.test.project.version}/blogs")     // 通过这里配置使下面的映射都在/blogs，可去除
+@RequestMapping(value = "/${cn.luosonglin.test.project.type}/${cn.luosonglin.test.project.version}/blogs")
+// 通过这里配置使下面的映射都在/blogs，可去除
 public class BlogController {
 
     @Autowired
     private BlogMapper blogMapper;
 
-    @ApiOperation(value="获取博客列表", notes="")
-    @RequestMapping(value="/", method= RequestMethod.GET)
+    @ApiOperation(value = "获取博客列表", notes = "")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResultDate getBlogList() {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
         resultDate.setCode(200);
+        responseMap.put("msg", "success");
         responseMap.put("blogs", blogMapper.findAllBlog());
         resultDate.setData(responseMap);
 
@@ -39,17 +42,17 @@ public class BlogController {
     }
 
 
-    @ApiOperation(value="发微博", notes="创建微博")
+    @ApiOperation(value = "发微博", notes = "创建微博")
     @ApiImplicitParam(name = "blog", value = "Blog实体", required = true, dataType = "Blog")
-    @RequestMapping(value="/", method=RequestMethod.POST)
-    private ResultDate postMicroBlog(@ModelAttribute Blog blog) {
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResultDate postMicroBlog(@ModelAttribute Blog blog) {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
-
         blogMapper.insertByBlog(blog);
+
         resultDate.setCode(200);
-        responseMap.put("msg","success");
+        responseMap.put("msg", "success");
         responseMap.put("blog", blog);
         resultDate.setData(responseMap);
 
@@ -92,5 +95,35 @@ public class BlogController {
 //
 //        return resultDate;
 //    }
+
+    //    @ApiOperation(value="获取某个用户的全部微博信息", notes="根据url的user_id来获取")
+//    @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "Integer", paramType = "path")//如不添加paramType="path"，所有的参数类型都会是body，获取不到请求参数。参考swagger的api
+//    @RequestMapping(value="/{user_id}", method=RequestMethod.GET)
+//    public ResultDate getBlogByUserId(@PathVariable Integer user_id) {
+//
+//        ResultDate resultDate = new ResultDate();
+//        Map<String, Object> responseMap = new HashMap<>();
+//
+//        resultDate.setCode(200);
+//        responseMap.put("msg", "success");
+//        responseMap.put("blog", blogMapper.findBlogById(user_id));
+//        resultDate.setData(responseMap);
+//        return resultDate;
+//    }
+
+    @ApiOperation(value = "获取某个用户的全部微博信息", notes = "根据url的user_id来获取")
+    @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "int", paramType = "path")
+    @RequestMapping(value = "/{user_id}", method = RequestMethod.GET)
+    public ResultDate getBlogByUserId(@PathVariable Integer user_id) {
+
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        resultDate.setCode(200);
+        responseMap.put("msg", "success");
+        responseMap.put("blog", blogMapper.findBlogById(user_id));
+        resultDate.setData(responseMap);
+        return resultDate;
+    }
 
 }

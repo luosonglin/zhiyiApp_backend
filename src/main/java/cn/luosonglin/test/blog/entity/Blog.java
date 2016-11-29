@@ -29,11 +29,11 @@ public class Blog {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUserId(Integer user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 
@@ -51,54 +51,53 @@ public class Blog {
 
     public void setContent(String content) {
         this.content = content;
-//        this.content = content.getBytes("gbk");
     }
 
-    public Integer getCommentCount() {
+    public Integer getComment_count() {
         return comment_count;
     }
 
-    public void setCommentCount(Integer comment_count) {
+    public void setComment_count(Integer comment_count) {
         this.comment_count = comment_count;
     }
 
-    public Integer getLikeCount() {
+    public Integer getLike_count() {
         return like_count;
     }
 
-    public void setLikeCount(Integer like_count) {
+    public void setLike_count(Integer like_count) {
         this.like_count = like_count;
     }
 
-    public Date getCreatedAt() {
+    public Date getCreated_at() {
         return created_at;
     }
 
-    public void setCreatedAt(Date created_at) {
+    public void setCreated_at(Date created_at) {
         this.created_at = created_at;
     }
 
-    public Date getDeletedAt() {
+    public Date getDeleted_at() {
         return deleted_at;
     }
 
-    public void setDeletedAt(Date deleted_at) {
+    public void setDeleted_at(Date deleted_at) {
         this.deleted_at = deleted_at;
     }
 
-    public String getTabId() {
+    public String getTag_id() {
         return tag_id;
     }
 
-    public void setTabId(String tag_id) {
+    public void setTag_id(String tag_id) {
         this.tag_id = tag_id;
     }
 
-    public Integer getIsHot() {
+    public Integer getIs_hot() {
         return is_hot;
     }
 
-    public void setIsHot(Integer is_hot) {
+    public void setIs_hot(Integer is_hot) {
         this.is_hot = is_hot;
     }
 

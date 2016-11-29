@@ -32,11 +32,12 @@ public class Swagger2 {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot整合Swagger2构建RESTful APIs")
-                .description("知医技术部——罗松林")
-                .termsOfServiceUrl("http://blog.luosonglin.cn/")
+                .title("知医技术部——微服务架构")
+                .description("Spring Boot整合Swagger2构建RESTful APIs")
+                .termsOfServiceUrl("http://weibo.com/iluosonglin")
                 .contact("luosonglin")
                 .version("1.0.0")
+                .licenseUrl("http://weibo.com/iluosonglin")
                 .build();
     }
 }
