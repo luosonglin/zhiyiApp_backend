@@ -91,7 +91,6 @@ public class UsersRelationshipController {
         //获取关注我的所有用户信息
         List<UsersRelationship> fans = usersRelationshipMapper.getMyFans(id);
 
-
         //获取关注我的所有用户id
         List<Integer> fanIds = new ArrayList<>();
         for (UsersRelationship i: fans)
@@ -108,5 +107,37 @@ public class UsersRelationshipController {
         resultDate.setData(responseMap);
         return resultDate;
     }
+
+    @ApiOperation(value="获取我的粉丝数量", notes="根据user_id来获取我的粉丝数量")
+    @ApiImplicitParam(name = "id", value = "用户自己的ID", required = true, dataType = "int", paramType = "path")
+    @RequestMapping(value="/{id}/fans", method=RequestMethod.GET)
+    public ResultDate getMyFanCount(@PathVariable Integer id) {
+
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        resultDate.setCode(200);
+        responseMap.put("msg", "success");
+        responseMap.put("fans", usersRelationshipMapper.getFansCount(id));
+        resultDate.setData(responseMap);
+        return resultDate;
+    }
+
+    @ApiOperation(value="获取我的关注数量", notes="根据user_id来获取我的关注数量")
+    @ApiImplicitParam(name = "id", value = "用户自己的ID", required = true, dataType = "int", paramType = "path")
+    @RequestMapping(value="/{id}/follows", method=RequestMethod.GET)
+    public ResultDate getMyFollowCount(@PathVariable Integer id) {
+
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        resultDate.setCode(200);
+        responseMap.put("msg", "success");
+        responseMap.put("fans", usersRelationshipMapper.getFollowedCount(id));
+        resultDate.setData(responseMap);
+        return resultDate;
+    }
+
+
 
 }

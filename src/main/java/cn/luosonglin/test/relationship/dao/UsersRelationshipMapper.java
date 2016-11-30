@@ -27,4 +27,12 @@ public interface UsersRelationshipMapper {
     List<UsersRelationship> getMyFans(@Param("touid") Integer touid);
 
 
+    //粉丝数
+    @Select("select count(*) from users_relationship where touid = #{touid} ")
+    Integer getFansCount(@Param("touid") Integer touid);
+
+    //关注数
+    @Select("select count(*) from users_relationship where fromuid = #{fromuid} ")
+    Integer getFollowedCount(@Param("fromuid") Integer fromuid);
+
 }
