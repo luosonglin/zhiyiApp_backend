@@ -9,16 +9,28 @@ import java.util.Date;
  * !!!注意：此处需要与数据库表的字段一致！不可擅自使用其他驼峰式写法!!!
  */
 public class Blog {
+//    private Integer id;
+//    private Integer user_id;
+//    private String title;
+//    private String content;
+//    private Integer comment_count;
+//    private Integer like_count;
+//    private Date created_at;
+//    private Date deleted_at;
+//    private String tag_id;
+//    private Integer is_hot;
+//    private String images;
+
     private Integer id;
-    private Integer user_id;
+    private Integer userId;
     private String title;
     private String content;
-    private Integer comment_count;
-    private Integer like_count;
-    private Date created_at;
-    private Date deleted_at;
-    private String tag_id;
-    private Integer is_hot;
+    private Integer commentCount;
+    private Integer likeCount;
+    private Date createdAt;
+    private Date deletedAt;
+    private String tagId;
+    private Integer isHot;
     private String images;
 
     public Integer getId() {
@@ -29,12 +41,12 @@ public class Blog {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getTitle() {
@@ -53,52 +65,52 @@ public class Blog {
         this.content = content;
     }
 
-    public Integer getComment_count() {
-        return comment_count;
+    public Integer getCommentCount() {
+        return commentCount;
     }
 
-    public void setComment_count(Integer comment_count) {
-        this.comment_count = comment_count;
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
     }
 
-    public Integer getLike_count() {
-        return like_count;
+    public Integer getLikeCount() {
+        return likeCount;
     }
 
-    public void setLike_count(Integer like_count) {
-        this.like_count = like_count;
+    public void setLikeCount(Integer likeCount) {
+        this.likeCount = likeCount;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getDeleted_at() {
-        return deleted_at;
+    public Date getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleted_at(Date deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
     }
 
-    public String getTag_id() {
-        return tag_id;
+    public String getTagId() {
+        return tagId;
     }
 
-    public void setTag_id(String tag_id) {
-        this.tag_id = tag_id;
+    public void setTagId(String tagId) {
+        this.tagId = tagId;
     }
 
-    public Integer getIs_hot() {
-        return is_hot;
+    public Integer getIsHot() {
+        return isHot;
     }
 
-    public void setIs_hot(Integer is_hot) {
-        this.is_hot = is_hot;
+    public void setIsHot(Integer isHot) {
+        this.isHot = isHot;
     }
 
     public String getImages() {

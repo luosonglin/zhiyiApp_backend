@@ -3,6 +3,7 @@ package cn.luosonglin.test.blog.web;
 import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.blog.dao.BlogMapper;
 import cn.luosonglin.test.blog.entity.Blog;
+import cn.luosonglin.test.exception.CustomizedException;
 import cn.luosonglin.test.relationship.dao.UsersRelationshipMapper;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -114,7 +115,11 @@ public class BlogController {
     @ApiOperation(value = "获取我关注的人的全部微博信息，按时间降序", notes = "根据url的user_id来获取")
     @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "int", paramType = "path")
     @RequestMapping(value = "/{user_id}/follows", method = RequestMethod.GET)
-    public ResultDate getMyFollowsBlog(@PathVariable Integer user_id) {
+    public ResultDate getMyFollowsBlog(@PathVariable Integer user_id) throws CustomizedException {
+
+        if (user_id == null)
+            throw new CustomizedException("user_id不可为空");
+
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
@@ -127,4 +132,6 @@ public class BlogController {
         resultDate.setData(responseMap);
         return resultDate;
     }
+
+
 }
