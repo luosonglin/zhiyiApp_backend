@@ -143,13 +143,16 @@ public class UserInfoController {
     }
 
 
-    @ApiOperation(value = "手机号+密码／验证码登录", notes = "用户登录")
+    @ApiOperation(value = "手机号+验证码登录", notes = "用户登录")
     @ApiImplicitParam(name = "loginUser", value = "用户详细实体user", required = true, dataType = "LoginUser")
     @RequestMapping(value = "/", method = RequestMethod.POST)   //params = "grantType=code"
     private ResultDate loginByUserPhone(@ModelAttribute LoginUser loginUser) throws CustomizedException {
 
         if (loginUser.getPhone() == null)
             throw new CustomizedException("手机号不能为空");
+
+        if (loginUser.getCode() == null)
+            throw new CustomizedException("验证码不能为空");
 
         if (!PhoneUtil.isMobile(loginUser.getPhone()))
             throw new CustomizedException("请填写正确的手机号");
@@ -207,7 +210,7 @@ public class UserInfoController {
                 userInfoMapper.insertNewUser(mUserInfo);
 
             }
-            System.out.println(mUserInfo != null? mUserInfo.getId(): "null");
+            System.out.println(mUserInfo != null ? mUserInfo.getId() : "null");
 
             responseMap.put("user", userInfoMapper.getUserInfoByPhone(loginUser.getPhone()));
 
@@ -223,4 +226,38 @@ public class UserInfoController {
         return resultDate;
     }
 
+    @ApiOperation(value = "手机号+密码登录", notes = "用户登录")
+    @ApiImplicitParam(name = "loginUser", value = "用户详细实体user", required = true, dataType = "LoginUser")
+    @RequestMapping(value = "/pwd", method = RequestMethod.POST)   //params = "grantType=code"
+    private ResultDate loginByUserPassword(@ModelAttribute LoginUser loginUser) throws CustomizedException {
+        if (loginUser.getPhone() == null)
+            throw new CustomizedException("手机号不能为空");
+
+        if (loginUser.getPassword() == null)
+            throw new CustomizedException("密码不能为空");
+
+        if (!PhoneUtil.isMobile(loginUser.getPhone()))
+            throw new CustomizedException("请填写正确的手机号");
+
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        //根据用户手机号去查询用户是否已经是注册用户
+        Integer userId = userInfoMapper.isRegisteredUser(loginUser.getPhone());
+
+        UserInfo mUserInfo = new UserInfo();
+
+        //判断账号是否已经注册过了并存在于user_info表中
+        if (userId == null)
+            throw new CustomizedException("没有该用户，请先获取验证码注册");
+
+        if (!loginUser.getPassword().equals(userInfoMapper.getUserInfoByPhone(loginUser.getPhone()).getPassword()))
+            throw new CustomizedException("密码错误");
+
+        resultDate.setCode(200);
+        resultDate.setData("success");
+
+        return resultDate;
+
+    }
 }

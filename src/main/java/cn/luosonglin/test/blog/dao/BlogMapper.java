@@ -31,6 +31,9 @@ public interface BlogMapper {
             "#{is_hot,jdbcType=INTEGER}, #{images,jdbcType=VARCHAR})")
     int insertByBlog(Blog blog);
 
+    //发微博
+    int writeBlog(Blog blog);
+
     //注意下！！！ 如果根据主键搜索，返回单个entity；如果根据某键值搜索，返回List<entity>
     @Select("SELECT id, user_id, title, content, comment_count, like_count, created_at, deleted_at, tag_id, is_hot, images FROM blog WHERE user_id = #{user_id} ORDER BY created_at desc")
     List<Blog> findBlogById(@Param("user_id") Integer user_id);

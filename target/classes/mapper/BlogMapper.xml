@@ -5,11 +5,22 @@
 
 <mapper namespace="cn.luosonglin.test.blog.dao.BlogMapper">
     <select id="getFollowsBlogByListId" resultType="cn.luosonglin.test.blog.entity.Blog">
-        SELECT id, user_id, title, content, comment_count, like_count,created_at, deleted_at, tag_id, is_hot, images FROM blog
+        SELECT id, user_id, title, content, comment_count, like_count,created_at, deleted_at, tag_id, is_hot, images
+        FROM blog
         WHERE user_id IN
         <foreach item="user_id" index="index" collection="list" open="(" separator="," close=")">
             #{user_id}
         </foreach>
         ORDER BY created_at DESC
     </select>
+
+    <insert id="writeBlog" parameterType="cn.luosonglin.test.blog.entity.Blog" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO blog (
+        id, user_id, title, content, comment_count, like_count, created_at, deleted_at, tag_id, is_hot, images
+        ) VALUES (
+        #{id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
+        #{comment_count,jdbcType=INTEGER}, #{like_count,jdbcType=INTEGER}, #{created_at,jdbcType=TIMESTAMP},
+        #{deleted_at,jdbcType=TIMESTAMP}, #{tag_id,jdbcType=VARCHAR}, #{is_hot,jdbcType=INTEGER}, #{images,jdbcType=VARCHAR}
+        )
+    </insert>
 </mapper>

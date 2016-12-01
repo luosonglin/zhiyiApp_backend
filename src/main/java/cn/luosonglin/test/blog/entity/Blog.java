@@ -1,6 +1,5 @@
 package cn.luosonglin.test.blog.entity;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 /**

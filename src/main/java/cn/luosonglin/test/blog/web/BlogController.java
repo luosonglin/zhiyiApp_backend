@@ -49,11 +49,12 @@ public class BlogController {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
-        blogMapper.insertByBlog(blog);
+//        blogMapper.insertByBlog(blog);
+        blogMapper.writeBlog(blog);
 
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("blog", blog);
+        responseMap.put("blog", blogMapper.findBlogById(blog.getUserId()));
         resultDate.setData(responseMap);
 
         System.out.print(blog.getContent());

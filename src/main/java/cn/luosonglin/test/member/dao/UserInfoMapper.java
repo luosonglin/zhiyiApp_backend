@@ -39,6 +39,7 @@ public interface UserInfoMapper {
     @Select("select * from user_info where mobile_phone = #{mobile_phone}")
     UserInfo getUserInfoByPhone(@Param("mobile_phone") String mobile_phone);
 
+    //以下2种方式不能用，原因不明
     @Insert("INSERT INTO user_info(id, name, nick_name, email, mobile_phone, company, position, sex, title, address, country, province, city, zip_code, id_code," +
             "status, state_date, confirm_number, phone, user_type, user_source, password, open_id, login_source, user_pic, authen_status, token_id)" +
             " VALUES(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{nick_name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile_phone,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, " +
