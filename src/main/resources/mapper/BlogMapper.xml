@@ -13,12 +13,3 @@
         ORDER BY created_at DESC
     </select>
 </mapper>
-
-<!--
-
-WHERE user_id IN
-        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
-            #{item}
-        </foreach>
-         ORDER BY created_at DESC
--->

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.luosonglin.test.member.dao.UserInfoMapper">
+    <insert id="insertNewUser" parameterType="cn.luosonglin.test.member.entity.UserInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_info (
+        id ,
+        name ,
+        nick_name ,
+        email ,
+        mobile_phone ,
+        company ,
+        postion ,
+        sex ,
+        title ,
+        address ,
+        country ,
+        province ,
+        city ,
+        zip_code ,
+        id_code ,
+        status ,
+        state_date ,
+        confirm_number ,
+        phone ,
+        user_type ,
+        user_source ,
+        password ,
+        open_id ,
+        login_source ,
+        user_pic,
+        authen_status,
+        token_id
+        ) VALUES (
+        #{id} ,
+        #{name} ,
+        #{nickName} ,
+        #{email} ,
+        #{mobilePhone} ,
+        #{company} ,
+        #{postion} ,
+        #{sex} ,
+        #{title} ,
+        #{address} ,
+        #{country} ,
+        #{province} ,
+        #{city} ,
+        #{zipCode} ,
+        #{idCode} ,
+        #{status} ,
+        #{stateDate} ,
+        #{confirmNumber} ,
+        #{phone} ,
+        #{userType} ,
+        #{userSource} ,
+        #{password} ,
+        #{openId} ,
+        #{loginSource} ,
+        #{userPic},
+        #{authenStatus},
+        #{tokenId}
+        )
+    </insert>
+</mapper>

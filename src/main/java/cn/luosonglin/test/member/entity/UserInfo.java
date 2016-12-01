@@ -8,9 +8,9 @@ import java.util.Date;
 public class UserInfo {
     private Integer id;
     private String name;
-    private String nick_name;
+    private String nickName;
     private String email;
-    private String mobile_phone;
+    private String mobilePhone;
     private String company;
     private String postion;
     private String sex;
@@ -19,20 +19,20 @@ public class UserInfo {
     private String country;
     private String province;
     private String city;
-    private String zip_code;
-    private String id_code;
+    private String zipCode;
+    private String idCode;
     private String status;
-    private java.util.Date state_date;
-    private String confirm_number;
+    private java.util.Date stateDate;
+    private String confirmNumber;
     private String phone;
-    private String user_yype;
-    private String user_source;
+    private String userType;
+    private String userSource;
     private String password;
-    private String open_id;
-    private String login_source;
-    private String user_pic;
-    private String authen_status;
-    private String token_id;
+    private String openId;
+    private String loginSource;
+    private String userPic;
+    private String authenStatus;
+    private String tokenId;
 
     public Integer getId() {
         return id;
@@ -50,12 +50,12 @@ public class UserInfo {
         this.name = name;
     }
 
-    public String getNick_name() {
-        return nick_name;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setNick_name(String nick_name) {
-        this.nick_name = nick_name;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getEmail() {
@@ -66,12 +66,12 @@ public class UserInfo {
         this.email = email;
     }
 
-    public String getMobile_phone() {
-        return mobile_phone;
+    public String getMobilePhone() {
+        return mobilePhone;
     }
 
-    public void setMobile_phone(String mobile_phone) {
-        this.mobile_phone = mobile_phone;
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
     }
 
     public String getCompany() {
@@ -138,20 +138,20 @@ public class UserInfo {
         this.city = city;
     }
 
-    public String getZip_code() {
-        return zip_code;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setZip_code(String zip_code) {
-        this.zip_code = zip_code;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
-    public String getId_code() {
-        return id_code;
+    public String getIdCode() {
+        return idCode;
     }
 
-    public void setId_code(String id_code) {
-        this.id_code = id_code;
+    public void setIdCode(String idCode) {
+        this.idCode = idCode;
     }
 
     public String getStatus() {
@@ -162,20 +162,20 @@ public class UserInfo {
         this.status = status;
     }
 
-    public Date getState_date() {
-        return state_date;
+    public Date getStateDate() {
+        return stateDate;
     }
 
-    public void setState_date(Date state_date) {
-        this.state_date = state_date;
+    public void setStateDate(Date stateDate) {
+        this.stateDate = stateDate;
     }
 
-    public String getConfirm_number() {
-        return confirm_number;
+    public String getConfirmNumber() {
+        return confirmNumber;
     }
 
-    public void setConfirm_number(String confirm_number) {
-        this.confirm_number = confirm_number;
+    public void setConfirmNumber(String confirmNumber) {
+        this.confirmNumber = confirmNumber;
     }
 
     public String getPhone() {
@@ -186,20 +186,20 @@ public class UserInfo {
         this.phone = phone;
     }
 
-    public String getUser_yype() {
-        return user_yype;
+    public String getUserType() {
+        return userType;
     }
 
-    public void setUser_yype(String user_yype) {
-        this.user_yype = user_yype;
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
-    public String getUser_source() {
-        return user_source;
+    public String getUserSource() {
+        return userSource;
     }
 
-    public void setUser_source(String user_source) {
-        this.user_source = user_source;
+    public void setUserSource(String userSource) {
+        this.userSource = userSource;
     }
 
     public String getPassword() {
@@ -210,43 +210,43 @@ public class UserInfo {
         this.password = password;
     }
 
-    public String getOpen_id() {
-        return open_id;
+    public String getOpenId() {
+        return openId;
     }
 
-    public void setOpen_id(String open_id) {
-        this.open_id = open_id;
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 
-    public String getLogin_source() {
-        return login_source;
+    public String getLoginSource() {
+        return loginSource;
     }
 
-    public void setLogin_source(String login_source) {
-        this.login_source = login_source;
+    public void setLoginSource(String loginSource) {
+        this.loginSource = loginSource;
     }
 
-    public String getUser_pic() {
-        return user_pic;
+    public String getUserPic() {
+        return userPic;
     }
 
-    public void setUser_pic(String user_pic) {
-        this.user_pic = user_pic;
+    public void setUserPic(String userPic) {
+        this.userPic = userPic;
     }
 
-    public String getAuthen_status() {
-        return authen_status;
+    public String getAuthenStatus() {
+        return authenStatus;
     }
 
-    public void setAuthen_status(String authen_status) {
-        this.authen_status = authen_status;
+    public void setAuthenStatus(String authenStatus) {
+        this.authenStatus = authenStatus;
     }
 
-    public String getToken_id() {
-        return token_id;
+    public String getTokenId() {
+        return tokenId;
     }
 
-    public void setToken_id(String token_id) {
-        this.token_id = token_id;
+    public void setTokenId(String tokenId) {
+        this.tokenId = tokenId;
     }
 }

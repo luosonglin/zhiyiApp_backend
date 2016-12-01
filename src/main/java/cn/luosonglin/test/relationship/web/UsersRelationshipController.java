@@ -53,6 +53,10 @@ public class UsersRelationshipController {
         if (usersRelationshipMapper.isFollowed(usersRelationship) != 0)
             throw new CustomizedException("不可重复关注同一用户");
 
+        //判断是否是自己关注自己
+        if (usersRelationship.getFromuid() == usersRelationship.getTouid())
+            throw new CustomizedException("不可自己关注自己");
+
         //关系表插入新记录
         usersRelationshipMapper.insertByRelationShip(usersRelationship);
 

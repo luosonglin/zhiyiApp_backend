@@ -32,6 +32,10 @@ public interface UserInfoMapper {
 //    @Delete("DELETE FROM user_info WHERE id =#{id}")
 //    void delete(Long id);
 
+    //根据手机号查看该用户是否是注册用户
+    @Select("select id from user_info where mobile_phone = #{mobile_phone}")
+    Integer isRegisteredUser(@Param("mobile_phone") String mobile_phone);
+
     @Select("select * from user_info where mobile_phone = #{mobile_phone}")
     UserInfo getUserInfoByPhone(@Param("mobile_phone") String mobile_phone);
 
@@ -43,6 +47,15 @@ public interface UserInfoMapper {
             "#{phone,jdbcType=VARCHAR}, #{user_type,jdbcType=VARCHAR}, #{user_source,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{open_id,jdbcType=VARCHAR}, #{login_source,jdbcType=VARCHAR}, " +
             "#{user_pic,jdbcType=VARCHAR}, #{authen_status,jdbcType=VARCHAR}, #{token_id,jdbcType=VARCHAR})")
     int insertUserInfoByMap(Map<String, Object> map);
+
+    @Insert("INSERT INTO user_info(id, name, nick_name, email, mobile_phone, company, position, sex, title, address, country, province, city, zip_code, id_code," +
+            "status, state_date, confirm_number, phone, user_type, user_source, password, open_id, login_source, user_pic, authen_status, token_id)" +
+            " VALUES(#{id}, #{name}, #{nick_name}, #{email}, #{mobile_phone}, #{company}, #{position}, #{sex}, #{title}, #{address}, #{country}, #{province}, " +
+            "#{city}, #{zip_code}, #{id_code}, #{status}, #{state_date}, #{confirm_number}, #{phone}, #{user_type}, #{user_source}, #{password}, #{open_id}, " +
+            "#{login_source}, #{user_pic}, #{authen_status}, #{token_id})")
+    int insertByUserInfo(UserInfo userInfo);
+
+    int insertNewUser(UserInfo userInfo);
 
     @Select("select * from user_info where id = #{id}")
     UserInfo getUserInfoByUserId(@Param("id") Integer id);

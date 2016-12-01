@@ -75,7 +75,7 @@ public class UserInfoController {
             map.put("phone", verCode.getPhone());
             map.put("send_date", new Date());
             map.put("send_time", null);
-            map.put("code_content", codeMessage);
+            map.put("code_content", verCode.getCodeContent());
             verificationCodeMapper.insertVerificationCodeByMap(map);                    // ver_code表 code_content无记录
 
         } else {
@@ -160,6 +160,9 @@ public class UserInfoController {
         //判断验证码是否合法（包括正确与否，失效与否两方面验证）
         VerificationCode verificationCode = verificationCodeMapper.getVerificationCodeByPhone(loginUser.getPhone());
 
+        if (verificationCode == null)
+            throw new CustomizedException("请先获取验证码");
+
         //验证用户输入的验证码和数据库ver_code表中保寸的验证码是否一致
         if (loginUser.getCode().equals(verificationCode.getCodeContent())) {
 
@@ -168,32 +171,45 @@ public class UserInfoController {
 //			if(new Date().getTime()-verificationCode.getSendDate().getTime() > 600000)
 //			    throw new CustomizedException("超过10分钟，请重新获取验证码");
 
-            //根据用户手机号去查询用户
-            UserInfo userInfo = userInfoMapper.getUserInfoByPhone(loginUser.getPhone());
+            //根据用户手机号去查询用户是否已经是注册用户
+            Integer userId = userInfoMapper.isRegisteredUser(loginUser.getPhone());
+
+            UserInfo mUserInfo = new UserInfo();
 
             //判断账号是否已经注册过了并存在于user_info表中
-            if (userInfo == null) {
-                Map<String, Object> map = new HashMap<>();
+            if (userId == null) {
+//                Map<String, Object> map = new HashMap<>();
+//
+//                //什么鬼！自定义的鉴权机制？？后期必定添加OAuth2框架！！！！！！
+//                //创建一个6位默认的字符串用于默认昵称后面的字符和签到确认码字符串
+//                map.put("token_id", String.valueOf(UUID.randomUUID()));
+//                map.put("nick_name", "医宝" + RandUtil.rand(6, array));
+//                map.put("mobile_phone", loginUser.getPhone());
+//                map.put("user_type", "1");
+//                map.put("authen_status", "X");
+//                map.put("status", "A");
+//                map.put("confirm_number", RandUtil.rand(6, array));
+//                map.put("state_date", new Date());
+//                map.put("user_pic", "defaultPic");
+//                userInfoMapper.insertUserInfoByMap(map);
 
-                //什么鬼！自定义的鉴权机制？？后期必定添加OAuth2框架！！！！！！
-                //创建一个6位默认的字符串用于默认昵称后面的字符和签到确认码字符串
-                map.put("token_id", String.valueOf(UUID.randomUUID()));
-                map.put("nick_name", "医宝贝" + RandUtil.rand(6, array));
-                map.put("mobile_phone", loginUser.getPhone());
-                map.put("user_type", "1");
-                map.put("authen_status", "X");
-                map.put("status", "A");
-                map.put("confirm_number", RandUtil.rand(6, array));
-                map.put("state_date", new Date());
-                map.put("user_pic", "defaultPic");
+                //换xml注入方式解决，真是日！
+                mUserInfo.setTokenId(String.valueOf(UUID.randomUUID()));
+                mUserInfo.setNickName("医宝" + RandUtil.rand(6, array));
+                mUserInfo.setMobilePhone(loginUser.getPhone());
+                mUserInfo.setUserType("1");
+                mUserInfo.setAuthenStatus("X");
+                mUserInfo.setStatus("A");
+                mUserInfo.setConfirmNumber(RandUtil.rand(6, array));
+                mUserInfo.setStateDate(new Date());
+                mUserInfo.setUserPic("defaultPic");
 
-                userInfoMapper.insertUserInfoByMap(map);
+                userInfoMapper.insertNewUser(mUserInfo);
 
-                responseMap.put("user", userInfoMapper.getUserInfoByPhone(loginUser.getPhone()));
-
-            } else {
-                responseMap.put("user", userInfo);
             }
+            System.out.println(mUserInfo != null? mUserInfo.getId(): "null");
+
+            responseMap.put("user", userInfoMapper.getUserInfoByPhone(loginUser.getPhone()));
 
             resultDate.setCode(200);
             resultDate.setData(responseMap);
