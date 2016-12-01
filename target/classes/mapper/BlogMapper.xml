@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.luosonglin.test.blog.dao.BlogMapper">
+    <select id="getFollowsBlogByListId" resultType="cn.luosonglin.test.blog.entity.Blog">
+        SELECT id, user_id, title, content, comment_count, like_count,created_at, deleted_at, tag_id, is_hot, images FROM blog
+        WHERE user_id IN
+        <foreach item="user_id" index="index" collection="list" open="(" separator="," close=")">
+            #{user_id}
+        </foreach>
+        ORDER BY created_at DESC
+    </select>
+</mapper>
+
+<!--
+
+WHERE user_id IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+         ORDER BY created_at DESC
+-->

@@ -26,6 +26,8 @@ public interface UsersRelationshipMapper {
     @Select("select * from users_relationship where touid = #{touid}")
     List<UsersRelationship> getMyFans(@Param("touid") Integer touid);
 
+    @Select("select touid from users_relationship where fromuid = #{fromuid}")
+    List<Integer> getMyFollowIds(@Param("fromuid") Integer fromuid);
 
     //粉丝数
     @Select("select count(*) from users_relationship where touid = #{touid} ")
@@ -34,5 +36,12 @@ public interface UsersRelationshipMapper {
     //关注数
     @Select("select count(*) from users_relationship where fromuid = #{fromuid} ")
     Integer getFollowedCount(@Param("fromuid") Integer fromuid);
+
+    //某用户的双向关注关系列表
+    @Select("select t1.* from " +
+            "(select * fromusers_relationship where fromuid = #{fromuid}) as t1" +
+            "inner join fromusers_relationship t2 on t1.touid = t2.fromuid limit 10")
+    List<UsersRelationship> getMyDoubleFollows(@Param("fromuid") Integer fromuid);
+
 
 }

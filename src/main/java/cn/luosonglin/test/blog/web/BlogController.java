@@ -3,17 +3,13 @@ package cn.luosonglin.test.blog.web;
 import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.blog.dao.BlogMapper;
 import cn.luosonglin.test.blog.entity.Blog;
-import cn.luosonglin.test.domain.UserMapper;
+import cn.luosonglin.test.relationship.dao.UsersRelationshipMapper;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import org.apache.ibatis.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by luosonglin on 28/11/2016.
@@ -26,6 +22,9 @@ public class BlogController {
 
     @Autowired
     private BlogMapper blogMapper;
+
+    @Autowired
+    private UsersRelationshipMapper usersRelationshipMapper;
 
     @ApiOperation(value = "获取博客列表", notes = "")
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -64,7 +63,7 @@ public class BlogController {
     测试，向兵帮忙解决中文乱码问题
     springboot默认就是utf-8，而且自带编码过滤器
     intellij默认也是utf-8,
-    启动方式是war，那就往tomcat里面找问题，然后问题定位在server.xml
+    启动方式是war，那就往tomcat里面找问题，然后问题定位在apache-tomcat-7.0.73/conf/server.xml
 
     <!-- A "Connector" represents an endpoint by which requests are received
     and responses are returned. Documentation at :
@@ -97,7 +96,7 @@ public class BlogController {
 //    }
 
     @ApiOperation(value = "获取某个用户的全部微博信息", notes = "根据url的user_id来获取")
-    @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "int", paramType = "path")
+    @ApiImplicitParam(name = "user_id", value = "用户自己的ID", required = true, dataType = "int", paramType = "path")
     @RequestMapping(value = "/{user_id}", method = RequestMethod.GET)
     public ResultDate getBlogByUserId(@PathVariable Integer user_id) {
 
@@ -111,6 +110,21 @@ public class BlogController {
         return resultDate;
     }
 
-//    public ResultDate get
 
+    @ApiOperation(value = "获取我关注的人的全部微博信息，按时间降序", notes = "根据url的user_id来获取")
+    @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "int", paramType = "path")
+    @RequestMapping(value = "/{user_id}/follows", method = RequestMethod.GET)
+    public ResultDate getMyFollowsBlog(@PathVariable Integer user_id) {
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        List<Integer> followIds = usersRelationshipMapper.getMyFollowIds(user_id);
+
+        resultDate.setCode(200);
+        responseMap.put("msg", "success");
+        responseMap.put("follows", followIds);
+        responseMap.put("followsBlog", blogMapper.getFollowsBlogByListId(followIds)); //
+        resultDate.setData(responseMap);
+        return resultDate;
+    }
 }
