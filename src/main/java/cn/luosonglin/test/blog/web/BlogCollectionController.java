@@ -2,15 +2,15 @@ package cn.luosonglin.test.blog.web;
 
 import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.blog.dao.BlogCollectionMapper;
+import cn.luosonglin.test.blog.dao.BlogMapper;
+import cn.luosonglin.test.blog.entity.Blog;
 import cn.luosonglin.test.blog.entity.BlogCollection;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by luosonglin on 02/12/2016.
@@ -21,6 +21,9 @@ public class BlogCollectionController {
 
     @Autowired
     private BlogCollectionMapper collectionMapper;
+
+    @Autowired
+    private BlogMapper blogMapper;
 
     @ApiOperation(value = "收藏该微博", notes = "收藏微博")
     @ApiImplicitParam(name = "collection", value = "BlogCollection实体", required = true, dataType = "BlogCollection")
@@ -68,8 +71,12 @@ public class BlogCollectionController {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
+        List<Integer> collectionIds = collectionMapper.getMyCollectionBlogIds(userId);
+
         resultDate.setCode(200);
-        responseMap.put("collection", collectionMapper.findMyCollectionBlog(userId));
+//        responseMap.put("collectionIds", collectionIds);
+//        responseMap.put("collection", collectionMapper.findMyCollectionBlog(userId));
+        responseMap.put("blogs", blogMapper.getBlogListByBlogId(collectionIds));
         resultDate.setData(responseMap);
 
         return resultDate;

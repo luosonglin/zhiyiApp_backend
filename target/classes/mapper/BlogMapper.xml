@@ -14,6 +14,16 @@
         ORDER BY created_at DESC
     </select>
 
+    <select id="getBlogListByBlogId" resultType="cn.luosonglin.test.blog.entity.Blog">
+        SELECT id, user_id, title, content, comment_count, like_count,created_at, deleted_at, tag_id, is_hot, images
+        FROM blog
+        WHERE id IN
+        <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        ORDER BY created_at DESC
+    </select>
+
     <insert id="writeBlog" parameterType="cn.luosonglin.test.blog.entity.Blog" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO blog (
         id, user_id, title, content, comment_count, like_count, created_at, deleted_at, tag_id, is_hot, images

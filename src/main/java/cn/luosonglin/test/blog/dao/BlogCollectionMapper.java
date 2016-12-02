@@ -27,6 +27,10 @@ public interface BlogCollectionMapper {
     @Select("select id, user_id, blog_id, created_at from blog_collection where user_id = #{user_id}")
     List<BlogCollection> findMyCollectionBlog(@Param("user_id") Integer user_id);
 
+    //我收藏的微博的id
+    @Select("select blog_id from blog_collection where user_id = #{user_id}")
+    List<Integer> getMyCollectionBlogIds(@Param("user_id") Integer user_id);
+
     //我收藏的微博数量
     @Select("select count(*) from blog_collection where user_id = #{user_id}")
     Integer getMyCollectionCount(@Param("user_id") Integer user_id);
