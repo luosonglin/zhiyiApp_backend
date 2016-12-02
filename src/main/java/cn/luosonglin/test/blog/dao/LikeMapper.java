@@ -28,4 +28,7 @@ public interface LikeMapper {
 
     @Select("select id, user_id, blog_id, created_at, is_display from blog_like where blog_id = #{blog_id}")
     List<Like> findAllUser(@Param("blog_id") Integer blog_id);
+
+    @Select("select count(*) from blog_like where blog_id = #{blog_id}")
+    Integer getLikeCount(@Param("blog_id") Integer blog_id);
 }

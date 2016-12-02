@@ -54,7 +54,6 @@ public class LikeController {
     @RequestMapping(value="/", method=RequestMethod.PUT)
     public ResultDate putUser(@ModelAttribute Like like) {
 
-
 //        Like l = likeMapper.findById(like.getUser_id(), like.getBlog_id());
 //        l.setIs_display(1);
 
@@ -86,6 +85,20 @@ public class LikeController {
 
         resultDate.setCode(200);
         responseMap.put("users", likeMapper.findAllUser(blogId));
+        resultDate.setData(responseMap);
+
+        return resultDate;
+    }
+
+    @ApiOperation(value="获取某篇微博的点赞数量", notes="")
+    @ApiImplicitParam(name = "blogId", value = "微博ID", required = true, dataType = "int", paramType = "path")
+    @RequestMapping(value="/{blogId}/count", method=RequestMethod.GET)
+    public ResultDate getUserCount(@PathVariable Integer blogId) {
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        resultDate.setCode(200);
+        responseMap.put("likeCount", likeMapper.getLikeCount(blogId));
         resultDate.setData(responseMap);
 
         return resultDate;
