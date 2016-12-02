@@ -6,11 +6,17 @@ import java.util.Date;
  * Created by luosonglin on 01/12/2016.
  */
 public class Like {
+//    private Integer id;
+//    private Integer user_id;
+//    private Integer blog_id;
+//    private Date created_at;
+//    private Integer is_display;
+
     private Integer id;
-    private Integer user_id;
-    private Integer blog_id;
-    private Date created_at;
-    private Integer is_display;
+    private Integer userId;
+    private Integer blogId;
+    private Date createdAt;
+    private Integer isDisplay;
 
     public Integer getId() {
         return id;
@@ -20,35 +26,35 @@ public class Like {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getBlog_id() {
-        return blog_id;
+    public Integer getBlogId() {
+        return blogId;
     }
 
-    public void setBlog_id(Integer blog_id) {
-        this.blog_id = blog_id;
+    public void setBlogId(Integer blogId) {
+        this.blogId = blogId;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Integer getIs_display() {
-        return is_display;
+    public Integer getIsDisplay() {
+        return isDisplay;
     }
 
-    public void setIs_display(Integer is_display) {
-        this.is_display = is_display;
+    public void setIsDisplay(Integer isDisplay) {
+        this.isDisplay = isDisplay;
     }
 }

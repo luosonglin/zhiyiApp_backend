@@ -1,7 +1,6 @@
 package cn.luosonglin.test.activities.web;
 
 import cn.luosonglin.test.activities.dao.ActivitiesMapper;
-import cn.luosonglin.test.banner.dao.BannerMapper;
 import cn.luosonglin.test.base.entity.ResultDate;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

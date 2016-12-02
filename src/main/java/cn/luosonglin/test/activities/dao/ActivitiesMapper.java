@@ -1,5 +1,6 @@
 package cn.luosonglin.test.activities.dao;
 
+import cn.luosonglin.test.activities.entity.Activities;
 import cn.luosonglin.test.banner.entity.Banner;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -12,5 +13,5 @@ import java.util.List;
 @Mapper
 public interface ActivitiesMapper {
     @Select("select id, url, title, content from activities where is_display = 0")
-    List<Banner> getAllActivities();
+    List<Activities> getAllActivities();
 }
