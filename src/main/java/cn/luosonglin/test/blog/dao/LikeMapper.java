@@ -15,6 +15,9 @@ public interface LikeMapper {
     @Insert("INSERT INTO blog_like(id, user_id, blog_id, created_at, is_display) VALUES(#{id}, #{user_id}, #{blog_id}, #{created_at}, #{is_display})")
     int insertByLike(Like like);
 
+    @Insert("INSERT INTO blog_like(id, user_id, blog_id, created_at, is_display) VALUES(#{id}, #{user_id}, #{blog_id}, #{created_at}, #{is_display})")
+    int insertLike(@Param("user_id") Integer user_id, @Param("blog_id") Integer blog_id);
+
     @Delete("DELETE FROM blog_like WHERE user_id =#{user_id} and blog_id = #{blog_id}")
     void delete(Like like);
 

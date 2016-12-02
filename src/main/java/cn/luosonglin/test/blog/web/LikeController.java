@@ -19,7 +19,7 @@ import java.util.Map;
  * Created by luosonglin on 01/12/2016.
  */
 @RestController
-@RequestMapping(value = "/${cn.luosonglin.test.project.type}/${cn.luosonglin.test.project.version}/bloglike")
+@RequestMapping(value = "/${cn.luosonglin.test.project.type}/${cn.luosonglin.test.project.version}/like")
 public class LikeController {
 
     @Autowired
@@ -33,13 +33,13 @@ public class LikeController {
         Map<String, Object> responseMap = new HashMap<>();
 
         Like like1 = new Like();
-//        like1.setUser_id(like.getUser_id());
-//        like1.setBlog_id(like.getBlog_id());
-//        like1.setCreated_at(new Date());
         like1.setUserId(like.getUserId());
         like1.setBlogId(like.getBlogId());
         like1.setCreatedAt(new Date());
-        likeMapper.insertByLike(like1);
+
+//        likeMapper.insertByLike(like1);
+
+//        likeMapper.insertLike(like.getUserId(), like.getBlogId());
 
         resultDate.setCode(200);
         responseMap.put("msg", "success");

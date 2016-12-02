@@ -3,15 +3,13 @@ package cn.luosonglin.test.blog.entity;
 import java.util.Date;
 
 /**
- * Created by luosonglin on 01/12/2016.
+ * Created by luosonglin on 02/12/2016.
  */
-public class Like {
-
+public class BlogCollection {
     private Integer id;
     private Integer userId;
     private Integer blogId;
     private Date createdAt;
-    private Integer isDisplay;
 
     public Integer getId() {
         return id;
@@ -43,13 +41,5 @@ public class Like {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public Integer getIsDisplay() {
-        return isDisplay;
-    }
-
-    public void setIsDisplay(Integer isDisplay) {
-        this.isDisplay = isDisplay;
     }
 }

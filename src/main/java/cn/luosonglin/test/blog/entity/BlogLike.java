@@ -3,10 +3,9 @@ package cn.luosonglin.test.blog.entity;
 import java.util.Date;
 
 /**
- * Created by luosonglin on 01/12/2016.
+ * Created by luosonglin on 02/12/2016.
  */
-public class Like {
-
+public class BlogLike {
     private Integer id;
     private Integer userId;
     private Integer blogId;
