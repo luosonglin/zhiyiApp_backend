@@ -3,6 +3,7 @@ package cn.luosonglin.test.blog.web;
 import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.blog.dao.LikeMapper;
 import cn.luosonglin.test.blog.entity.Like;
+import cn.luosonglin.test.exception.CustomizedException;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,13 @@ public class LikeController {
     @ApiOperation(value = "点赞", notes = "微博点赞")
     @ApiImplicitParam(name = "like", value = "Like实体", required = true, dataType = "Like")
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResultDate likeBlog(@ModelAttribute Like like) {
+    public ResultDate likeBlog(@ModelAttribute Like like) throws CustomizedException {
+
+        if (likeMapper.isLiked(like.getUserId(), like.getBlogId()) != null)
+            throw new CustomizedException("该用户已经对该条微博点过赞");
+
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
-
 
         Map<String, Object> likeMap = new HashMap<>();
         likeMap.put("user_id", like.getUserId());
