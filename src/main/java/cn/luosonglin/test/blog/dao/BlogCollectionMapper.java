@@ -1,7 +1,6 @@
 package cn.luosonglin.test.blog.dao;
 
 import cn.luosonglin.test.blog.entity.BlogCollection;
-import cn.luosonglin.test.blog.entity.BlogLike;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

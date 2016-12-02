@@ -2,11 +2,8 @@ package cn.luosonglin.test.blog.web;
 
 import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.blog.dao.LikeMapper;
-import cn.luosonglin.test.blog.entity.Blog;
 import cn.luosonglin.test.blog.entity.Like;
-import cn.luosonglin.test.domain.User;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,14 +29,14 @@ public class LikeController {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
-        Like like1 = new Like();
-        like1.setUserId(like.getUserId());
-        like1.setBlogId(like.getBlogId());
-        like1.setCreatedAt(new Date());
 
-//        likeMapper.insertByLike(like1);
+        Map<String, Object> likeMap = new HashMap<>();
+        likeMap.put("user_id", like.getUserId());
+        likeMap.put("blog_id", like.getBlogId());
+        likeMap.put("created_at", new Date());
+        likeMap.put("is_display", 0);
 
-//        likeMapper.insertLike(like.getUserId(), like.getBlogId());
+        likeMapper.insertByLikeMap(likeMap);
 
         resultDate.setCode(200);
         responseMap.put("msg", "success");
@@ -58,17 +55,22 @@ public class LikeController {
 //        l.setIs_display(1);
 
 //        Like l = likeMapper.findById(like.getUserId(), like.getBlogId());
-        Like l = likeMapper.getLikeById(like.getUserId());
-        l.setIsDisplay(1);
-        likeMapper.cancelLike(l);
+//        Like l = likeMapper.getLikeById(like.getUserId());
+//        l.setIsDisplay(1);
+//        likeMapper.cancelLike(l);
 
         ResultDate resultDate = new ResultDate();
         Map<Object, Object> responseMap = new HashMap<>();
 
+        Map<String, Object> likeMap = new HashMap<>();
+        likeMap.put("user_id", like.getUserId());
+        likeMap.put("blog_id", like.getBlogId());
+        likeMap.put("is_display", 1);
+//        likeMapper.deleteByLikeMap(likeMap);
+        likeMapper.cancelLikeByMap(likeMap);
+
         resultDate.setCode(200);
         responseMap.put("mag", "success");
-        responseMap.put("haha", l);
-        responseMap.put("test", likeMapper.getLikeById(like.getUserId()));
         resultDate.setData(responseMap);
 
         return resultDate;

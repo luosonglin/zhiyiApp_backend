@@ -2,9 +2,7 @@ package cn.luosonglin.test.blog.web;
 
 import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.blog.dao.BlogCollectionMapper;
-import cn.luosonglin.test.blog.entity.Blog;
 import cn.luosonglin.test.blog.entity.BlogCollection;
-import cn.luosonglin.test.blog.entity.BlogLike;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
