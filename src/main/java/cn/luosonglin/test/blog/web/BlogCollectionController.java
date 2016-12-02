@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +29,11 @@ public class BlogCollectionController {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
-        collectionMapper.insertCollection(collection);
+        Map<String, Object> collectionMap = new HashMap<>();
+        collectionMap.put("user_id", collection.getUserId());
+        collectionMap.put("blog_id", collection.getBlogId());
+        collectionMap.put("created_at", new Date());
+        collectionMapper.insertCollectionByMap(collectionMap);
 
         resultDate.setCode(200);
         responseMap.put("msg", "success");
@@ -41,8 +46,10 @@ public class BlogCollectionController {
     @ApiImplicitParam(name = "collection", value = "BlogCollection实体", required = true, dataType = "BlogCollection")
     @RequestMapping(value="/", method=RequestMethod.PUT)
     public ResultDate putCollection(@ModelAttribute BlogCollection collection) {
-
-        collectionMapper.deleteCollection(collection);
+        Map<String, Object> collectionMap = new HashMap<>();
+        collectionMap.put("user_id", collection.getUserId());
+        collectionMap.put("blog_id", collection.getBlogId());
+        collectionMapper.deleteCollectionByMap(collectionMap);
 
         ResultDate resultDate = new ResultDate();
         Map<Object, Object> responseMap = new HashMap<>();
