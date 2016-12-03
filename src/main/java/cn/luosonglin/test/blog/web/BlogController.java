@@ -4,8 +4,11 @@ import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.blog.dao.BlogMapper;
 import cn.luosonglin.test.blog.entity.Blog;
 import cn.luosonglin.test.exception.CustomizedException;
+import cn.luosonglin.test.member.dao.UserInfoMapper;
+import cn.luosonglin.test.member.entity.UserInfo;
 import cn.luosonglin.test.relationship.dao.UsersRelationshipMapper;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +26,9 @@ public class BlogController {
 
     @Autowired
     private BlogMapper blogMapper;
+
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
     @Autowired
     private UsersRelationshipMapper usersRelationshipMapper;
@@ -114,12 +120,19 @@ public class BlogController {
 
 
     @ApiOperation(value = "获取我关注的人的全部微博信息，按时间降序", notes = "根据url的user_id来获取")
-    @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "int", paramType = "path")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "int", paramType = "path"),
+//            @ApiImplicitParam(name = "header", value = "用户token", required = true, dataType = "String", paramType = "path")
+    })
     @RequestMapping(value = "/{user_id}/follows", method = RequestMethod.GET)
-    public ResultDate getMyFollowsBlog(@PathVariable Integer user_id) throws CustomizedException {
+    public ResultDate getMyFollowsBlog(@PathVariable Integer user_id, @RequestHeader String Authorization) throws CustomizedException {//, @RequestHeader String header
 
         if (user_id == null)
             throw new CustomizedException("user_id不可为空");
+
+//        if (!userInfoMapper.getTokenId(user_id).equals(Authorization))
+//            throw new CustomizedException("您无权限访问");
+//        Authorization = "Bearer " + Authorization;
 
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
