@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45ab8222-3361-4056-a04d-a1fa12e6f849" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/CommentMapper.java" afterPath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/CommentMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/CommentController.java" afterPath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/CommentController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/dao/UserInfoMapper.java" afterPath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/dao/UserInfoMapper.java" />
     </list>
     <ignored path="SpringBootDemo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,8 +68,8 @@
       <file leaf-file-name="CommentMapper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/CommentMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+            <state relative-caret-position="360">
+              <caret line="24" column="54" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,11 +80,21 @@
       <file leaf-file-name="CommentController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/CommentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="72" column="34" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="34" />
+            <state relative-caret-position="388">
+              <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserInfoMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/dao/UserInfoMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="491">
+              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -147,7 +159,6 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/relationship/web/UsersRelationshipController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/UserInfo.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/dao/UserInfoMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/web/UserInfoController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/entity/Blog.java" />
@@ -166,6 +177,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/mapper/BlogMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogCollectionController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/entity/Comment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/dao/UserInfoMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/CommentMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/CommentController.java" />
       </list>
@@ -1033,7 +1045,7 @@
       <workItem from="1480248251473" duration="82849000" />
       <workItem from="1480555686323" duration="34687000" />
       <workItem from="1480667141733" duration="11621000" />
-      <workItem from="1480731380316" duration="3857000" />
+      <workItem from="1480731380316" duration="6098000" />
     </task>
     <servers />
   </component>
@@ -1070,7 +1082,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214100000" />
+    <option name="totallyTimeSpent" value="216341000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="-257" width="1920" height="1057" extended-state="0" />
@@ -1318,6 +1330,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
           <caret line="231" column="23" selection-start-line="231" selection-start-column="23" selection-end-line="231" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1326,13 +1339,6 @@
         <state relative-caret-position="30">
           <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/dao/UserInfoMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="60" column="37" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1566,10 +1572,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/dao/UserInfoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/CommentMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+        <state relative-caret-position="360">
+          <caret line="24" column="54" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1578,8 +1592,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/CommentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="72" column="34" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="34" />
+        <state relative-caret-position="388">
+          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

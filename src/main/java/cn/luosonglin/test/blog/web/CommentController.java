@@ -4,6 +4,7 @@ import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.blog.dao.CommentMapper;
 import cn.luosonglin.test.blog.entity.BlogCollection;
 import cn.luosonglin.test.blog.entity.Comment;
+import cn.luosonglin.test.member.dao.UserInfoMapper;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class CommentController {
 
     @Autowired
     private CommentMapper commentMapper;
+
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
 
     @ApiOperation(value="某条微博的评论列表", notes="")
@@ -51,7 +55,9 @@ public class CommentController {
         commentMap.put("user_id", comment.getUserId());
         commentMap.put("blog_id", comment.getBlogId());
         commentMap.put("comment_id", comment.getCommentId());
-        commentMap.put("content", comment.getContent());
+        commentMap.put("content", comment.getCommentId() == null ?
+                comment.getContent():
+                "回复" + userInfoMapper.getUserInfoName(commentMapper.getUserId(comment.getCommentId())) + "："+comment.getContent());
         commentMap.put("created_at", new Date());
         commentMapper.insertComment(commentMap);
 
@@ -63,7 +69,7 @@ public class CommentController {
         return resultDate;
     }
 
-    @ApiOperation(value="删除某条评论", notes="根据blog_like的id来指定更新收藏记录")
+    @ApiOperation(value="删除某条评论", notes="根据id来指定更新收藏记录")
     @ApiImplicitParam(name = "comment", value = "Comment实体", required = true, dataType = "Comment")
     @RequestMapping(value="/", method=RequestMethod.PUT)
     public ResultDate putCollection(@ModelAttribute Comment comment) {

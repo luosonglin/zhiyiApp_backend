@@ -21,4 +21,7 @@ public interface CommentMapper {
 
     @Select("SELECT * FROM blog_comment WHERE blog_id = #{blog_id}")
     List<Comment> getComments(@Param("blog_id") Integer blog_id);
+
+    @Select("select user_id from blog_comment where id = #{comment_id}")
+    Integer getUserId(@Param("comment_id") Integer comment_id);
 }

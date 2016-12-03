@@ -61,4 +61,7 @@ public interface UserInfoMapper {
     @Select("select * from user_info where id = #{id}")
     UserInfo getUserInfoByUserId(@Param("id") Integer id);
 
+    @Select("select name from user_info where id = #{user_id}")
+    String getUserInfoName(@Param("user_id") Integer user_id);
+
 }
