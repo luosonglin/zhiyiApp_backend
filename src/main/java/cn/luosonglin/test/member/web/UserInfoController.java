@@ -2,6 +2,7 @@ package cn.luosonglin.test.member.web;
 
 import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.base.util.PhoneUtil;
+import cn.luosonglin.test.domain.User;
 import cn.luosonglin.test.exception.CustomizedException;
 import cn.luosonglin.test.member.dao.UserInfoMapper;
 import cn.luosonglin.test.member.dao.VerificationCodeMapper;
@@ -12,6 +13,7 @@ import cn.luosonglin.test.sms.service.SendCommonMessageService;
 import cn.luosonglin.test.util.DateUtil;
 import cn.luosonglin.test.util.RandUtil;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -259,5 +261,35 @@ public class UserInfoController {
 
         return resultDate;
 
+    }
+
+
+
+    @ApiOperation(value="认证医师", notes="根据url的id来指定更新对象，并根据传过来的user信息来更新用户详细信息")
+    @ApiImplicitParam(name = "userInfo", value = "用户详细实体user", required = true, dataType = "UserInfo")
+    @RequestMapping(value="/{userInfo}", method=RequestMethod.PUT)
+    public ResultDate authoruzationUser(@ModelAttribute UserInfo userInfo) {
+
+//        UserInfo u = userInfoMapper.getUserInfoByUserId(userInfo.getId());
+//        u.setName(userInfo.getName());
+//        u.setCompany(userInfo.getCompany());
+//        u.setPostion(userInfo.getPostion());
+//        u.setTitle(userInfo.getTitle());
+//        u.setAuthenStatus("B"); //认证状态(''A:已认证'',''B:待认证''''X:未认证'')
+//        userInfoMapper.update(u);
+
+        Map<String, Object> userInfoMap = new HashMap<>();
+        userInfoMap.put("authen_status", "B");
+        userInfoMapper.authorization(userInfoMap);
+
+        ResultDate resultDate = new ResultDate();
+        Map<Object, Object> responseMap = new HashMap<>();
+
+        resultDate.setCode(200);
+        responseMap.put("mag", "success");
+        responseMap.put("user", userInfoMapper.getUserInfoByUserId(userInfo.getId()));
+        resultDate.setData(responseMap);
+
+        return resultDate;
     }
 }

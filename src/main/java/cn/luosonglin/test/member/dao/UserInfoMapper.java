@@ -1,5 +1,6 @@
 package cn.luosonglin.test.member.dao;
 
+import cn.luosonglin.test.domain.User;
 import cn.luosonglin.test.member.entity.UserInfo;
 import org.apache.ibatis.annotations.*;
 
@@ -66,5 +67,14 @@ public interface UserInfoMapper {
 
     @Select("select token_id from user_info where id = #{user_id}")
     String getTokenId(@Param("user_id") Integer user_id);
+
+    @Update("UPDATE user_info SET name=#{name}, company=#{company}, position=#{position}, title=#{title}, authen_status=#{authen_status} WHERE id =#{id}")
+    void authorization(Map<String, Object> map);
+
+
+    @Update("UPDATE user_info  SET name=#{name}, company=#{company}, position=#{position},title=#{title}, authen_status=#{authen_status} WHERE id =#{id}")
+    void update(UserInfo userInfo);
+
+
 
 }

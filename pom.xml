@@ -173,13 +173,13 @@
             </plugin>
 
             <!--可定义打包以后的war包名称，以免maven默认地起了一个带版本号的war包名称-->
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-war-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<warName>yemao</warName>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <warName>zhiyiApp</warName>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
