@@ -137,7 +137,7 @@ public class UsersRelationshipController {
 
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("fans", usersRelationshipMapper.getFollowedCount(id));
+        responseMap.put("follows", usersRelationshipMapper.getFollowedCount(id));
         resultDate.setData(responseMap);
         return resultDate;
     }

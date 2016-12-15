@@ -4,7 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.luosonglin.test.member.dao.UserInfoMapper">
-    <insert id="insertNewUser" parameterType="cn.luosonglin.test.member.entity.UserInfo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertNewUser" parameterType="cn.luosonglin.test.member.entity.UserInfo" useGeneratedKeys="true"
+            keyProperty="id">
         INSERT INTO user_info (
         id ,
         name ,
@@ -63,4 +64,107 @@
         #{tokenId}
         )
     </insert>
+
+
+    <update id="updateUserInfo" parameterType="cn.luosonglin.test.member.entity.UserInfo">
+        update user_info
+        <!--<set >-->
+        <!--<if test="name != null" >-->
+        <!--name = #{name,jdbcType=VARCHAR},-->
+        <!--</if>-->
+        <!--<if test="company != null" >-->
+        <!--company = #{company,jdbcType=VARCHAR},-->
+        <!--</if>-->
+        <!--<if test="position != null" >-->
+        <!--position = #{position,jdbcType=VARCHAR},-->
+        <!--</if>-->
+        <!--<if test="title != null" >-->
+        <!--title = #{title,jdbcType=VARCHAR},-->
+        <!--</if>-->
+        <!--<if test="authen_status != null" >-->
+        <!--authen_status = #{authenStatus,jdbcType=VARCHAR},-->
+        <!--</if>-->
+        <!--</set>-->
+        <set>
+            <if test="name!=null and name!=''">
+                name = #{name},
+            </if>
+            <if test="nickName!=null and nickName!=''">
+                nick_name = #{nickName},
+            </if>
+            <if test="email!=null and email!=''">
+                email = #{email},
+            </if>
+            <if test="mobilePhone!=null and mobilePhone!=''">
+                mobile_phone = #{mobilePhone},
+            </if>
+            <if test="company!=null and company!=''">
+                company = #{company},
+            </if>
+            <if test="postion!=null and postion!=''">
+                postion = #{postion},
+            </if>
+            <if test="sex!=null and sex!=''">
+                sex = #{sex},
+            </if>
+            <if test="title!=null and title!=''">
+                title = #{title},
+            </if>
+            <if test="address!=null and address!=''">
+                address = #{address},
+            </if>
+            <if test="country!=null and country!=''">
+                country = #{country},
+            </if>
+            <if test="province!=null and province!=''">
+                province = #{province},
+            </if>
+            <if test="city!=null and city!=''">
+                city = #{city},
+            </if>
+            <if test="zipCode!=null and zipCode!=''">
+                zip_code = #{zipCode},
+            </if>
+            <if test="idCode!=null and idCode!=''">
+                id_code = #{idCode},
+            </if>
+            <if test="status!=null and status!=''">
+                status = #{status},
+            </if>
+            <if test="stateDate!=null and stateDate!=''">
+                state_date = #{stateDate},
+            </if>
+            <if test="confirmNumber!=null and confirmNumber!=''">
+                confirm_number = #{confirmNumber},
+            </if>
+            <if test="phone!=null and phone!=''">
+                phone = #{phone},
+            </if>
+            <if test="userType!=null and userType!=''">
+                user_type = #{userType},
+            </if>
+            <if test="userSource!=null and userSource!=''">
+                user_source = #{userSource},
+            </if>
+            <if test="password!=null and password!=''">
+                password = #{password},
+            </if>
+            <if test="openId!=null and openId!=''">
+                open_id = #{openId},
+            </if>
+            <if test="loginSource!=null and loginSource!=''">
+                login_source = #{loginSource},
+            </if>
+            <if test="userPic!=null and userPic!=''">
+                user_pic = #{userPic},
+            </if>
+            <if test="authenStatus!=null and authenStatus!=''">
+                authen_status = #{authenStatus},
+            </if>
+            <if test="tokenId!=null and tokenId!=''">
+                token_id = #{tokenId},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

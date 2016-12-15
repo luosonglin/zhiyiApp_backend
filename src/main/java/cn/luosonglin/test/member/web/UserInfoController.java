@@ -2,7 +2,6 @@ package cn.luosonglin.test.member.web;
 
 import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.base.util.PhoneUtil;
-import cn.luosonglin.test.domain.User;
 import cn.luosonglin.test.exception.CustomizedException;
 import cn.luosonglin.test.member.dao.UserInfoMapper;
 import cn.luosonglin.test.member.dao.VerificationCodeMapper;
@@ -10,10 +9,9 @@ import cn.luosonglin.test.member.entity.LoginUser;
 import cn.luosonglin.test.member.entity.UserInfo;
 import cn.luosonglin.test.member.entity.VerificationCode;
 import cn.luosonglin.test.sms.service.SendCommonMessageService;
-import cn.luosonglin.test.util.DateUtil;
-import cn.luosonglin.test.util.RandUtil;
+import cn.luosonglin.test.base.util.DateUtil;
+import cn.luosonglin.test.base.util.RandUtil;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import static cn.luosonglin.test.util.RandUtil.array;
+import static cn.luosonglin.test.base.util.RandUtil.array;
 
 /**
  * Created by luosonglin on 25/11/2016.
@@ -257,17 +255,18 @@ public class UserInfoController {
             throw new CustomizedException("密码错误");
 
         resultDate.setCode(200);
-        resultDate.setData("success");
+        responseMap.put("mag", "success");
+        responseMap.put("user", userInfoMapper.getUserInfoByUserId(userId));
+        resultDate.setData(responseMap);
 
         return resultDate;
 
     }
 
 
-
     @ApiOperation(value="认证医师", notes="根据url的id来指定更新对象，并根据传过来的user信息来更新用户详细信息")
     @ApiImplicitParam(name = "userInfo", value = "用户详细实体user", required = true, dataType = "UserInfo")
-    @RequestMapping(value="/{userInfo}", method=RequestMethod.PUT)
+    @RequestMapping(value="/", method=RequestMethod.PUT)
     public ResultDate authoruzationUser(@ModelAttribute UserInfo userInfo) {
 
 //        UserInfo u = userInfoMapper.getUserInfoByUserId(userInfo.getId());
@@ -279,7 +278,13 @@ public class UserInfoController {
 //        userInfoMapper.update(u);
 
         Map<String, Object> userInfoMap = new HashMap<>();
+        userInfoMap.put("id", userInfo.getId());
+        userInfoMap.put("name", userInfo.getName());
+        userInfoMap.put("company", userInfo.getCompany());
+        userInfoMap.put("position", userInfo.getPostion());
+        userInfoMap.put("title", userInfo.getTitle());
         userInfoMap.put("authen_status", "B");
+
         userInfoMapper.authorization(userInfoMap);
 
         ResultDate resultDate = new ResultDate();

@@ -40,7 +40,7 @@ public interface UserInfoMapper {
     @Select("select * from user_info where mobile_phone = #{mobile_phone}")
     UserInfo getUserInfoByPhone(@Param("mobile_phone") String mobile_phone);
 
-    //以下2种方式不能用，原因不明
+    //以下2种方式不能用，原因不明  原因在于position字段在数据库里是postino！！！shit!!
     @Insert("INSERT INTO user_info(id, name, nick_name, email, mobile_phone, company, position, sex, title, address, country, province, city, zip_code, id_code," +
             "status, state_date, confirm_number, phone, user_type, user_source, password, open_id, login_source, user_pic, authen_status, token_id)" +
             " VALUES(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{nick_name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile_phone,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, " +
@@ -50,7 +50,7 @@ public interface UserInfoMapper {
             "#{user_pic,jdbcType=VARCHAR}, #{authen_status,jdbcType=VARCHAR}, #{token_id,jdbcType=VARCHAR})")
     int insertUserInfoByMap(Map<String, Object> map);
 
-    @Insert("INSERT INTO user_info(id, name, nick_name, email, mobile_phone, company, position, sex, title, address, country, province, city, zip_code, id_code," +
+    @Insert("INSERT INTO user_info(id, name, nick_name, email, mobile_phone, company, postion, sex, title, address, country, province, city, zip_code, id_code," +
             "status, state_date, confirm_number, phone, user_type, user_source, password, open_id, login_source, user_pic, authen_status, token_id)" +
             " VALUES(#{id}, #{name}, #{nick_name}, #{email}, #{mobile_phone}, #{company}, #{position}, #{sex}, #{title}, #{address}, #{country}, #{province}, " +
             "#{city}, #{zip_code}, #{id_code}, #{status}, #{state_date}, #{confirm_number}, #{phone}, #{user_type}, #{user_source}, #{password}, #{open_id}, " +
@@ -68,13 +68,16 @@ public interface UserInfoMapper {
     @Select("select token_id from user_info where id = #{user_id}")
     String getTokenId(@Param("user_id") Integer user_id);
 
-    @Update("UPDATE user_info SET name=#{name}, company=#{company}, position=#{position}, title=#{title}, authen_status=#{authen_status} WHERE id =#{id}")
+    //fuck!  the parameter "position" of database is false!!!
+    @Update("UPDATE user_info SET name=#{name}, company=#{company}, postion=#{position}, title=#{title}, authen_status=#{authen_status} WHERE id =#{id}")
     void authorization(Map<String, Object> map);
 
-
-    @Update("UPDATE user_info  SET name=#{name}, company=#{company}, position=#{position},title=#{title}, authen_status=#{authen_status} WHERE id =#{id}")
+    @Update("UPDATE user_info SET name=#{name}, company=#{company}, postion=#{position},title=#{title}, authen_status=#{authen_status} WHERE id =#{id}")
     void update(UserInfo userInfo);
 
+    @Update("UPDATE user_info SET name=#{name}, company=#{company}, postion=#{position}, title=#{title}, authen_status=#{authen_status} WHERE id =#{id}")
+    void authorization2(@Param("id") Integer id, @Param("name") String name, @Param("company") String company, @Param("position") String position, @Param("title") String title, @Param("authen_status") String authen_status);
 
+    int updateUserInfo(UserInfo userInfo);
 
 }

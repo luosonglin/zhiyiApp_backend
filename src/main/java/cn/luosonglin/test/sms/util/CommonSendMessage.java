@@ -1,7 +1,7 @@
 package cn.luosonglin.test.sms.util;
 
-import cn.luosonglin.test.util.MD5Gen;
-import cn.luosonglin.test.util.TimeUtil;
+import cn.luosonglin.test.base.util.MD5Gen;
+import cn.luosonglin.test.base.util.TimeUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
