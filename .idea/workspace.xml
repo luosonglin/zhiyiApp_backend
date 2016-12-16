@@ -7,12 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45ab8222-3361-4056-a04d-a1fa12e6f849" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/HuanXinConfig.properties" afterPath="$PROJECT_DIR$/src/main/resources/huanxinConfig.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/BlogMapper.java" afterPath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/BlogMapper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogController.java" afterPath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/easemob/common/PropertiesUtils.java" afterPath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/easemob/common/PropertiesUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" />
     </list>
     <ignored path="SpringBootDemo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,8 +46,8 @@
       <file leaf-file-name="BlogMapper.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/BlogMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+            <state relative-caret-position="225">
+              <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -145,8 +141,8 @@
       <file leaf-file-name="BlogController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="57" column="49" selection-start-line="57" selection-start-column="49" selection-end-line="57" selection-end-column="49" />
+            <state relative-caret-position="397">
+              <caret line="85" column="49" selection-start-line="85" selection-start-column="49" selection-end-line="85" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -230,8 +226,8 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/easemob/common/Roles.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/file/image/ImageService.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/file/web/FileController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/entity/UserAndBlog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/BlogMapper.java" />
       </list>
     </option>
@@ -1369,7 +1365,7 @@
       <workItem from="1481507939521" duration="6657000" />
       <workItem from="1481589094554" duration="9000" />
       <workItem from="1481599231034" duration="1421000" />
-      <workItem from="1481673047956" duration="46378000" />
+      <workItem from="1481673047956" duration="47124000" />
     </task>
     <servers />
   </component>
@@ -1406,7 +1402,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="295383000" />
+    <option name="totallyTimeSpent" value="296129000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="-257" width="1920" height="1057" extended-state="0" />
@@ -1941,16 +1937,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="57" column="49" selection-start-line="57" selection-start-column="49" selection-end-line="57" selection-end-column="49" />
+        <state relative-caret-position="397">
+          <caret line="85" column="49" selection-start-line="85" selection-start-column="49" selection-end-line="85" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/BlogMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+        <state relative-caret-position="225">
+          <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
           <folding />
         </state>
       </provider>

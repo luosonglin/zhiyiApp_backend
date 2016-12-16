@@ -22,6 +22,15 @@ public interface BlogMapper {
     @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and blog.is_hot=1")
     List<UserAndBlog> getRecommendBlog();
 
+    //大咖说微博
+    @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and user_info.authen_status = 'A' ")
+    List<UserAndBlog> getVipBlog();
+
+    //某条微博的详情
+    @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and blog.user_id = #{user_id}")
+    List<UserAndBlog> getBlogDetail(@Param("blog_id") Integer blog_id);
+
+
 //    @Insert("INSERT INTO blog(id, user_id, title, content, comment_count, like_count, created_at, deleted_at, tag_id, is_hot, images)" +
 //            " VALUES(#{id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, " +
 //            "#{content,jdbcType=VARCHAR}, #{comment_count,jdbcType=INTEGER}, #{like_count,jdbcType=INTEGER}, " +

@@ -47,7 +47,7 @@ public class BlogController {
         return resultDate;
     }
 
-    @ApiOperation(value = "获取推荐博客列表", notes = "")
+    @ApiOperation(value = "推荐博客列表", notes = "")
     @RequestMapping(value = "/recommend", method = RequestMethod.GET)
     public ResultDate getRecommendBlogList() {
         ResultDate resultDate = new ResultDate();
@@ -56,6 +56,34 @@ public class BlogController {
         resultDate.setCode(200);
         responseMap.put("msg", "success");
         responseMap.put("blogs", blogMapper.getRecommendBlog());
+        resultDate.setData(responseMap);
+
+        return resultDate;
+    }
+
+    @ApiOperation(value = "大咖说博客列表", notes = "")
+    @RequestMapping(value = "/vip", method = RequestMethod.GET)
+    public ResultDate getVipBlogList() {
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        resultDate.setCode(200);
+        responseMap.put("msg", "success");
+        responseMap.put("blogs", blogMapper.getVipBlog());
+        resultDate.setData(responseMap);
+
+        return resultDate;
+    }
+
+    @ApiOperation(value = "博客详情", notes = "")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ResultDate getBlogDetail() {
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        resultDate.setCode(200);
+        responseMap.put("msg", "success");
+        responseMap.put("blogs", blogMapper.findAllBlog());
         resultDate.setData(responseMap);
 
         return resultDate;
@@ -130,7 +158,6 @@ public class BlogController {
         resultDate.setData(responseMap);
         return resultDate;
     }
-
 
     @ApiOperation(value = "获取我关注的人的全部微博信息，按时间降序", notes = "根据url的user_id来获取")
     @ApiImplicitParams({
