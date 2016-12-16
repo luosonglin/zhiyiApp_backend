@@ -19,11 +19,11 @@ public interface BlogMapper {
     List<Blog> findAllBlog();
 
     //推荐微博 is_hot=1为推荐的精帖
-    @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and blog.is_hot=1")
+    @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and blog.is_hot=1 order by created_at DESC ")
     List<UserAndBlog> getRecommendBlog();
 
     //大咖说微博
-    @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and user_info.authen_status = 'A' ")
+    @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and user_info.authen_status = 'A' order by created_at DESC ")
     List<UserAndBlog> getVipBlog();
 
     //某条微博的详情
