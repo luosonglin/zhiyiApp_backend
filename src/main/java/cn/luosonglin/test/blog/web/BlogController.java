@@ -75,15 +75,16 @@ public class BlogController {
         return resultDate;
     }
 
-    @ApiOperation(value = "博客详情", notes = "")
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResultDate getBlogDetail() {
+    @ApiOperation(value = "某一条博客的详情", notes = "")
+    @ApiImplicitParam(name = "blog_id", value = "博客的ID", required = true, dataType = "int", paramType = "path")
+    @RequestMapping(value = "/{blog_id}/detail", method = RequestMethod.GET)
+    public ResultDate getBlogDetail(@PathVariable Integer blog_id) {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("blogs", blogMapper.findAllBlog());
+        responseMap.put("blog", blogMapper.getBlogDetail(blog_id));
         resultDate.setData(responseMap);
 
         return resultDate;

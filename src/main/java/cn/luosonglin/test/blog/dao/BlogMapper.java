@@ -27,9 +27,8 @@ public interface BlogMapper {
     List<UserAndBlog> getVipBlog();
 
     //某条微博的详情
-    @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and blog.user_id = #{user_id}")
-    List<UserAndBlog> getBlogDetail(@Param("blog_id") Integer blog_id);
-
+    @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and blog.id = #{blog_id}")
+    UserAndBlog getBlogDetail(@Param("blog_id") Integer blog_id);
 
 //    @Insert("INSERT INTO blog(id, user_id, title, content, comment_count, like_count, created_at, deleted_at, tag_id, is_hot, images)" +
 //            " VALUES(#{id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, " +
