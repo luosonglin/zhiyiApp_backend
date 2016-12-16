@@ -66,6 +66,7 @@
     </insert>
 
 
+    <!--用不上了，数据库position字段拼写错的，真的是f*k-->
     <update id="updateUserInfo" parameterType="cn.luosonglin.test.member.entity.UserInfo">
         update user_info
         <!--<set >-->

@@ -1,6 +1,7 @@
 package cn.luosonglin.test.blog.dao;
 
 import cn.luosonglin.test.blog.entity.Blog;
+import cn.luosonglin.test.blog.entity.UserAndBlog;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -16,6 +17,10 @@ public interface BlogMapper {
     @Select("SELECT id, user_id, title, content, comment_count, like_count," +
             "created_at, deleted_at, tag_id, is_hot, images FROM blog")
     List<Blog> findAllBlog();
+
+    //推荐微博 is_hot=1为推荐的精帖
+    @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and blog.is_hot=1")
+    List<UserAndBlog> getRecommendBlog();
 
 //    @Insert("INSERT INTO blog(id, user_id, title, content, comment_count, like_count, created_at, deleted_at, tag_id, is_hot, images)" +
 //            " VALUES(#{id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, " +

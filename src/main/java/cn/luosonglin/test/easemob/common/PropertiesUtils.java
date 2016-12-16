@@ -15,7 +15,7 @@ public class PropertiesUtils {
 
         try {
             InputStream inputStream = PropertiesUtils.class.getClassLoader().getResourceAsStream(
-                    "HuanXinConfig.properties");
+                    "huanxinConfig.properties");
 
             p.load(inputStream);
 

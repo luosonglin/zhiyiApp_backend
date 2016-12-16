@@ -47,6 +47,19 @@ public class BlogController {
         return resultDate;
     }
 
+    @ApiOperation(value = "获取推荐博客列表", notes = "")
+    @RequestMapping(value = "/recommend", method = RequestMethod.GET)
+    public ResultDate getRecommendBlogList() {
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        resultDate.setCode(200);
+        responseMap.put("msg", "success");
+        responseMap.put("blogs", blogMapper.getRecommendBlog());
+        resultDate.setData(responseMap);
+
+        return resultDate;
+    }
 
     @ApiOperation(value = "发微博", notes = "创建微博")
     @ApiImplicitParam(name = "blog", value = "Blog实体", required = true, dataType = "Blog")
