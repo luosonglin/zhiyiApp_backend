@@ -3,9 +3,13 @@ package cn.luosonglin.test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import javax.servlet.MultipartConfigElement;
 
 /**
  * Created by luosonglin on 23/11/2016.
@@ -24,6 +28,16 @@ public class Application extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Application.class);
+    }
+
+    //限制上传的文件大小，新浪微博图片是限制5MB
+    @Bean
+    public MultipartConfigElement multipartConfigElement() {
+        MultipartConfigFactory factory = new MultipartConfigFactory();
+        factory.setMaxFileSize("1024KB");
+        factory.setMaxRequestSize("5120KB");
+
+        return factory.createMultipartConfig();
     }
 
 }
