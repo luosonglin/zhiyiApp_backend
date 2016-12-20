@@ -77,7 +77,7 @@ public class FileUploadController {
      * @param files
      * @return
      */
-    @ApiOperation(value = "上传文件22", notes = "上传文件2")
+    @ApiOperation(value = "批量上传文件", notes = "批量上传文件")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "file", value = "file", required = true, dataType = "file", paramType = "form")
     })
@@ -85,11 +85,15 @@ public class FileUploadController {
     @ResponseBody
     public ResultDate handleMoreFileUpload(@RequestParam("file") MultipartFile[] files) throws CustomizedException {
         ResultDate resultDate = new ResultDate();
-        for (MultipartFile i : files) {
-            if (!i.isEmpty()) {
+        String fileName = null;
+        if (files != null & files.length > 0) {
+            for (MultipartFile i : files) {
                 try {
-                    BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(i.getOriginalFilename())));
-                    out.write(i.getBytes());
+                    fileName = i.getOriginalFilename();
+                    byte[] bytes = i.getBytes();
+
+                    BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(filePath + fileName)));
+                    out.write(bytes);
                     out.flush();
                     out.close();
                 } catch (FileNotFoundException e) {
@@ -98,10 +102,12 @@ public class FileUploadController {
                 } catch (IOException e) {
                     e.printStackTrace();
                     throw new CustomizedException("上传失败," + e.getMessage());
+                } catch (Exception e) {
+                    throw new CustomizedException("上传" + fileName +  "失败," + e.getMessage());
                 }
-            } else {
-                throw new CustomizedException("上传失败，因为文件是空的.");
             }
+        } else{
+            throw new CustomizedException("上传失败，因为文件是空的.");
         }
         resultDate.setCode(200);
         resultDate.setData("上传成功");
