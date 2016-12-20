@@ -5,6 +5,8 @@ import cn.luosonglin.test.exception.CustomizedException;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,15 +15,23 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Created by luosonglin on 19/12/2016.
+ * 参考 http://blog.csdn.net/daniel7443/article/details/51620308
  */
 @RestController
 @RequestMapping(value = "/${cn.luosonglin.test.project.type}/${cn.luosonglin.test.project.version}/file")
 public class FileUploadController {
+
+    /**
+     * Logger for this class
+     */
+    private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
     @Value("${cn.luosonglin.test.file.path}")
     private String filePath;
@@ -46,9 +56,7 @@ public class FileUploadController {
             try {
               /*
                * 3、文件格式;
-               * 4、文件大小的限制;
                */
-
                 fileName = file.getOriginalFilename();
                 byte[] bytes = file.getBytes();
 
@@ -77,7 +85,7 @@ public class FileUploadController {
      * @param files
      * @return
      */
-    @ApiOperation(value = "批量上传文件", notes = "批量上传文件")
+    @ApiOperation(value = "批量上传文件(该API不用swagger2测试，swagger不支持多文件上传)", notes = "批量上传文件")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "file", value = "file", required = true, dataType = "file", paramType = "form")
     })
@@ -111,6 +119,28 @@ public class FileUploadController {
         }
         resultDate.setCode(200);
         resultDate.setData("上传成功");
+        return resultDate;
+    }
+
+    /***
+     * 读取上传文件中得所有文件并返回
+     *
+     * @return
+     */
+    @ApiOperation(value = "读取上传文件中得所有文件并返回", notes = " ")
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public ResultDate list() {
+        ResultDate resultDate = new ResultDate();
+        Map<Object, Object> response = new HashMap<>();
+
+        File uploadDest = new File(filePath);
+        String[] fileNames = uploadDest.list();
+
+        response.put("files", fileNames);
+        response.put("path", filePath);
+        resultDate.setCode(200);
+        resultDate.setData(response);
+
         return resultDate;
     }
 

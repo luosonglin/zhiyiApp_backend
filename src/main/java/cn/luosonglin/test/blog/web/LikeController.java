@@ -90,7 +90,7 @@ public class LikeController {
         Map<String, Object> responseMap = new HashMap<>();
 
         resultDate.setCode(200);
-        responseMap.put("users", likeMapper.findAllUser(blogId));
+        responseMap.put("user", likeMapper.findAllUser(blogId));
         resultDate.setData(responseMap);
 
         return resultDate;

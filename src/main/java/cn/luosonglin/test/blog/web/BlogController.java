@@ -3,10 +3,12 @@ package cn.luosonglin.test.blog.web;
 import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.blog.dao.BlogMapper;
 import cn.luosonglin.test.blog.entity.Blog;
+import cn.luosonglin.test.blog.entity.UserAndBlog;
 import cn.luosonglin.test.exception.CustomizedException;
 import cn.luosonglin.test.member.dao.UserInfoMapper;
 import cn.luosonglin.test.member.entity.UserInfo;
 import cn.luosonglin.test.relationship.dao.UsersRelationshipMapper;
+import cn.luosonglin.test.relationship.entity.UsersRelationship;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -33,6 +35,7 @@ public class BlogController {
     @Autowired
     private UsersRelationshipMapper usersRelationshipMapper;
 
+
     @ApiOperation(value = "获取博客列表", notes = "")
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResultDate getBlogList() {
@@ -41,7 +44,7 @@ public class BlogController {
 
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("blogs", blogMapper.findAllBlog());
+        responseMap.put("blog", blogMapper.findAllBlog());
         resultDate.setData(responseMap);
 
         return resultDate;
@@ -55,7 +58,7 @@ public class BlogController {
 
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("blogs", blogMapper.getRecommendBlog());
+        responseMap.put("blog", blogMapper.getRecommendBlog());
         resultDate.setData(responseMap);
 
         return resultDate;
@@ -69,22 +72,38 @@ public class BlogController {
 
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("blogs", blogMapper.getVipBlog());
+        responseMap.put("blog", blogMapper.getVipBlog());
         resultDate.setData(responseMap);
 
         return resultDate;
     }
 
     @ApiOperation(value = "某一条博客的详情", notes = "")
-    @ApiImplicitParam(name = "blog_id", value = "博客的ID", required = true, dataType = "int", paramType = "path")
-    @RequestMapping(value = "/{blog_id}/detail", method = RequestMethod.GET)
-    public ResultDate getBlogDetail(@PathVariable Integer blog_id) {
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "blog_id", value = "博客的ID", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "from_uid", value = "谁去看这篇微博", required = true, dataType = "int", paramType = "path")
+    })
+    @RequestMapping(value = "/{blog_id}/{from_uid}/detail", method = RequestMethod.GET)
+    public ResultDate getBlogDetail(@PathVariable Integer blog_id, @PathVariable Integer from_uid) {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
+        UserAndBlog userAndBlog = blogMapper.getBlogDetail(blog_id);
+
+        if (from_uid != null) {
+            UsersRelationship usersRelationship = new UsersRelationship();
+            usersRelationship.setFromuid(from_uid);
+            usersRelationship.setTouid(userAndBlog.getUserId());
+
+            responseMap.put("isfollowed", usersRelationshipMapper.isFollowed(usersRelationship));
+        } else {
+            responseMap.put("isfollowed", null); //实际为null
+        }
+
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("blog", blogMapper.getBlogDetail(blog_id));
+        responseMap.put("blog", userAndBlog);
+
         resultDate.setData(responseMap);
 
         return resultDate;

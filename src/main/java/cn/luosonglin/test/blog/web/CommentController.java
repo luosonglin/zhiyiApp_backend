@@ -37,7 +37,7 @@ public class CommentController {
         Map<String, Object> responseMap = new HashMap<>();
 
         resultDate.setCode(200);
-        responseMap.put("comments", commentMapper.getComments(blogId));
+        responseMap.put("comment", commentMapper.getComments(blogId));
         resultDate.setData(responseMap);
 
         return resultDate;

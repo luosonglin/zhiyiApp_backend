@@ -76,8 +76,13 @@ public class BlogCollectionController {
         resultDate.setCode(200);
 //        responseMap.put("collectionIds", collectionIds);
 //        responseMap.put("collection", collectionMapper.findMyCollectionBlog(userId));
-        responseMap.put("blogs", blogMapper.getBlogListByBlogId(collectionIds));
-        resultDate.setData(responseMap);
+        if(!collectionIds.isEmpty()) {
+            responseMap.put("blog", blogMapper.getBlogListByBlogId(collectionIds));
+            resultDate.setData(responseMap);
+        } else {
+            resultDate.setData(null);
+        }
+
 
         return resultDate;
     }
