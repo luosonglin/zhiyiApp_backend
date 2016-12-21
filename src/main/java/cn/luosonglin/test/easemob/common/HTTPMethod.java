@@ -3,8 +3,6 @@ package cn.luosonglin.test.easemob.common;
 /**
  * HTTP Methods
  * 
- * @author Lynch 2014-09-15
- * 
  */
 public interface HTTPMethod {
 

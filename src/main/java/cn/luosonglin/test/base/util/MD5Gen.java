@@ -10,7 +10,12 @@ import java.security.*;
  * @version 1.0
  */
 public class MD5Gen {
-	
+
+    public static void main(String[] args) {
+        System.out.println(MD5Gen.getMD5("123456"));//e10adc3949ba59abbe56e057f20f883e
+        System.out.println(MD5Gen.getMD5("e10adc3949ba59abbe56e057f20f883e"));
+    }
+
     public MD5Gen() {
     }
     
@@ -28,7 +33,7 @@ public class MD5Gen {
 
             return bintoascii(s);
         } catch (NoSuchAlgorithmException ex) {
-            return null;
+            return ex.getMessage();
         }
     }
 
