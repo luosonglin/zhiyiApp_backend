@@ -38,19 +38,19 @@ public class EasemobMessages {
 
     public static void main(String[] args) {
         //  检测用户是否在线
-        String targetUserName = "kenshinnuser000";
+        String targetUserName = "7";
         ObjectNode usernode = getUserStatus(targetUserName);
         if (null != usernode) {
             LOGGER.info("检测用户是否在线: " + usernode.toString());
         }
 
         // 给用户发一条文本消息
-        String from = "kenshinnuser000";
-        String targetTypeus = "users";
+        String from = "7";	//表示消息发送者。无此字段Server会默认设置为"from":"admin"，有from字段但值为空串("")时请求失败
+        String targetTypeus = "users";	// users 给用户发消息。chatgroups: 给群发消息，chatrooms: 给聊天室发消息
         ObjectNode ext = factory.objectNode();
         ArrayNode targetusers = factory.arrayNode();
-        targetusers.add("kenshinnuser001");
-        targetusers.add("kenshinnuser002");
+        targetusers.add("6");	// 注意这里需要用数组，数组长度建议不大于20，即使只有一个用户，也要用数组 ['u1']，给用户发送时数组元素是用户名，给群组发送时数组元素是groupid
+//        targetusers.add("kenshinnuser002");
         ObjectNode txtmsg = factory.objectNode();
         txtmsg.put("msg", "Hello Easemob!");
         txtmsg.put("type","txt");
@@ -60,80 +60,80 @@ public class EasemobMessages {
         }
 
         // 给一个群组发文本消息
-        String targetTypegr = "chatgroups";
-        ArrayNode  chatgroupidsNode = (ArrayNode) EasemobChatGroups.getAllChatgroupids().path("data");
-        ArrayNode targetgroup = factory.arrayNode();
-        targetgroup.add(chatgroupidsNode.get(0).path("groupid").asText());
-        ObjectNode sendTxtMessagegroupnode = sendMessages(targetTypegr, targetgroup, txtmsg, from, ext);
-        if (null != sendTxtMessagegroupnode) {
-            LOGGER.info("给一个群组发文本消息: " + sendTxtMessagegroupnode.toString());
-        }
+//        String targetTypegr = "chatgroups";
+//        ArrayNode  chatgroupidsNode = (ArrayNode) EasemobChatGroups.getAllChatgroupids().path("data");
+//        ArrayNode targetgroup = factory.arrayNode();
+//        targetgroup.add(chatgroupidsNode.get(0).path("groupid").asText());
+//        ObjectNode sendTxtMessagegroupnode = sendMessages(targetTypegr, targetgroup, txtmsg, from, ext);
+//        if (null != sendTxtMessagegroupnode) {
+//            LOGGER.info("给一个群组发文本消息: " + sendTxtMessagegroupnode.toString());
+//        }
 
         // 给用户发一条图片消息
-        File uploadImgFile = new File("/home/lynch/Pictures/24849.jpg");
-        ObjectNode imgDataNode = EasemobFiles.mediaUpload(uploadImgFile);
-        if (null != imgDataNode) {
-            String imgFileUUID = imgDataNode.path("entities").get(0).path("uuid").asText();
-            String shareSecret = imgDataNode.path("entities").get(0).path("share-secret").asText();
-
-            LOGGER.info("上传图片文件: " + imgDataNode.toString());
-
-            ObjectNode imgmsg = factory.objectNode();
-            imgmsg.put("type","img");
-            imgmsg.put("url",  EndPoints.CHATFILES_TARGET.resolveTemplate("org_name", APPKEY.split("#")[0]).resolveTemplate("app_name",
-                    APPKEY.split("#")[1]).getUri().toString() + imgFileUUID);
-            imgmsg.put("filename", "24849.jpg");
-            imgmsg.put("length", 10);
-            imgmsg.put("secret", shareSecret);
-            ObjectNode sendimgMessageusernode = sendMessages(targetTypeus, targetusers, imgmsg, from, ext);
-            if (null != sendimgMessageusernode) {
-                LOGGER.info("给一个群组发文本消息: " + sendimgMessageusernode.toString());
-            }
-
-            // 给一个群组发图片消息
-            ObjectNode sendimgMessagegroupnode = sendMessages(targetTypegr, targetgroup, imgmsg, from, ext);
-            if (null != sendimgMessagegroupnode) {
-                LOGGER.info("给一个群组发文本消息: " + sendimgMessagegroupnode.toString());
-            }
-        }
+//        File uploadImgFile = new File("/home/lynch/Pictures/24849.jpg");
+//        ObjectNode imgDataNode = EasemobFiles.mediaUpload(uploadImgFile);
+//        if (null != imgDataNode) {
+//            String imgFileUUID = imgDataNode.path("entities").get(0).path("uuid").asText();
+//            String shareSecret = imgDataNode.path("entities").get(0).path("share-secret").asText();
+//
+//            LOGGER.info("上传图片文件: " + imgDataNode.toString());
+//
+//            ObjectNode imgmsg = factory.objectNode();
+//            imgmsg.put("type","img");
+//            imgmsg.put("url",  EndPoints.CHATFILES_TARGET.resolveTemplate("org_name", APPKEY.split("#")[0]).resolveTemplate("app_name",
+//                    APPKEY.split("#")[1]).getUri().toString() + imgFileUUID);
+//            imgmsg.put("filename", "24849.jpg");
+//            imgmsg.put("length", 10);
+//            imgmsg.put("secret", shareSecret);
+//            ObjectNode sendimgMessageusernode = sendMessages(targetTypeus, targetusers, imgmsg, from, ext);
+//            if (null != sendimgMessageusernode) {
+//                LOGGER.info("给一个群组发文本消息: " + sendimgMessageusernode.toString());
+//            }
+//
+//            // 给一个群组发图片消息
+//            ObjectNode sendimgMessagegroupnode = sendMessages(targetTypegr, targetgroup, imgmsg, from, ext);
+//            if (null != sendimgMessagegroupnode) {
+//                LOGGER.info("给一个群组发文本消息: " + sendimgMessagegroupnode.toString());
+//            }
+//        }
 
 
         // 给用户发一条语音消息
-        File uploadAudioFile = new File("/home/lynch/Music/music.MP3");
-        ObjectNode audioDataNode = EasemobFiles.mediaUpload(uploadAudioFile);
-        if (null != audioDataNode) {
-            String audioFileUUID = audioDataNode.path("entities").get(0).path("uuid").asText();
-            String audioFileShareSecret = audioDataNode.path("entities").get(0).path("share-secret").asText();
-
-            LOGGER.info("上传语音文件: " + audioDataNode.toString());
-
-            ObjectNode audiomsg = factory.objectNode();
-            audiomsg.put("type","audio");
-            audiomsg.put("url", EndPoints.CHATFILES_TARGET.resolveTemplate("org_name", APPKEY.split("#")[0]).resolveTemplate("app_name",
-                    APPKEY.split("#")[1]).getUri().toString() + audioFileUUID);
-            audiomsg.put("filename", "music.MP3");
-            audiomsg.put("length", 10);
-            audiomsg.put("secret", audioFileShareSecret);
-            ObjectNode sendaudioMessageusernode = sendMessages(targetTypeus, targetusers, audiomsg, from, ext);
-            if (null != sendaudioMessageusernode) {
-                LOGGER.info("给用户发一条语音消息: " + sendaudioMessageusernode.toString());
-            }
-
-            // 给一个群组发语音消息
-            ObjectNode sendaudioMessagegroupnode = sendMessages(targetTypegr, targetgroup, audiomsg, from, ext);
-            if (null != sendaudioMessagegroupnode) {
-                LOGGER.info("给一个群组发语音消息: " + sendaudioMessagegroupnode.toString());
-            }
-        }
+//        File uploadAudioFile = new File("/home/lynch/Music/music.MP3");
+//        ObjectNode audioDataNode = EasemobFiles.mediaUpload(uploadAudioFile);
+//        if (null != audioDataNode) {
+//            String audioFileUUID = audioDataNode.path("entities").get(0).path("uuid").asText();
+//            String audioFileShareSecret = audioDataNode.path("entities").get(0).path("share-secret").asText();
+//
+//            LOGGER.info("上传语音文件: " + audioDataNode.toString());
+//
+//            ObjectNode audiomsg = factory.objectNode();
+//            audiomsg.put("type","audio");
+//            audiomsg.put("url", EndPoints.CHATFILES_TARGET.resolveTemplate("org_name", APPKEY.split("#")[0]).resolveTemplate("app_name",
+//                    APPKEY.split("#")[1]).getUri().toString() + audioFileUUID);
+//            audiomsg.put("filename", "music.MP3");
+//            audiomsg.put("length", 10);
+//            audiomsg.put("secret", audioFileShareSecret);
+//            ObjectNode sendaudioMessageusernode = sendMessages(targetTypeus, targetusers, audiomsg, from, ext);
+//            if (null != sendaudioMessageusernode) {
+//                LOGGER.info("给用户发一条语音消息: " + sendaudioMessageusernode.toString());
+//            }
+//
+//            // 给一个群组发语音消息
+//            ObjectNode sendaudioMessagegroupnode = sendMessages(targetTypegr, targetgroup, audiomsg, from, ext);
+//            if (null != sendaudioMessagegroupnode) {
+//                LOGGER.info("给一个群组发语音消息: " + sendaudioMessagegroupnode.toString());
+//            }
+//        }
 
         // 给用户发一条透传消息
-        ObjectNode cmdmsg = factory.objectNode();
-        cmdmsg.put("action", "gogogo");
-        cmdmsg.put("type","cmd");
-        ObjectNode sendcmdMessageusernode = sendMessages(targetTypeus, targetusers, cmdmsg, from, ext);
-        if (null != sendcmdMessageusernode) {
-            LOGGER.info("给用户发一条透传消息: " + sendcmdMessageusernode.toString());
-        }
+//        ObjectNode cmdmsg = factory.objectNode();
+//        cmdmsg.put("action", "gogogo");
+//        cmdmsg.put("type","cmd");
+//        ObjectNode sendcmdMessageusernode = sendMessages(targetTypeus, targetusers, cmdmsg, from, ext);
+//        if (null != sendcmdMessageusernode) {
+//            LOGGER.info("给用户发一条透传消息: " + sendcmdMessageusernode.toString());
+//        }
     }
 
     /**

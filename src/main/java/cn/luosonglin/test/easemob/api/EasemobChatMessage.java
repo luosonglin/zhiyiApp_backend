@@ -45,21 +45,25 @@ public class EasemobChatMessage {
         ObjectNode messages = getChatMessages(queryStrNode);
 
         // 聊天消息 获取7天以内的消息
-        String currentTimestamp = String.valueOf(System.currentTimeMillis());
-        String senvenDayAgo = String.valueOf(System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000);
-        ObjectNode queryStrNode1 = factory.objectNode();
-        queryStrNode1.put("ql", "select * where  timestamp > " + senvenDayAgo + " and timestamp < " + currentTimestamp);
-        ObjectNode messages1 = getChatMessages(queryStrNode1);
+//        String currentTimestamp = String.valueOf(System.currentTimeMillis());
+//        String senvenDayAgo = String.valueOf(System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000);
+//        ObjectNode queryStrNode1 = factory.objectNode();
+//        queryStrNode1.put("ql", "select * where  timestamp > " + senvenDayAgo + " and timestamp < " + currentTimestamp);
+//        ObjectNode messages1 = getChatMessages(queryStrNode1);
+//
+//        // 聊天消息 分页获取
+//        ObjectNode queryStrNode2 = factory.objectNode();
+//        queryStrNode2.put("limit", "20");
+//        // 第一页
+//        ObjectNode messages2 = getChatMessages(queryStrNode2);
+//        // 第二页
+//        String cursor = messages2.get("cursor").asText();
+//        queryStrNode2.put("cursor", cursor);
+//        ObjectNode messages3 = getChatMessages(queryStrNode2);
 
-        // 聊天消息 分页获取
-        ObjectNode queryStrNode2 = factory.objectNode();
-        queryStrNode2.put("limit", "20");
-        // 第一页
-        ObjectNode messages2 = getChatMessages(queryStrNode2);
-        // 第二页
-        String cursor = messages2.get("cursor").asText();
-        queryStrNode2.put("cursor", cursor);
-        ObjectNode messages3 = getChatMessages(queryStrNode2);
+		if (null != messages) {
+            LOGGER.info("注册IM用户[批量]: " + messages.toString());
+        }
     }
 
     /**

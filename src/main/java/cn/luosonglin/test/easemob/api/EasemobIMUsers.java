@@ -112,12 +112,12 @@ public class EasemobIMUsers {
         /**
          * 添加好友[单个]
          */
-//        String ownerUserName = "7";
-//        String friendUserName = "luo";
-//        ObjectNode addFriendSingleNode = addFriendSingle(ownerUserName, friendUserName);
-//        if (null != addFriendSingleNode) {
-//            LOGGER.info("添加好友[单个]: " + addFriendSingleNode.toString());
-//        }
+        String ownerUserName = "7";
+        String friendUserName = "6";
+        ObjectNode addFriendSingleNode = addFriendSingle(ownerUserName, friendUserName);
+        if (null != addFriendSingleNode) {
+            LOGGER.info("添加好友[单个]: " + addFriendSingleNode.toString());
+        }
 
         /**
          * 查看好友
@@ -141,11 +141,11 @@ public class EasemobIMUsers {
         /**
          * 删除IM用户[单个]
          */
-        String userName = "lin";
-        ObjectNode deleteIMUserByUserNameNode = deleteIMUserByUserName(userName);
-        if (null != deleteIMUserByUserNameNode) {
-            LOGGER.info("删除IM用户[单个]: " + deleteIMUserByUserNameNode.toString());
-        }
+//        String userName = "lin";
+//        ObjectNode deleteIMUserByUserNameNode = deleteIMUserByUserName(userName);
+//        if (null != deleteIMUserByUserNameNode) {
+//            LOGGER.info("删除IM用户[单个]: " + deleteIMUserByUserNameNode.toString());
+//        }
 
         /**
          * 删除IM用户[批量]
