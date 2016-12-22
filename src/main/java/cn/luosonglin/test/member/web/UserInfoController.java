@@ -219,8 +219,11 @@ public class UserInfoController {
             System.out.println(mUserInfo != null ? mUserInfo.getId() : "null");
 
             responseMap.put("user", userInfoMapper.getUserInfoByPhone(loginUser.getPhone()));
-            responseMap.put("chat", chatService.imUserLoginService(Integer.toString(userInfoMapper.getMaxUserId()), loginUser.getCode()));
-
+            if (userId == null) {
+                responseMap.put("chat", chatService.imUserLoginService(Integer.toString(userInfoMapper.getMaxUserId()), loginUser.getCode()));
+            } else {
+                responseMap.put("chat", chatService.imUserLoginService(Integer.toString(userId), loginUser.getCode()));
+            }
             resultDate.setCode(200);
             resultDate.setData(responseMap);
 
@@ -264,6 +267,7 @@ public class UserInfoController {
         resultDate.setCode(200);
         responseMap.put("mag", "success");
         responseMap.put("user", userInfoMapper.getUserInfoByUserId(userId));
+        responseMap.put("chat", chatService.imUserLoginService(Integer.toString(userId), loginUser.getPassword()));
         resultDate.setData(responseMap);
 
         return resultDate;
