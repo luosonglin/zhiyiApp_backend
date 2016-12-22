@@ -2,6 +2,7 @@ package cn.luosonglin.test.member.web;
 
 import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.base.util.PhoneUtil;
+import cn.luosonglin.test.easemob.service.ChatService;
 import cn.luosonglin.test.exception.CustomizedException;
 import cn.luosonglin.test.member.dao.UserInfoMapper;
 import cn.luosonglin.test.member.dao.VerificationCodeMapper;
@@ -39,6 +40,9 @@ public class UserInfoController {
 
     @Autowired
     private SendCommonMessageService sendCommonMessageService;
+
+    @Autowired
+    private ChatService chatService;
 
     @ApiOperation(value = "手机号获取验证码", notes = "手机号获取验证码")
     @ApiImplicitParam(name = "phone", value = "用户phone", required = true, dataType = "String", paramType = "path")
@@ -209,6 +213,8 @@ public class UserInfoController {
 
                 userInfoMapper.insertNewUser(mUserInfo);
 
+                //在环信服务器注册新用户
+                chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), loginUser.getCode());
             }
             System.out.println(mUserInfo != null ? mUserInfo.getId() : "null");
 

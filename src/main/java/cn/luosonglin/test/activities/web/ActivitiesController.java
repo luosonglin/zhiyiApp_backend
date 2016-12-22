@@ -45,7 +45,7 @@ public class ActivitiesController {
         responseMap.put("banners", activitiesMapper.getAllActivities());
 //        responseMap.put("imuser", createNewIMUserSingleNode);
 
-        chatService.createNewIMUser("luo", "123");
+//        chatService.createNewIMUser("luo", "123")
         resultDate.setData(responseMap);
 
         return resultDate;

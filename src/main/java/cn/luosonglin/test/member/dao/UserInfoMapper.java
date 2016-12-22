@@ -80,4 +80,7 @@ public interface UserInfoMapper {
 
     int updateUserInfo(UserInfo userInfo);
 
+    @Select("select max(id) from user_info")
+    int getMaxUserId();
+
 }
