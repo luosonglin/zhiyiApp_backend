@@ -219,6 +219,7 @@ public class UserInfoController {
             System.out.println(mUserInfo != null ? mUserInfo.getId() : "null");
 
             responseMap.put("user", userInfoMapper.getUserInfoByPhone(loginUser.getPhone()));
+            responseMap.put("chat", chatService.imUserLoginService(Integer.toString(userInfoMapper.getMaxUserId()), loginUser.getCode()));
 
             resultDate.setCode(200);
             resultDate.setData(responseMap);
