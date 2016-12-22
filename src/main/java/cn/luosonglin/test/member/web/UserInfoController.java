@@ -76,10 +76,11 @@ public class UserInfoController {
 //            verificationCodeMapper.insertVerificationCode(verCode);
 
             //插入ver_code表
+            map.put("id", null);
             map.put("phone", verCode.getPhone());
             map.put("send_date", new Date());
             map.put("send_time", null);
-            map.put("code_content", verCode.getCodeContent());
+            map.put("code_content", codeMessage);
             verificationCodeMapper.insertVerificationCodeByMap(map);                    // ver_code表 code_content无记录
 
         } else {
@@ -99,7 +100,6 @@ public class UserInfoController {
             //发送验证码
 //        String result = commSendMessageAction.toSendMessage(phone , "yzm"  ,codeMessage);
             String result = sendCommonMessageService.sendCommonMessage(phone, codeMessage, "yzm");
-
 
             if ("-1".equals(result)) {
                 throw new CustomizedException("用户名或者密码不正确或用户禁用或者是管理账户");

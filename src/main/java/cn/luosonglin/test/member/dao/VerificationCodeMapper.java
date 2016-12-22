@@ -29,7 +29,7 @@ public interface VerificationCodeMapper {
 //    int insertVerificationCode(VerificationCode verificationCode);
 
     @Insert("INSERT INTO ver_code(id, send_date, phone, code_content, sub_date, source) " +
-            "VALUES(#{id,jdbcType=INTEGER}, #{send_date,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR}, #{code_centent,jdbcType=VARCHAR}, " +
+            "VALUES(#{id,jdbcType=INTEGER}, #{send_date,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR}, #{code_content,jdbcType=VARCHAR}, " +
             "#{sub_date,jdbcType=TIMESTAMP}, #{source,jdbcType=VARCHAR})")
     int insertVerificationCodeByMap(Map<String, Object> map);
 
