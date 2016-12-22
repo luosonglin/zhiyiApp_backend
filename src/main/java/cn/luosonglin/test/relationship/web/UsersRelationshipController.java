@@ -170,4 +170,33 @@ public class UsersRelationshipController {
         return resultDate;
     }
 
+    @ApiOperation(value="获取通讯录(我关注的人)的信息,并按中文首字母排序", notes="根据user_id来获取我的关注人详细信息")
+    @ApiImplicitParam(name = "id", value = "用户自己的ID", required = true, dataType = "int", paramType = "path")
+    @RequestMapping(value="/{id}/contactsInfo", method=RequestMethod.GET)
+    public ResultDate getMycontactsInfo(@PathVariable Integer id) {
+
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        //获取我关注的所有用户信息
+        List<UsersRelationship> follows = usersRelationshipMapper.getMyFollows(id);
+
+        //获取我关注的所有用户id
+        List<Integer> followIds = new ArrayList<>();
+        for (UsersRelationship i: follows)
+            followIds.add(i.getTouid());
+
+        //获取所有我关注的用户详细信息
+//        List<UserInfo> followInfos = new ArrayList<>();
+//        for (Integer u : followIds)
+//            followInfos.add(userInfoMapper.getUserInfoByUserId(u));
+
+        resultDate.setCode(200);
+        responseMap.put("msg", "success");
+//        responseMap.put("follows", followInfos);
+        responseMap.put("test", followIds);
+        responseMap.put("contacts", usersRelationshipMapper.getContactsByListId(followIds));
+        resultDate.setData(responseMap);
+        return resultDate;
+    }
 }

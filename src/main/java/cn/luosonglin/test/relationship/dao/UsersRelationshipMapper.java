@@ -49,5 +49,8 @@ public interface UsersRelationshipMapper {
             "inner join fromusers_relationship t2 on t1.touid = t2.fromuid limit 10")
     List<UsersRelationship> getMyDoubleFollows(@Param("fromuid") Integer fromuid);
 
+    //通讯录
+    List<UserInfo> getContactsByListId(List<Integer> id); //
+
 
 }
