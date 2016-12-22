@@ -2,7 +2,6 @@ package cn.luosonglin.test.easemob.service;
 
 import cn.luosonglin.test.base.util.MD5Gen;
 import cn.luosonglin.test.exception.CustomizedException;
-import cn.luosonglin.test.file.web.FileUploadController;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -10,10 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import static cn.luosonglin.test.easemob.api.EasemobChatMessage.getChatMessages;
-import static cn.luosonglin.test.easemob.api.EasemobIMUsers.*;
-import static cn.luosonglin.test.easemob.api.EasemobMessages.getUserStatus;
-import static cn.luosonglin.test.easemob.api.EasemobMessages.sendMessages;
+import static cn.luosonglin.test.easemob.huanxinapi.EasemobChatMessage.getChatMessages;
+import static cn.luosonglin.test.easemob.huanxinapi.EasemobIMUsers.*;
+import static cn.luosonglin.test.easemob.huanxinapi.EasemobMessages.getUserStatus;
+import static cn.luosonglin.test.easemob.huanxinapi.EasemobMessages.sendMessages;
 
 /**
  * Created by luosonglin on 21/12/2016.

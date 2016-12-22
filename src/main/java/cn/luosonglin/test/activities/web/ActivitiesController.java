@@ -2,11 +2,8 @@ package cn.luosonglin.test.activities.web;
 
 import cn.luosonglin.test.activities.dao.ActivitiesMapper;
 import cn.luosonglin.test.base.entity.ResultDate;
-import cn.luosonglin.test.base.util.MD5Gen;
 import cn.luosonglin.test.easemob.service.ChatService;
 import cn.luosonglin.test.exception.CustomizedException;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static cn.luosonglin.test.easemob.api.EasemobIMUsers.createNewIMUserSingle;
 
 /**
  * Created by luosonglin on 01/12/2016.

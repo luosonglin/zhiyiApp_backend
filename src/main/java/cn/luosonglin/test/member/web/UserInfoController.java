@@ -80,8 +80,8 @@ public class UserInfoController {
             map.put("phone", verCode.getPhone());
             map.put("send_date", new Date());
             map.put("send_time", null);
-            map.put("code_content", codeMessage);
-            verificationCodeMapper.insertVerificationCodeByMap(map);                    // ver_code表 code_content无记录
+            map.put("code_content", codeMessage);   //verCode.getCodeContent()
+            verificationCodeMapper.insertVerificationCodeByMap(map);
 
         } else {
 //            verificationCodeMapper.updateVerificationCode(verCode);
