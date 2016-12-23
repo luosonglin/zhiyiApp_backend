@@ -36,26 +36,26 @@ public class EasemobMessages {
 
     public static void main(String[] args) {
         //  检测用户是否在线
-        String targetUserName = "7";
+        String targetUserName = "6";
         ObjectNode usernode = getUserStatus(targetUserName);
         if (null != usernode) {
             LOGGER.info("检测用户是否在线: " + usernode.toString());
         }
 
         // 给用户发一条文本消息
-        String from = "7";	//表示消息发送者。无此字段Server会默认设置为"from":"admin"，有from字段但值为空串("")时请求失败
-        String targetTypeus = "users";	// users 给用户发消息。chatgroups: 给群发消息，chatrooms: 给聊天室发消息
-        ObjectNode ext = factory.objectNode();	//支持扩展字段，通过 ext 属性，APP 可以发送自己专属的消息结构。
-        ArrayNode targetusers = factory.arrayNode();
-        targetusers.add("6");	// 注意这里需要用数组，数组长度建议不大于20，即使只有一个用户，也要用数组 ['u1']，给用户发送时数组元素是用户名，给群组发送时数组元素是groupid
-//        targetusers.add("kenshinnuser002");
-        ObjectNode txtmsg = factory.objectNode();
-        txtmsg.put("msg", "Hello Easemob!");
-        txtmsg.put("type","txt");
-        ObjectNode sendTxtMessageusernode = sendMessages(targetTypeus, targetusers, txtmsg, from, ext);
-        if (null != sendTxtMessageusernode) {
-            LOGGER.info("给用户发一条文本消息: " + sendTxtMessageusernode.toString());
-        }
+//        String from = "7";	//表示消息发送者。无此字段Server会默认设置为"from":"admin"，有from字段但值为空串("")时请求失败
+//        String targetTypeus = "users";	// users 给用户发消息。chatgroups: 给群发消息，chatrooms: 给聊天室发消息
+//        ObjectNode ext = factory.objectNode();	//支持扩展字段，通过 ext 属性，APP 可以发送自己专属的消息结构。
+//        ArrayNode targetusers = factory.arrayNode();
+//        targetusers.add("6");	// 注意这里需要用数组，数组长度建议不大于20，即使只有一个用户，也要用数组 ['u1']，给用户发送时数组元素是用户名，给群组发送时数组元素是groupid
+////        targetusers.add("kenshinnuser002");
+//        ObjectNode txtmsg = factory.objectNode();
+//        txtmsg.put("msg", "Hello Easemob!");
+//        txtmsg.put("type","txt");
+//        ObjectNode sendTxtMessageusernode = sendMessages(targetTypeus, targetusers, txtmsg, from, ext);
+//        if (null != sendTxtMessageusernode) {
+//            LOGGER.info("给用户发一条文本消息: " + sendTxtMessageusernode.toString());
+//        }
 
         // 给一个群组发文本消息
 //        String targetTypegr = "chatgroups";

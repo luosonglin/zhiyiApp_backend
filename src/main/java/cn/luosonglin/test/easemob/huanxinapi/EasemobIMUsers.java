@@ -121,11 +121,11 @@ public class EasemobIMUsers {
         /**
          * 查看好友
          */
-		String ownerUserName = "7";
-        ObjectNode getFriendsNode = getFriends(ownerUserName);
-        if (null != getFriendsNode) {
-            LOGGER.info("查看好友: " + getFriendsNode.toString());
-        }
+//		String ownerUserName = "7";
+//        ObjectNode getFriendsNode = getFriends(ownerUserName);
+//        if (null != getFriendsNode) {
+//            LOGGER.info("查看好友: " + getFriendsNode.toString());
+//        }
 
         /**
          * 解除好友关系
