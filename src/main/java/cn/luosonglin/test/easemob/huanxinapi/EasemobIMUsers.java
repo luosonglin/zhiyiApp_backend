@@ -96,13 +96,14 @@ public class EasemobIMUsers {
         /**
          * 重置IM用户密码 提供管理员token
          */
-//		String username = "7";
-//        ObjectNode json2 = JsonNodeFactory.instance.objectNode();
-//        json2.put("newpassword", "123456");
-//        ObjectNode modifyIMUserPasswordWithAdminTokenNode = modifyIMUserPasswordWithAdminToken(username, json2);
-//        if (null != modifyIMUserPasswordWithAdminTokenNode) {
-//            LOGGER.info("重置IM用户密码 提供管理员token: " + modifyIMUserPasswordWithAdminTokenNode.toString());
-//        }
+		String username = "7";
+        ObjectNode json2 = JsonNodeFactory.instance.objectNode();
+        json2.put("newpassword", "e10adc3949ba59abbe56e057f20f883e");
+        ObjectNode modifyIMUserPasswordWithAdminTokenNode = modifyIMUserPasswordWithAdminToken(username, json2);
+        if (null != modifyIMUserPasswordWithAdminTokenNode) {
+            LOGGER.info("重置IM用户密码 提供管理员token: " + modifyIMUserPasswordWithAdminTokenNode.toString());
+        }
+
 //        ObjectNode imUserLoginNode2 = imUserLogin(username, json2.get("newpassword").asText());
 //        if (null != imUserLoginNode2) {
 //            LOGGER.info("重置IM用户密码后,IM用户登录: " + imUserLoginNode2.toString());

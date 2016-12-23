@@ -36,7 +36,7 @@ public class EasemobMessages {
 
     public static void main(String[] args) {
         //  检测用户是否在线
-        String targetUserName = "6";
+        String targetUserName = "7";
         ObjectNode usernode = getUserStatus(targetUserName);
         if (null != usernode) {
             LOGGER.info("检测用户是否在线: " + usernode.toString());

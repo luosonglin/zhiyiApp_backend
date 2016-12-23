@@ -215,10 +215,14 @@ public class UserInfoController {
 
                 //在环信服务器注册新用户
                 chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), loginUser.getCode());
+            } else {
+                responseMap.put("chat", chatService.modifyIMUserPasswordService(Integer.toString(userId), loginUser.getCode()));
             }
+
             System.out.println(mUserInfo != null ? mUserInfo.getId() : "null");
 
             responseMap.put("user", userInfoMapper.getUserInfoByPhone(loginUser.getPhone()));
+
 //            if (userId == null) {
 //                responseMap.put("chat", chatService.imUserLoginService(Integer.toString(userInfoMapper.getMaxUserId()), loginUser.getCode()));
 //            } else {
@@ -267,6 +271,8 @@ public class UserInfoController {
         resultDate.setCode(200);
         responseMap.put("mag", "success");
         responseMap.put("user", userInfoMapper.getUserInfoByUserId(userId));
+        responseMap.put("chat", chatService.modifyIMUserPasswordService(Integer.toString(userId), loginUser.getPassword()));
+
 //        responseMap.put("chat", chatService.imUserLoginService(Integer.toString(userId), loginUser.getPassword()));
         resultDate.setData(responseMap);
 
