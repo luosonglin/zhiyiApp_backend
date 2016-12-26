@@ -1,6 +1,7 @@
 package cn.luosonglin.test.relationship.web;
 
 import cn.luosonglin.test.base.entity.ResultDate;
+import cn.luosonglin.test.easemob.service.ChatService;
 import cn.luosonglin.test.exception.CustomizedException;
 import cn.luosonglin.test.member.dao.UserInfoMapper;
 import cn.luosonglin.test.member.entity.UserInfo;
@@ -28,6 +29,9 @@ public class UsersRelationshipController {
     @Autowired
     private UsersRelationshipMapper usersRelationshipMapper;
 
+    @Autowired
+    private ChatService chatService;
+
     @ApiOperation(value="获取所有潜在关注对象的列表", notes="")
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResultDate getUsersInfo() {
@@ -42,7 +46,7 @@ public class UsersRelationshipController {
         return resultDate;
     }
 
-    @ApiOperation(value="加关注", notes="根据Relationship对象创建关注关系")
+    @ApiOperation(value="加关注(业务服务器和环信服务器添加好友关系)", notes="根据Relationship对象创建关注关系")
     @ApiImplicitParam(name = "usersRelationship", value = "关系详细实体usersRelationship", required = true, dataType = "UsersRelationship")
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResultDate follow(@ModelAttribute UsersRelationship usersRelationship) throws CustomizedException {
@@ -59,6 +63,8 @@ public class UsersRelationshipController {
 
         //关系表插入新记录
         usersRelationshipMapper.insertByRelationShip(usersRelationship);
+
+        chatService.addFriendSingleService(Integer.toString(usersRelationship.getFromuid()), Integer.toString(usersRelationship.getTouid()));
 
         resultDate.setCode(200);
         responseMap.put("msg", "success");

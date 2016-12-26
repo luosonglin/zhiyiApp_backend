@@ -6,7 +6,7 @@
 <mapper namespace="cn.luosonglin.test.relationship.dao.UsersRelationshipMapper">
 
     <select id="getContactsByListId" resultType="cn.luosonglin.test.member.entity.UserInfo">
-        SELECT id, name, mobile_phone, email
+        SELECT id, name, nick_name, user_pic
         FROM user_info
         WHERE id IN
         <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
