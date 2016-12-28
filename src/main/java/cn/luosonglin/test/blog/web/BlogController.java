@@ -1,7 +1,9 @@
 package cn.luosonglin.test.blog.web;
 
 import cn.luosonglin.test.base.entity.ResultDate;
+import cn.luosonglin.test.blog.dao.BlogCollectionMapper;
 import cn.luosonglin.test.blog.dao.BlogMapper;
+import cn.luosonglin.test.blog.dao.LikeMapper;
 import cn.luosonglin.test.blog.entity.Blog;
 import cn.luosonglin.test.blog.entity.UserAndBlog;
 import cn.luosonglin.test.exception.CustomizedException;
@@ -34,6 +36,12 @@ public class BlogController {
 
     @Autowired
     private UsersRelationshipMapper usersRelationshipMapper;
+
+    @Autowired
+    private LikeMapper likeMapper;
+
+    @Autowired
+    private BlogCollectionMapper blogCollectionMapper;
 
 
     @ApiOperation(value = "获取博客列表", notes = "")
@@ -103,6 +111,8 @@ public class BlogController {
         resultDate.setCode(200);
         responseMap.put("msg", "success");
         responseMap.put("blog", userAndBlog);
+        responseMap.put("islike", likeMapper.isLiked(from_uid, blog_id) == null? "false": "true");
+        responseMap.put("iscollected", blogCollectionMapper.isCollected(from_uid, blog_id) == null? "false": "true");
 
         resultDate.setData(responseMap);
 
