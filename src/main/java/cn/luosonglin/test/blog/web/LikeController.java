@@ -42,6 +42,9 @@ public class LikeController {
 
         likeMapper.insertByLikeMap(likeMap);
 
+
+        likeMapper.updateLikeCount(like.getBlogId());
+
         resultDate.setCode(200);
         responseMap.put("msg", "success");
         resultDate.setData(responseMap);

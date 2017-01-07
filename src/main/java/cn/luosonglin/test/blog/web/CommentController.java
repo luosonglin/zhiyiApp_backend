@@ -61,6 +61,9 @@ public class CommentController {
         commentMap.put("created_at", new Date());
         commentMapper.insertComment(commentMap);
 
+        //评论后该条微博的评论数+1
+        commentMapper.updateCommentCount(comment.getBlogId());
+
         resultDate.setCode(200);
         responseMap.put("msg", "success");
         responseMap.put("comment", commentMapper.getComments(comment.getBlogId()));

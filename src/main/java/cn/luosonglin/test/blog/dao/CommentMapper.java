@@ -17,6 +17,10 @@ public interface CommentMapper {
     @Insert("INSERT INTO blog_comment(id, user_id, blog_id, comment_id, content, created_at, deleted_at) VALUES(#{id}, #{user_id}, #{blog_id}, #{comment_id}, #{content}, #{created_at}, #{deleted_at})")
     int insertComment(Map<String, Object> map);
 
+    //评论后在该微博的评论数+1
+    @Update("update blog set comment_count=if(isNull(comment_count),0,comment_count)+1 where id = #{blog_id}")
+    void updateCommentCount(@Param("blog_id") Integer blog_id);
+
     @Update("UPDATE blog_comment SET deleted_at=#{deleted_at} WHERE user_id =#{user_id} and blog_id = #{blog_id} and comment_id = #{comment_id}")
     void deleteComment(Map<String, Object> map);
 
