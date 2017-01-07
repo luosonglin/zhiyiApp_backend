@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.luosonglin.test.caseOfIllness.dao.CaseMapper">
+    <select id="getFollowsCaseByListId" resultType="cn.luosonglin.test.caseOfIllness.entity.CaseOfIllness">
+        SELECT id, user_id, title, chief_complain, chief_complain_image, body_check, body_check_image, follow_up, follow_up_image, comment_count, like_count,created_at, deleted_at, tag_id, is_hot
+        FROM case_of_illness
+        WHERE user_id IN
+        <foreach item="user_id" index="index" collection="list" open="(" separator="," close=")">
+            #{user_id}
+        </foreach>
+        ORDER BY created_at DESC
+    </select>
+
+    <select id="getCaseListByCaseId" resultType="cn.luosonglin.test.caseOfIllness.entity.CaseOfIllness">
+        SELECT id, user_id, title, chief_complain, chief_complain_image, body_check, body_check_image, follow_up, follow_up_image, comment_count, like_count,created_at, deleted_at, tag_id, is_hot
+        FROM case_of_illness
+        WHERE id IN
+        <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        ORDER BY created_at DESC
+    </select>
+
+    <insert id="writeCaseOfIllness" parameterType="cn.luosonglin.test.caseOfIllness.entity.CaseOfIllness" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO case_of_illness (
+        id, user_id, title, tag_id, chief_complain, chief_complain_image, body_check, body_check_image, follow_up, follow_up_image, comment_count, like_count, created_at, deleted_at, is_hot
+        ) VALUES (
+        #{id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},#{tag_id,jdbcType=VARCHAR},
+        #{chief_complain,jdbcType=VARCHAR}, #{chief_complain_image,jdbcType=VARCHAR},
+        #{body_check,jdbcType=VARCHAR}, #{body_check_image,jdbcType=VARCHAR},
+        #{follow_up,jdbcType=VARCHAR},#{follow_up_image,jdbcType=VARCHAR},
+        #{comment_count,jdbcType=INTEGER}, #{like_count,jdbcType=INTEGER}, #{created_at,jdbcType=TIMESTAMP},
+        #{deleted_at,jdbcType=TIMESTAMP},  #{is_hot,jdbcType=INTEGER}
+        )
+    </insert>
+</mapper>
