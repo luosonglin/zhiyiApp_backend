@@ -87,4 +87,8 @@ public interface UserInfoMapper {
     @Update("UPDATE user_info SET user_pic=#{user_pic} WHERE id =#{user_id} ")
     void updateUserPic(Map<String, Object> map);
 
+    //查询openId
+    @Select("select * from user_info where open_id = #{open_id}")
+    UserInfo getOpenId(@Param("open_id") String open_id);
+
 }

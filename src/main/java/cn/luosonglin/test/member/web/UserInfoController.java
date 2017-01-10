@@ -7,6 +7,7 @@ import cn.luosonglin.test.exception.CustomizedException;
 import cn.luosonglin.test.member.dao.UserInfoMapper;
 import cn.luosonglin.test.member.dao.VerificationCodeMapper;
 import cn.luosonglin.test.member.entity.LoginUser;
+import cn.luosonglin.test.member.entity.ThirdUser;
 import cn.luosonglin.test.member.entity.UserInfo;
 import cn.luosonglin.test.member.entity.VerificationCode;
 import cn.luosonglin.test.sms.service.SendCommonMessageService;
@@ -281,9 +282,9 @@ public class UserInfoController {
     }
 
 
-    @ApiOperation(value="认证医师", notes="根据url的id来指定更新对象，并根据传过来的user信息来更新用户详细信息")
+    @ApiOperation(value = "认证医师", notes = "根据url的id来指定更新对象，并根据传过来的user信息来更新用户详细信息")
     @ApiImplicitParam(name = "userInfo", value = "用户详细实体user", required = true, dataType = "UserInfo")
-    @RequestMapping(value="/", method=RequestMethod.PUT)
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
     public ResultDate authoruzationUser(@ModelAttribute UserInfo userInfo) {
 
 //        UserInfo u = userInfoMapper.getUserInfoByUserId(userInfo.getId());
@@ -316,9 +317,9 @@ public class UserInfoController {
     }
 
 
-    @ApiOperation(value="修改头像", notes="根据id来指定更新用户头像(id,userPic)")
+    @ApiOperation(value = "修改头像", notes = "根据id来指定更新用户头像(id,userPic)")
     @ApiImplicitParam(name = "userInfo", value = "UserInfo实体", required = true, dataType = "UserInfo")
-    @RequestMapping(value="/avatar", method=RequestMethod.PUT)
+    @RequestMapping(value = "/avatar", method = RequestMethod.PUT)
     public ResultDate updateAvatar(@ModelAttribute UserInfo userInfo) {
         Map<String, Object> userInfoMap = new HashMap<>();
         userInfoMap.put("user_id", userInfo.getId());
@@ -333,5 +334,38 @@ public class UserInfoController {
         resultDate.setData(responseMap);
 
         return resultDate;
+    }
+
+    @ApiOperation(value = "第三方登录", notes = "用户登录")
+    @ApiImplicitParam(name = "userInfo", value = "用户详细实体user", required = true, dataType = "UserInfo")
+    @RequestMapping(value = "/third", method = RequestMethod.POST)
+    private ResultDate loginByThird(@ModelAttribute ThirdUser thirdUser) throws CustomizedException {
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        if (thirdUser.getOpenId() == null)
+            throw new CustomizedException("openId不能为空");
+
+        UserInfo userInfo = userInfoMapper.getOpenId(thirdUser.getOpenId());
+        if (userInfo == null) {    //新用户，第一次三方登陆
+            userInfo.setNickName(thirdUser.getNickName());
+            userInfo.setOpenId(thirdUser.getOpenId());
+
+            userInfo.setPassword("123456");//为了在环信注册，默认密码为123456
+            userInfoMapper.insertNewUser(userInfo);
+
+            //在环信服务器注册新用户
+            chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), userInfo.getPassword());
+
+            responseMap.put("user", userInfoMapper.getOpenId(thirdUser.getOpenId()));
+        } else {
+            responseMap.put("user", userInfo);
+        }
+
+        resultDate.setCode(200);
+        resultDate.setData(responseMap);
+
+        return resultDate;
+
     }
 }
