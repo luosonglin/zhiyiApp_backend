@@ -99,12 +99,26 @@ public class CaseOfIllnessController {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
-        caseMapper.writeCaseOfIllness(caseOfIllness);
+//        caseMapper.writeCaseOfIllness(caseOfIllness);
+        Map<String, Object> caseOfIllnessMap = new HashMap<>();
+        caseOfIllnessMap.put("user_id", caseOfIllness.getUserId());
+        caseOfIllnessMap.put("title", caseOfIllness.getTitle());
+        caseOfIllnessMap.put("tag_id", caseOfIllness.getTagId());
+        caseOfIllnessMap.put("chief_complain", caseOfIllness.getChiefComplain());
+        caseOfIllnessMap.put("chief_complain_image", caseOfIllness.getChiefComplainImage());
+        caseOfIllnessMap.put("body_check", caseOfIllness.getBodyCheck());
+        caseOfIllnessMap.put("body_check_image", caseOfIllness.getBodyCheckImage());
+        caseOfIllnessMap.put("medical_diagnosis", caseOfIllness.getMedicalDiagnosis());
+        caseOfIllnessMap.put("medical_diagnosis_image", caseOfIllness.getMedicalDiagnosisImage());
+        caseOfIllnessMap.put("follow_up", caseOfIllness.getFollowUp());
+        caseOfIllnessMap.put("follow_up_image", caseOfIllness.getFollowUpImage());
+        caseOfIllnessMap.put("created_at", caseOfIllness.getCreatedAt());
+        caseMapper.insertCaseOfIllnessByMap(caseOfIllnessMap);
 
         resultDate.setCode(200);
-        responseMap.put("msg", "success");
-        responseMap.put("case", caseMapper.findCaseById(caseOfIllness.getUserId()));
-        resultDate.setData(responseMap);
+//        responseMap.put("msg", "success");
+//        responseMap.put("case", caseMapper.findCaseById(caseOfIllness.getUserId()));
+        resultDate.setData("success");
 
         return resultDate;
     }

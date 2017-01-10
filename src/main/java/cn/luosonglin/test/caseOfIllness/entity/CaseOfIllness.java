@@ -15,7 +15,7 @@ public class CaseOfIllness {
     private String bodyCheck;
     private String bodyCheckImage;
     private String medicalDiagnosis;//medical_diagnosis
-    private String medicalDiagnosisImage;
+    private String medicalDiagnosisImage;//medical_diagnosis_image
     private String followUp;
     private String followUpImage;
     private Integer commentCount;

@@ -2,18 +2,20 @@ package cn.luosonglin.test.caseOfIllness.dao;
 
 import cn.luosonglin.test.caseOfIllness.entity.CaseOfIllness;
 import cn.luosonglin.test.caseOfIllness.entity.UserAndCase;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by luosonglin on 07/01/2017.
  */
 @Mapper
 public interface CaseMapper {
-    @Select("SELECT id, user_id, title, chief_complain, chief_complain_image, body_check, body_check_image, follow_up, follow_up_image, " +
+    @Select("SELECT id, user_id, title, chief_complain, chief_complain_image, body_check, body_check_image, medical_diagnosis, medical_diagnosis_image, follow_up, follow_up_image, " +
             "comment_count, like_count,created_at, deleted_at, tag_id, is_hot FROM case_of_illness")
     List<CaseOfIllness> findAllCase();
 
@@ -24,7 +26,12 @@ public interface CaseMapper {
     //发病例
     int writeCaseOfIllness(CaseOfIllness caseOfIllness);
 
-    @Select("SELECT id, user_id, title, chief_complain, chief_complain_image, body_check, body_check_image, follow_up, follow_up_image, comment_count, like_count, created_at, deleted_at, tag_id, is_hot FROM case_of_illness WHERE user_id = #{user_id} ORDER BY created_at desc")
+    //发病例2
+    @Insert("INSERT INTO case_of_illness(id, user_id, title, tag_id, chief_complain, chief_complain_image,body_check, body_check_image,medical_diagnosis, medical_diagnosis_image,follow_up, follow_up_image, comment_count, like_count, created_at, deleted_at,  is_hot) VALUES(#{id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{tag_id,jdbcType=VARCHAR}, #{chief_complain,jdbcType=VARCHAR}, #{chief_complain_image,jdbcType=VARCHAR}, #{body_check,jdbcType=VARCHAR}, #{body_check_image,jdbcType=VARCHAR}, #{medical_diagnosis,jdbcType=VARCHAR}, #{medical_diagnosis_image,jdbcType=VARCHAR}, #{follow_up,jdbcType=VARCHAR}, #{follow_up_image,jdbcType=VARCHAR}, #{comment_count,jdbcType=INTEGER}, #{like_count,jdbcType=INTEGER}, #{created_at,jdbcType=TIMESTAMP}, #{deleted_at,jdbcType=TIMESTAMP}, #{is_hot,jdbcType=INTEGER})")
+    int insertCaseOfIllnessByMap(Map<String, Object> map);
+
+
+    @Select("SELECT id, user_id, title, chief_complain, chief_complain_image, body_check, body_check_image, medical_diagnosis, medical_diagnosis_image, follow_up, follow_up_image, comment_count, like_count, created_at, deleted_at, tag_id, is_hot FROM case_of_illness WHERE user_id = #{user_id} ORDER BY created_at desc")
     List<CaseOfIllness> findCaseById(@Param("user_id") Integer user_id);
 
     //我关注的所有人的微博，按时间降序排列
