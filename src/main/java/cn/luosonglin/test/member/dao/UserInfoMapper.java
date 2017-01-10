@@ -83,4 +83,8 @@ public interface UserInfoMapper {
     @Select("select max(id) from user_info")
     int getMaxUserId();
 
+    //修改头像
+    @Update("UPDATE user_info SET user_pic=#{user_pic} WHERE id =#{user_id} ")
+    void updateUserPic(Map<String, Object> map);
+
 }

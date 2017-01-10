@@ -314,4 +314,24 @@ public class UserInfoController {
 
         return resultDate;
     }
+
+
+    @ApiOperation(value="修改头像", notes="根据id来指定更新用户头像(id,userPic)")
+    @ApiImplicitParam(name = "userInfo", value = "UserInfo实体", required = true, dataType = "UserInfo")
+    @RequestMapping(value="/avatar", method=RequestMethod.PUT)
+    public ResultDate updateAvatar(@ModelAttribute UserInfo userInfo) {
+        Map<String, Object> userInfoMap = new HashMap<>();
+        userInfoMap.put("user_id", userInfo.getId());
+        userInfoMap.put("user_pic", userInfo.getUserPic());
+        userInfoMapper.updateUserPic(userInfoMap);
+
+        ResultDate resultDate = new ResultDate();
+        Map<Object, Object> responseMap = new HashMap<>();
+
+        resultDate.setCode(200);
+        responseMap.put("user", userInfoMapper.getUserInfoByUserId(userInfo.getId()));
+        resultDate.setData(responseMap);
+
+        return resultDate;
+    }
 }
