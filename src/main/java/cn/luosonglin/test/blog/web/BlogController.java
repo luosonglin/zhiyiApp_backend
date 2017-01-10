@@ -127,14 +127,24 @@ public class BlogController {
         Map<String, Object> responseMap = new HashMap<>();
 
 //        blogMapper.insertByBlog(blog);
-        blogMapper.writeBlog(blog);
+
+//        blogMapper.writeBlog(blog);
+//        blogMapper.insertBlog(blog);
+
+        Map<String, Object> blogMap = new HashMap<>();
+        blogMap.put("user_id", blog.getUserId());
+        blogMap.put("title", blog.getTitle());
+        blogMap.put("content", blog.getContent());
+        blogMap.put("images", blog.getImages());
+        blogMap.put("create_at", blog.getCreatedAt());
+        blogMap.put("tag_id", blog.getTagId());
+        blogMapper.insertBlogInfoByMap(blogMap);
 
         resultDate.setCode(200);
-        responseMap.put("msg", "success");
-        responseMap.put("blog", blogMapper.findBlogById(blog.getUserId()));
-        resultDate.setData(responseMap);
+//        responseMap.put("msg", "success");
+//        responseMap.put("blog", blogMapper.findBlogById(blog.getUserId()));
+        resultDate.setData("success");
 
-        System.out.print(blog.getContent());
         return resultDate;
     }
 

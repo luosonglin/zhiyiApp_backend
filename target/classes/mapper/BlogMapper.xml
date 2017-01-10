@@ -33,4 +33,6 @@
         #{deleted_at,jdbcType=TIMESTAMP}, #{tag_id,jdbcType=VARCHAR}, #{is_hot,jdbcType=INTEGER}, #{images,jdbcType=VARCHAR}
         )
     </insert>
+
+
 </mapper>
