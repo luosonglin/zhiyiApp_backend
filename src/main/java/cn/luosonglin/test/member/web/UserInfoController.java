@@ -350,7 +350,7 @@ public class UserInfoController {
         UserInfo openUserInfo = userInfoMapper.getUserInfoByOpenId(thirdUser.getOpenId());
 
         if (openUserInfo == null) {    //新用户，第一次三方登陆
-            System.out.print(openUserInfo);
+//            System.out.print(openUserInfo);
 
 //            UserInfo userInfo = new UserInfo();
 //            userInfo.setNickName(thirdUser.getNickName());
@@ -371,7 +371,16 @@ public class UserInfoController {
             Map<String, Object> userInfoMap = new HashMap<>();
             userInfoMap.put("nick_name", thirdUser.getNickName());
             userInfoMap.put("open_id", thirdUser.getOpenId());
+
             userInfoMap.put("token_id", String.valueOf(UUID.randomUUID()));
+            userInfoMap.put("user_type", "1");
+            userInfoMap.put("authen_status", "X");
+            userInfoMap.put("status", "A");
+            userInfoMap.put("confirm_number", RandUtil.rand(6, array));
+            userInfoMap.put("state_date", new Date());
+            userInfoMap.put("user_pic", "defaultPic");
+            userInfoMap.put("password", "123456");//为了在环信注册，默认密码为123456
+
             userInfoMapper.insertUserInfoByMap(userInfoMap);
 //
 //            //在环信服务器注册新用户
