@@ -371,6 +371,7 @@ public class UserInfoController {
             Map<String, Object> userInfoMap = new HashMap<>();
             userInfoMap.put("nick_name", thirdUser.getNickName());
             userInfoMap.put("open_id", thirdUser.getOpenId());
+            userInfoMap.put("login_source", thirdUser.getPlatform());
 
             userInfoMap.put("token_id", String.valueOf(UUID.randomUUID()));
             userInfoMap.put("user_type", "1");
