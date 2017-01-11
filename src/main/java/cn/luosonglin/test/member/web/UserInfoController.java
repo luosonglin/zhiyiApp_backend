@@ -364,7 +364,7 @@ public class UserInfoController {
 //            userInfo.setStateDate(new Date());
 //            userInfo.setUserPic("defaultPic");
 //            userInfo.setPassword("123456");//为了在环信注册，默认密码为123456
-////            userInfo.setMobilePhone("18817802299");
+//            userInfo.setMobilePhone("18817802299");
 //
 //            userInfoMapper.insertNewUser(userInfo);
 
@@ -383,16 +383,17 @@ public class UserInfoController {
             userInfoMap.put("password", "123456");//为了在环信注册，默认密码为123456
 
             userInfoMapper.insertUserInfoByMap(userInfoMap);
+
+            //在环信服务器注册新用
+            chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), "123456");
 //
-//            //在环信服务器注册新用户
-//            chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), userInfo.getPassword());
-//
-            responseMap.put("user", userInfoMapper.getUserInfoByOpenId(thirdUser.getOpenId()));
+
 //        } else {
 //            responseMap.put("user", userInfo);
         }
 
         resultDate.setCode(200);
+        responseMap.put("user", userInfoMapper.getUserInfoByOpenId(thirdUser.getOpenId()));
         resultDate.setData(responseMap);
 
         return resultDate;
