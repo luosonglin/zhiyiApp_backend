@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import static cn.luosonglin.test.base.util.RandUtil.array;
 
@@ -337,7 +338,7 @@ public class UserInfoController {
     }
 
     @ApiOperation(value = "第三方登录", notes = "用户登录")
-    @ApiImplicitParam(name = "userInfo", value = "用户详细实体user", required = true, dataType = "UserInfo")
+    @ApiImplicitParam(name = "thirdUser", value = "用户详细实体thirdUser", required = true, dataType = "ThirdUser")
     @RequestMapping(value = "/third", method = RequestMethod.POST)
     private ResultDate loginByThird(@ModelAttribute ThirdUser thirdUser) throws CustomizedException {
         ResultDate resultDate = new ResultDate();
@@ -346,20 +347,39 @@ public class UserInfoController {
         if (thirdUser.getOpenId() == null)
             throw new CustomizedException("openId不能为空");
 
-        UserInfo userInfo = userInfoMapper.getOpenId(thirdUser.getOpenId());
-        if (userInfo == null) {    //新用户，第一次三方登陆
-            userInfo.setNickName(thirdUser.getNickName());
-            userInfo.setOpenId(thirdUser.getOpenId());
+        UserInfo openUserInfo = userInfoMapper.getUserInfoByOpenId(thirdUser.getOpenId());
 
-            userInfo.setPassword("123456");//为了在环信注册，默认密码为123456
-            userInfoMapper.insertNewUser(userInfo);
+        if (openUserInfo == null) {    //新用户，第一次三方登陆
+            System.out.print(openUserInfo);
 
-            //在环信服务器注册新用户
-            chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), userInfo.getPassword());
+//            UserInfo userInfo = new UserInfo();
+//            userInfo.setNickName(thirdUser.getNickName());
+//            userInfo.setOpenId(thirdUser.getOpenId());
+//
+//            userInfo.setTokenId(String.valueOf(UUID.randomUUID()));
+//            userInfo.setUserType("1");
+//            userInfo.setAuthenStatus("X");
+//            userInfo.setStatus("A");
+//            userInfo.setConfirmNumber(RandUtil.rand(6, array));
+//            userInfo.setStateDate(new Date());
+//            userInfo.setUserPic("defaultPic");
+//            userInfo.setPassword("123456");//为了在环信注册，默认密码为123456
+////            userInfo.setMobilePhone("18817802299");
+//
+//            userInfoMapper.insertNewUser(userInfo);
 
-            responseMap.put("user", userInfoMapper.getOpenId(thirdUser.getOpenId()));
-        } else {
-            responseMap.put("user", userInfo);
+            Map<String, Object> userInfoMap = new HashMap<>();
+            userInfoMap.put("nick_name", thirdUser.getNickName());
+            userInfoMap.put("open_id", thirdUser.getOpenId());
+            userInfoMap.put("token_id", String.valueOf(UUID.randomUUID()));
+            userInfoMapper.insertUserInfoByMap(userInfoMap);
+//
+//            //在环信服务器注册新用户
+//            chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), userInfo.getPassword());
+//
+            responseMap.put("user", userInfoMapper.getUserInfoByOpenId(thirdUser.getOpenId()));
+//        } else {
+//            responseMap.put("user", userInfo);
         }
 
         resultDate.setCode(200);

@@ -40,14 +40,8 @@ public interface UserInfoMapper {
     @Select("select * from user_info where mobile_phone = #{mobile_phone}")
     UserInfo getUserInfoByPhone(@Param("mobile_phone") String mobile_phone);
 
-    //以下2种方式不能用，原因不明  原因在于position字段在数据库里是postino！！！shit!!
-    @Insert("INSERT INTO user_info(id, name, nick_name, email, mobile_phone, company, position, sex, title, address, country, province, city, zip_code, id_code," +
-            "status, state_date, confirm_number, phone, user_type, user_source, password, open_id, login_source, user_pic, authen_status, token_id)" +
-            " VALUES(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{nick_name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile_phone,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, " +
-            "#{position,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, " +
-            "#{city,jdbcType=VARCHAR}, #{zip_code,jdbcType=VARCHAR}, #{id_code,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{state_date,jdbcType=TIMESTAMP}, #{confirm_number,jdbcType=VARCHAR}, " +
-            "#{phone,jdbcType=VARCHAR}, #{user_type,jdbcType=VARCHAR}, #{user_source,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{open_id,jdbcType=VARCHAR}, #{login_source,jdbcType=VARCHAR}, " +
-            "#{user_pic,jdbcType=VARCHAR}, #{authen_status,jdbcType=VARCHAR}, #{token_id,jdbcType=VARCHAR})")
+    //以下2种方式不能用，原因不明  原因在于position字段在数据库里是postion！！！shit!!
+    @Insert("INSERT INTO user_info(id, name, nick_name, email, mobile_phone, company, postion, sex, title, address, country, province, city, zip_code, id_code, status, state_date, confirm_number, phone, user_type, user_source, password, open_id, login_source, user_pic, authen_status, token_id) VALUES(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{nick_name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile_phone,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{postion,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{zip_code,jdbcType=VARCHAR}, #{id_code,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{state_date,jdbcType=TIMESTAMP}, #{confirm_number,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{user_type,jdbcType=VARCHAR}, #{user_source,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{open_id,jdbcType=VARCHAR}, #{login_source,jdbcType=VARCHAR}, #{user_pic,jdbcType=VARCHAR}, #{authen_status,jdbcType=VARCHAR}, #{token_id,jdbcType=VARCHAR})")
     int insertUserInfoByMap(Map<String, Object> map);
 
     @Insert("INSERT INTO user_info(id, name, nick_name, email, mobile_phone, company, postion, sex, title, address, country, province, city, zip_code, id_code," +
@@ -89,6 +83,5 @@ public interface UserInfoMapper {
 
     //查询openId
     @Select("select * from user_info where open_id = #{open_id}")
-    UserInfo getOpenId(@Param("open_id") String open_id);
-
+    UserInfo getUserInfoByOpenId(@Param("open_id") String open_id);
 }
