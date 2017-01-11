@@ -227,5 +227,29 @@ public class BlogController {
         return resultDate;
     }
 
+    @ApiOperation(value = "获取宝友圈（我自己、我关注的人）的全部微博信息，按时间降序", notes = "根据url的user_id来获取")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "int", paramType = "path")
+    })
+    @RequestMapping(value = "/{user_id}/friends", method = RequestMethod.GET)
+    public ResultDate getMyFriendsBlog(@PathVariable Integer user_id) throws CustomizedException {//, @RequestHeader String header
+
+        if (user_id == null)
+            throw new CustomizedException("user_id不可为空");
+
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        List<Integer> followIds = usersRelationshipMapper.getMyFollowIds(user_id);
+        followIds.add(user_id);
+
+        resultDate.setCode(200);
+        responseMap.put("msg", "success");
+        responseMap.put("follows", followIds);
+        responseMap.put("followsBlog", blogMapper.getFollowsBlogByListId(followIds)); //
+        resultDate.setData(responseMap);
+        return resultDate;
+    }
+
 
 }
