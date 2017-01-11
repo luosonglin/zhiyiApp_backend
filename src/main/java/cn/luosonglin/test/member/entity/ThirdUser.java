@@ -7,6 +7,7 @@ public class ThirdUser {
     private String openId;
     private String nickName;
     private String platform;
+    private String iconurl;//头像
 
     public String getOpenId() {
         return openId;
@@ -30,5 +31,13 @@ public class ThirdUser {
 
     public void setPlatform(String platform) {
         this.platform = platform;
+    }
+
+    public String getIconurl() {
+        return iconurl;
+    }
+
+    public void setIconurl(String iconurl) {
+        this.iconurl = iconurl;
     }
 }

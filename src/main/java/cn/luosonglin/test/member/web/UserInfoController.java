@@ -372,6 +372,7 @@ public class UserInfoController {
             userInfoMap.put("nick_name", thirdUser.getNickName());
             userInfoMap.put("open_id", thirdUser.getOpenId());
             userInfoMap.put("login_source", thirdUser.getPlatform());
+            userInfoMap.put("user_pic", thirdUser.getIconurl());
 
             userInfoMap.put("token_id", String.valueOf(UUID.randomUUID()));
             userInfoMap.put("user_type", "1");
@@ -379,7 +380,6 @@ public class UserInfoController {
             userInfoMap.put("status", "A");
             userInfoMap.put("confirm_number", RandUtil.rand(6, array));
             userInfoMap.put("state_date", new Date());
-            userInfoMap.put("user_pic", "defaultPic");
             userInfoMap.put("password", "123456");//为了在环信注册，默认密码为123456
 
             userInfoMapper.insertUserInfoByMap(userInfoMap);
