@@ -318,13 +318,20 @@ public class UserInfoController {
     }
 
 
-    @ApiOperation(value = "修改头像", notes = "根据id来指定更新用户头像(id,userPic)")
+    @ApiOperation(value = "修改头像／手机号", notes = "根据id来指定更新用户头像(id,userPic)(id,mobilePhone)")
     @ApiImplicitParam(name = "userInfo", value = "UserInfo实体", required = true, dataType = "UserInfo")
     @RequestMapping(value = "/avatar", method = RequestMethod.PUT)
-    public ResultDate updateAvatar(@ModelAttribute UserInfo userInfo) {
+    public ResultDate updateAvatar(@ModelAttribute UserInfo userInfo) throws CustomizedException {
         Map<String, Object> userInfoMap = new HashMap<>();
         userInfoMap.put("user_id", userInfo.getId());
-        userInfoMap.put("user_pic", userInfo.getUserPic());
+
+        if (userInfo.getUserPic() != null) {
+            userInfoMap.put("user_pic", userInfo.getUserPic());
+        } else if (userInfo.getMobilePhone() != null) {
+            if (!PhoneUtil.isMobile(userInfo.getMobilePhone()))
+                throw new CustomizedException("请填写正确的手机号");
+            userInfoMap.put("mobile_phone", userInfo.getMobilePhone());
+        }
         userInfoMapper.updateUserPic(userInfoMap);
 
         ResultDate resultDate = new ResultDate();

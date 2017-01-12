@@ -78,7 +78,7 @@ public interface UserInfoMapper {
     int getMaxUserId();
 
     //修改头像
-    @Update("UPDATE user_info SET user_pic=#{user_pic} WHERE id =#{user_id} ")
+    @Update("UPDATE user_info SET mobile_phone=#{mobile_phone}, user_pic=#{user_pic} WHERE id =#{user_id} ")
     void updateUserPic(Map<String, Object> map);
 
     //查询openId
