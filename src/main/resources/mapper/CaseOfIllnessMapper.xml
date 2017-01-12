@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.luosonglin.test.caseOfIllness.dao.CaseMapper">
-    <select id="getFollowsCaseByListId" resultType="cn.luosonglin.test.caseOfIllness.entity.CaseOfIllness">
-        SELECT id, user_id, title, chief_complain, chief_complain_image, body_check, body_check_image, follow_up, follow_up_image, comment_count, like_count,created_at, deleted_at, tag_id, is_hot
-        FROM case_of_illness
-        WHERE user_id IN
+    <select id="getFollowsCaseByListId" resultType="cn.luosonglin.test.caseOfIllness.entity.UserAndCase">
+        SELECT case_of_illness.id, case_of_illness.user_id, case_of_illness.title, case_of_illness.chief_complain, case_of_illness.chief_complain_image, case_of_illness.body_check, case_of_illness.body_check_image, case_of_illness.medical_diagnosis, case_of_illness.medical_diagnosis_image, case_of_illness.follow_up, case_of_illness.follow_up_image, case_of_illness.comment_count, case_of_illness.like_count, case_of_illness.created_at, case_of_illness.deleted_at, case_of_illness.tag_id, case_of_illness.is_hot, user_info.name, user_info.nick_name, user_info.company, user_info.user_pic, user_info.authen_status
+        FROM case_of_illness, user_info
+        WHERE case_of_illness.user_id = user_info.id AND case_of_illness.user_id IN
         <foreach item="user_id" index="index" collection="list" open="(" separator="," close=")">
             #{user_id}
         </foreach>

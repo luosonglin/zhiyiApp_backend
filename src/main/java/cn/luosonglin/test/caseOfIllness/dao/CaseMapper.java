@@ -15,9 +15,8 @@ import java.util.Map;
  */
 @Mapper
 public interface CaseMapper {
-    @Select("SELECT id, user_id, title, chief_complain, chief_complain_image, body_check, body_check_image, medical_diagnosis, medical_diagnosis_image, follow_up, follow_up_image, " +
-            "comment_count, like_count,created_at, deleted_at, tag_id, is_hot FROM case_of_illness")
-    List<CaseOfIllness> findAllCase();
+    @Select("SELECT case_of_illness.id, case_of_illness.user_id, case_of_illness.title, case_of_illness.chief_complain, case_of_illness.chief_complain_image, case_of_illness.body_check, case_of_illness.body_check_image, case_of_illness.medical_diagnosis, case_of_illness.medical_diagnosis_image, case_of_illness.follow_up, case_of_illness.follow_up_image, case_of_illness.comment_count, case_of_illness.like_count, case_of_illness.created_at, case_of_illness.deleted_at, case_of_illness.tag_id, case_of_illness.is_hot, user_info.name, user_info.nick_name, user_info.company, user_info.user_pic, user_info.authen_status FROM case_of_illness, user_info where case_of_illness.user_id = user_info.id")
+    List<UserAndCase> findAllCase();
 
     //某条病例的详情
     @Select("SELECT * from case_of_illness, user_info where case_of_illness.user_id = user_info.id and case_of_illness.id = #{case_id}")
@@ -43,7 +42,7 @@ public interface CaseMapper {
 //            "SELECT * FROM blog WHERE user_id = #{user_id2,jdbcType=INTEGER} ORDER BY created_at desc)")
 //    @Select("select * from blog where user_id in (#{user_ids}) order by created_at desc")
     //XML自动注入
-    List<CaseOfIllness> getFollowsCaseByListId(List<Integer> user_ids); //
+    List<UserAndCase> getFollowsCaseByListId(List<Integer> user_ids); //
 
     //依据blog_id来获取blog列表
     List<CaseOfIllness> getCaseListByCaseId(List<Integer> id);
