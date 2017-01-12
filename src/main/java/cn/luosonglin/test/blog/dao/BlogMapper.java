@@ -56,7 +56,7 @@ public interface BlogMapper {
 //            "SELECT * FROM blog WHERE user_id = #{user_id2,jdbcType=INTEGER} ORDER BY created_at desc)")
 //    @Select("select * from blog where user_id in (#{user_ids}) order by created_at desc")
     //XML自动注入
-    List<Blog> getFollowsBlogByListId(List<Integer> user_ids); //
+    List<UserAndBlog> getFollowsBlogByListId(List<Integer> user_ids); //
 
     //依据blog_id来获取blog列表
     List<Blog> getBlogListByBlogId(List<Integer> id);

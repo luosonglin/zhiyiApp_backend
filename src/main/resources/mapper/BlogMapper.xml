@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.luosonglin.test.blog.dao.BlogMapper">
-    <select id="getFollowsBlogByListId" resultType="cn.luosonglin.test.blog.entity.Blog">
-        SELECT id, user_id, title, content, comment_count, like_count,created_at, deleted_at, tag_id, is_hot, images
-        FROM blog
-        WHERE user_id IN
+    <select id="getFollowsBlogByListId" resultType="cn.luosonglin.test.blog.entity.UserAndBlog">
+        SELECT blog.id, blog.user_id, blog.title, blog.content, blog.comment_count, blog.like_count,blog.created_at, blog.deleted_at, blog.tag_id, blog.is_hot, blog.images, user_info.name, user_info.nick_name, user_info.company, user_info.user_pic, user_info.authen_status
+        FROM blog, user_info
+        WHERE blog.user_id = user_info.id AND blog.user_id IN
         <foreach item="user_id" index="index" collection="list" open="(" separator="," close=")">
             #{user_id}
         </foreach>

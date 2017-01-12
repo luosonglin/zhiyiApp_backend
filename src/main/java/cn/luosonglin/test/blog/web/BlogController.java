@@ -232,7 +232,7 @@ public class BlogController {
             @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "int", paramType = "path")
     })
     @RequestMapping(value = "/{user_id}/friends", method = RequestMethod.GET)
-    public ResultDate getMyFriendsBlog(@PathVariable Integer user_id) throws CustomizedException {//, @RequestHeader String header
+    public ResultDate getMyFriendsBlog(@PathVariable Integer user_id) throws CustomizedException {
 
         if (user_id == null)
             throw new CustomizedException("user_id不可为空");
