@@ -12,8 +12,11 @@ public class UserInfo {
     private String email;
     private String mobilePhone;
     private String company;
+    private String department;
     private String postion;
+    private String hospital;
     private String sex;
+    private java.util.Date birthday;
     private String title;
     private String address;
     private String country;
@@ -33,6 +36,7 @@ public class UserInfo {
     private String userPic;
     private String authenStatus;
     private String tokenId;
+    private String county;
 
     public Integer getId() {
         return id;
@@ -82,6 +86,22 @@ public class UserInfo {
         this.company = company;
     }
 
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
     public String getPostion() {
         return postion;
     }
@@ -96,6 +116,14 @@ public class UserInfo {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getTitle() {
@@ -248,5 +276,13 @@ public class UserInfo {
 
     public void setTokenId(String tokenId) {
         this.tokenId = tokenId;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
     }
 }

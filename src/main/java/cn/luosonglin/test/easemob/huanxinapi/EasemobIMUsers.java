@@ -24,10 +24,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 /**
  * REST API Demo : 用户体系集成 Jersey2.9实现
- * 
+ *
  * Doc URL: https://docs.easemob.com/doku.php?id=start:100serverintegration:20users
  *
- * 
+ *
  */
 public class EasemobIMUsers {
 
@@ -160,9 +160,9 @@ public class EasemobIMUsers {
 
     /**
 	 * 注册IM用户[单个]
-	 * 
+	 *
 	 * 给指定AppKey创建一个新的用户
-	 * 
+	 *
 	 * @param dataNode
 	 * @return
 	 */
@@ -215,9 +215,9 @@ public class EasemobIMUsers {
 
 	/**
 	 * 注册IM用户[批量]
-	 * 
+	 *
 	 * 给指定AppKey创建一批用户
-	 * 
+	 *
 	 * @param dataArrayNode
 	 * @return
 	 */
@@ -267,9 +267,9 @@ public class EasemobIMUsers {
 
 	/**
 	 * 注册IM用户[批量生成用户然后注册]
-	 * 
+	 *
 	 * 给指定AppKey创建一批用户
-	 * 
+	 *
 	 * @param usernamePrefix
 	 *            生成用户名的前缀
 	 * @param perNumber
@@ -320,7 +320,7 @@ public class EasemobIMUsers {
 
 	/**
 	 * 获取IM用户
-	 * 
+	 *
 	 * @param userName
 	 *            用户主键：username或者uuid
 	 * @return
@@ -367,10 +367,10 @@ public class EasemobIMUsers {
 
 	/**
 	 * 删除IM用户[单个]
-	 * 
+	 *
 	 * 删除指定AppKey下IM单个用户
 	 *
-	 * 
+	 *
 	 * @param userName
 	 * @return
 	 */
@@ -404,9 +404,9 @@ public class EasemobIMUsers {
 
 	/**
 	 * 删除IM用户[批量]
-	 * 
+	 *
 	 * 批量指定AppKey下删除IM用户
-	 * 
+	 *
 	 * @param limit
 	 * @param queryStr
 	 * @return
@@ -445,7 +445,7 @@ public class EasemobIMUsers {
 
 	/**
 	 * 重置IM用户密码 提供管理员token
-	 * 
+	 *
 	 * @param userName
 	 * @param dataObjectNode
 	 * @return
@@ -501,10 +501,10 @@ public class EasemobIMUsers {
 
 	/**
 	 * 添加好友[单个]
-	 * 
+	 *
 	 * @param ownerUserName
 	 * @param friendUserName
-	 * 
+	 *
 	 * @return
 	 */
 	public static ObjectNode addFriendSingle(String ownerUserName,
@@ -561,10 +561,10 @@ public class EasemobIMUsers {
 
 	/**
 	 * 解除好友关系
-	 * 
+	 *
 	 * @param ownerUserName
 	 * @param friendUserName
-	 * 
+	 *
 	 * @return
 	 */
 	public static ObjectNode deleteFriendSingle(String ownerUserName,
@@ -620,9 +620,9 @@ public class EasemobIMUsers {
 
 	/**
 	 * 查看好友
-	 * 
+	 *
 	 * @param ownerUserName
-	 * 
+	 *
 	 * @return
 	 */
 	public static ObjectNode getFriends(String ownerUserName) {
@@ -665,7 +665,7 @@ public class EasemobIMUsers {
 
 	/**
 	 * IM用户登录
-	 * 
+	 *
 	 * @param ownerUserName
 	 * @param password
      *
@@ -723,7 +723,7 @@ public class EasemobIMUsers {
 
 	/**
 	 * 指定前缀和数量生成用户基本数据
-	 * 
+	 *
 	 * @param usernamePrefix
 	 * @param number
 	 * @return

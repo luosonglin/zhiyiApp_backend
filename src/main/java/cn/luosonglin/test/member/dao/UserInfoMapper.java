@@ -66,10 +66,11 @@ public interface UserInfoMapper {
     @Update("UPDATE user_info SET name=#{name}, company=#{company}, postion=#{position}, title=#{title}, authen_status=#{authen_status} WHERE id =#{id}")
     void authorization(Map<String, Object> map);
 
-    @Update("UPDATE user_info SET name=#{name}, company=#{company}, postion=#{position},title=#{title}, authen_status=#{authen_status} WHERE id =#{id}")
+    //更新user数据
+    @Update("UPDATE user_info SET name=#{name}, nick_name=#{nickName}, email=#{email}, mobile_phone=#{mobilePhone}, company=#{company}, department=#{department}, postion=#{postion},hospital=#{hospital},sex=#{sex},birthday=#{birthday},title=#{title}, address=#{address}, country=#{country}, province=#{province}, city=#{city}, zip_code=#{zipCode}, id_code=#{idCode}, status=#{status}, state_date=#{stateDate}, confirm_number=#{confirmNumber}, phone=#{phone}, user_type=#{userType}, user_source=#{userSource}, password=#{password}, open_id=#{openId}, login_source=#{loginSource}, user_pic=#{userPic}, authen_status=#{authenStatus}, token_id=#{tokenId}, county=#{county}  WHERE id =#{id}")
     void update(UserInfo userInfo);
 
-    @Update("UPDATE user_info SET name=#{name}, company=#{company}, postion=#{position}, title=#{title}, authen_status=#{authen_status} WHERE id =#{id}")
+    @Update("UPDATE user_info SET name=#{name}, company=#{company}, postion=#{postion}, title=#{title}, authen_status=#{authen_status} WHERE id =#{id}")
     void authorization2(@Param("id") Integer id, @Param("name") String name, @Param("company") String company, @Param("position") String position, @Param("title") String title, @Param("authen_status") String authen_status);
 
     int updateUserInfo(UserInfo userInfo);
