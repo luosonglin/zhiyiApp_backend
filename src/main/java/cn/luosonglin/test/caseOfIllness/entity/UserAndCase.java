@@ -15,6 +15,8 @@ public class UserAndCase {
     private String chiefComplainImage;
     private String bodyCheck;
     private String bodyCheckImage;
+    private String medicalDiagnosis;//medical_diagnosis
+    private String medicalDiagnosisImage;//medical_diagnosis_image
     private String followUp;
     private String followUpImage;
     private Integer commentCount;
@@ -91,6 +93,22 @@ public class UserAndCase {
 
     public void setBodyCheckImage(String bodyCheckImage) {
         this.bodyCheckImage = bodyCheckImage;
+    }
+
+    public String getMedicalDiagnosis() {
+        return medicalDiagnosis;
+    }
+
+    public void setMedicalDiagnosis(String medicalDiagnosis) {
+        this.medicalDiagnosis = medicalDiagnosis;
+    }
+
+    public String getMedicalDiagnosisImage() {
+        return medicalDiagnosisImage;
+    }
+
+    public void setMedicalDiagnosisImage(String medicalDiagnosisImage) {
+        this.medicalDiagnosisImage = medicalDiagnosisImage;
     }
 
     public String getFollowUp() {
