@@ -60,9 +60,8 @@ public class CaseLikeController {
 
         Map<String, Object> likeMap = new HashMap<>();
         likeMap.put("user_id", caseLike.getUserId());
-        likeMap.put("blog_id", caseLike.getCaseId());
+        likeMap.put("case_id", caseLike.getCaseId());
         likeMap.put("is_display", 1);
-//        likeMapper.deleteByLikeMap(likeMap);
         caseLikeMapper.cancelCaseLikeByMap(likeMap);
 
         resultDate.setCode(200);

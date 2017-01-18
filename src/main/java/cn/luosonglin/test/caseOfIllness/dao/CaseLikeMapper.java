@@ -19,7 +19,7 @@ public interface CaseLikeMapper {
     @Delete("DELETE FROM case_like WHERE user_id =#{user_id} and case_id = #{case_id}")
     void delete(CaseLike caselike);
 
-    @Update("UPDATE case_like SET is_display=#{is_display} WHERE user_id =#{user_id} and case_id = #{case_id}")
+    @Update("UPDATE case_like SET is_display=#{is_display} WHERE user_id = #{user_id} and case_id = #{case_id}")
     void cancelCaseLikeByMap(Map<String, Object> map);
 
     @Select("select id, user_id, case_id, created_at, is_display from case_like where case_id = #{case_id}")
