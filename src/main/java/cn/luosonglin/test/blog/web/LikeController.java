@@ -28,7 +28,7 @@ public class LikeController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResultDate likeBlog(@ModelAttribute Like like) throws CustomizedException {
 
-        if (likeMapper.isLiked(like.getUserId(), like.getBlogId()) != null)
+        if (likeMapper.isLiked(like.getUserId(), like.getBlogId()) != 0)
             throw new CustomizedException("该用户已经对该条微博点过赞");
 
         ResultDate resultDate = new ResultDate();

@@ -49,7 +49,7 @@ public interface LikeMapper {
     @Select("select count(*) from blog_like where blog_id = #{blog_id}")
     Integer getLikeCount(@Param("blog_id") Integer blog_id);
 
-    @Select("SELECT id FROM blog_like WHERE user_id =#{user_id} and blog_id = #{blog_id} and is_display = 0")
+    @Select("SELECT count(*) FROM blog_like WHERE user_id =#{user_id} and blog_id = #{blog_id} and is_display = 0")
     Integer isLiked(@Param("user_id") Integer user_id, @Param("blog_id") Integer blog_id);
 
 }

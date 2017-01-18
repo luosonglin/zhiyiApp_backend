@@ -111,7 +111,7 @@ public class BlogController {
         resultDate.setCode(200);
         responseMap.put("msg", "success");
         responseMap.put("blog", userAndBlog);
-        responseMap.put("islike", likeMapper.isLiked(from_uid, blog_id) == null? "false": "true");
+        responseMap.put("islike", likeMapper.isLiked(from_uid, blog_id) == 0? "false": "true");
         responseMap.put("iscollected", blogCollectionMapper.isCollected(from_uid, blog_id) == null? "false": "true");
 
         resultDate.setData(responseMap);
