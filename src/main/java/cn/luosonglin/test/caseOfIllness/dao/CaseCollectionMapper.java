@@ -32,6 +32,6 @@ public interface CaseCollectionMapper {
     Integer getMyCollectionCaseCount(@Param("user_id") Integer user_id);
 
     //某人是否收藏过该病例
-    @Select("SELECT id FROM case_collection WHERE user_id =#{user_id} and case_id = #{case_id}")
+    @Select("SELECT count(*) FROM case_collection WHERE user_id =#{user_id} and case_id = #{case_id}")
     Integer isCaseCollected(@Param("user_id") Integer user_id, @Param("case_id") Integer case_id);
 }

@@ -1,6 +1,8 @@
 package cn.luosonglin.test.member.dao;
 
 import cn.luosonglin.test.domain.User;
+import cn.luosonglin.test.member.entity.UpdateUserAvatar;
+import cn.luosonglin.test.member.entity.UpdateUserPhone;
 import cn.luosonglin.test.member.entity.UserInfo;
 import org.apache.ibatis.annotations.*;
 
@@ -81,6 +83,12 @@ public interface UserInfoMapper {
     //修改头像
     @Update("UPDATE user_info SET mobile_phone=#{mobile_phone}, user_pic=#{user_pic} WHERE id =#{user_id} ")
     void updateUserPic(Map<String, Object> map);
+
+    @Update("UPDATE user_info SET user_pic=#{avatar} WHERE id =#{userId} ")
+    void updateUserAvatar(UpdateUserAvatar updateUserAvatar);
+
+    @Update("UPDATE user_info SET mobile_phone=#{mobilePhone} WHERE id =#{userId} ")
+    void updateUserPhone(UpdateUserPhone updateUserPhone);
 
     //查询openId
     @Select("select * from user_info where open_id = #{open_id}")

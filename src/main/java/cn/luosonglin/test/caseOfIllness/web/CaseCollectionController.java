@@ -35,7 +35,7 @@ public class CaseCollectionController {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
-        if (caseCollectionMapper.isCaseCollected(caseCollection.getUserId(), caseCollection.getCaseId()) != null)
+        if (caseCollectionMapper.isCaseCollected(caseCollection.getUserId(), caseCollection.getCaseId()) != 0)
             throw new CustomizedException("已收藏过该病例");
 
         Map<String, Object> collectionMap = new HashMap<>();

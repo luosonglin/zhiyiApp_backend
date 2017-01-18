@@ -6,10 +6,7 @@ import cn.luosonglin.test.easemob.service.ChatService;
 import cn.luosonglin.test.exception.CustomizedException;
 import cn.luosonglin.test.member.dao.UserInfoMapper;
 import cn.luosonglin.test.member.dao.VerificationCodeMapper;
-import cn.luosonglin.test.member.entity.LoginUser;
-import cn.luosonglin.test.member.entity.ThirdUser;
-import cn.luosonglin.test.member.entity.UserInfo;
-import cn.luosonglin.test.member.entity.VerificationCode;
+import cn.luosonglin.test.member.entity.*;
 import cn.luosonglin.test.sms.service.SendCommonMessageService;
 import cn.luosonglin.test.base.util.DateUtil;
 import cn.luosonglin.test.base.util.RandUtil;
@@ -318,7 +315,7 @@ public class UserInfoController {
     }
 
 
-    @ApiOperation(value = "修改头像／手机号(以后可以更改用户的任意字段)", notes = "根据id来指定更新用户头像(id,userPic)(id,mobilePhone)")
+  /*  @ApiOperation(value = "修改头像／手机号(以后可以更改用户的任意字段)", notes = "根据id来指定更新用户头像(id,userPic)(id,mobilePhone)")
     @ApiImplicitParam(name = "userInfo", value = "UserInfo实体", required = true, dataType = "UserInfo")
     @RequestMapping(value = "/avatar", method = RequestMethod.PUT)
     public ResultDate updateAvatar(@ModelAttribute UserInfo userInfo) throws CustomizedException {
@@ -345,7 +342,44 @@ public class UserInfoController {
         resultDate.setData(responseMap);
 
         return resultDate;
+    }*/
+
+    @ApiOperation(value = "修改头像", notes = "根据id来指定更新用户头像(id,avatar)")
+    @ApiImplicitParam(name = "updateUserAvatar", value = "UpdateUserAvatar实体", required = true, dataType = "UpdateUserAvatar")
+    @RequestMapping(value = "/avatar", method = RequestMethod.PUT)
+    public ResultDate updateAvatar(@ModelAttribute UpdateUserAvatar updateUserAvatar) throws CustomizedException {
+        userInfoMapper.updateUserAvatar(updateUserAvatar);
+
+        ResultDate resultDate = new ResultDate();
+        Map<Object, Object> responseMap = new HashMap<>();
+
+        resultDate.setCode(200);
+        responseMap.put("user", userInfoMapper.getUserInfoByUserId(updateUserAvatar.getUserId()));
+        resultDate.setData(responseMap);
+
+        return resultDate;
     }
+
+    @ApiOperation(value = "修改手机号", notes = "根据id来指定更新用户手机号(id,mobilePhone)")
+    @ApiImplicitParam(name = "updateUserPhone", value = "UpdateUserPhone实体", required = true, dataType = "UpdateUserPhone")
+    @RequestMapping(value = "/phone", method = RequestMethod.PUT)
+    public ResultDate updateAvatar(@ModelAttribute UpdateUserPhone updateUserPhone) throws CustomizedException {
+
+        if (!PhoneUtil.isMobile(updateUserPhone.getMobilePhone()))
+            throw new CustomizedException("请填写正确的手机号");
+
+        userInfoMapper.updateUserPhone(updateUserPhone);
+
+        ResultDate resultDate = new ResultDate();
+        Map<Object, Object> responseMap = new HashMap<>();
+
+        resultDate.setCode(200);
+        responseMap.put("user", userInfoMapper.getUserInfoByUserId(updateUserPhone.getUserId()));
+        resultDate.setData(responseMap);
+
+        return resultDate;
+    }
+
 
     @ApiOperation(value = "第三方登录", notes = "用户登录")
     @ApiImplicitParam(name = "thirdUser", value = "用户详细实体thirdUser", required = true, dataType = "ThirdUser")
