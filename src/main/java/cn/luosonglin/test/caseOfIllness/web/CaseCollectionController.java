@@ -58,7 +58,7 @@ public class CaseCollectionController {
     public ResultDate putCollection(@ModelAttribute CaseCollection caseCollection) {
         Map<String, Object> collectionMap = new HashMap<>();
         collectionMap.put("user_id", caseCollection.getUserId());
-        collectionMap.put("blog_id", caseCollection.getCaseId());
+        collectionMap.put("case_id", caseCollection.getCaseId());
         caseCollectionMapper.deleteCaseCollectionByMap(collectionMap);
 
         ResultDate resultDate = new ResultDate();

@@ -5,6 +5,7 @@ import cn.luosonglin.test.blog.dao.BlogCollectionMapper;
 import cn.luosonglin.test.blog.dao.BlogMapper;
 import cn.luosonglin.test.blog.entity.Blog;
 import cn.luosonglin.test.blog.entity.BlogCollection;
+import cn.luosonglin.test.exception.CustomizedException;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,12 @@ public class BlogCollectionController {
     @ApiOperation(value = "收藏该微博", notes = "收藏微博")
     @ApiImplicitParam(name = "collection", value = "BlogCollection实体", required = true, dataType = "BlogCollection")
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResultDate postCollectMicroBlog(@ModelAttribute BlogCollection collection) {
+    public ResultDate postCollectMicroBlog(@ModelAttribute BlogCollection collection) throws CustomizedException {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
+
+        if (collectionMapper.isCollected(collection.getUserId(), collection.getBlogId()) != 0)
+            throw new CustomizedException("已收藏过该条微博");
 
         Map<String, Object> collectionMap = new HashMap<>();
         collectionMap.put("user_id", collection.getUserId());

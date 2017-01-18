@@ -36,6 +36,6 @@ public interface BlogCollectionMapper {
     Integer getMyCollectionCount(@Param("user_id") Integer user_id);
 
     //某人是否收藏过该微博
-    @Select("SELECT id FROM blog_collection WHERE user_id =#{user_id} and blog_id = #{blog_id}")
+    @Select("SELECT count(*) FROM blog_collection WHERE user_id =#{user_id} and blog_id = #{blog_id}")
     Integer isCollected(@Param("user_id") Integer user_id, @Param("blog_id") Integer blog_id);
 }
