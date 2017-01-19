@@ -215,7 +215,7 @@ public class UserInfoController {
                 userInfoMapper.insertByUserInfo(mUserInfo);
 
                 //在环信服务器注册新用户
-//                chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), loginUserByCode.getCode());
+                chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), loginUserByCode.getCode());
             } else {
                 responseMap.put("chat", chatService.modifyIMUserPasswordService(Integer.toString(userId), loginUserByCode.getCode()));
             }
