@@ -15,7 +15,7 @@ import java.util.Map;
  */
 @Mapper
 public interface CaseMapper {
-    @Select("SELECT case_of_illness.id, case_of_illness.user_id, case_of_illness.title, case_of_illness.chief_complain, case_of_illness.chief_complain_image, case_of_illness.body_check, case_of_illness.body_check_image, case_of_illness.medical_diagnosis, case_of_illness.medical_diagnosis_image, case_of_illness.follow_up, case_of_illness.follow_up_image, case_of_illness.comment_count, case_of_illness.like_count, case_of_illness.created_at, case_of_illness.deleted_at, case_of_illness.tag_id, case_of_illness.is_hot, user_info.name, user_info.nick_name, user_info.company, user_info.user_pic, user_info.authen_status FROM case_of_illness, user_info where case_of_illness.user_id = user_info.id")
+    @Select("SELECT case_of_illness.id, case_of_illness.user_id, case_of_illness.title, case_of_illness.chief_complain, case_of_illness.chief_complain_image, case_of_illness.body_check, case_of_illness.body_check_image, case_of_illness.medical_diagnosis, case_of_illness.medical_diagnosis_image, case_of_illness.follow_up, case_of_illness.follow_up_image, case_of_illness.comment_count, case_of_illness.like_count, case_of_illness.created_at, case_of_illness.deleted_at, case_of_illness.tag_id, case_of_illness.is_hot, user_info.name, user_info.nick_name, user_info.company, user_info.user_pic, user_info.authen_status FROM case_of_illness, user_info where case_of_illness.user_id = user_info.id  order by case_of_illness.created_at DESC")
     List<UserAndCase> findAllCase();
 
     //某条病例的详情
