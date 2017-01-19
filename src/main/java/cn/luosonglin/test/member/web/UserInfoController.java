@@ -147,45 +147,46 @@ public class UserInfoController {
 
 
     @ApiOperation(value = "手机号+验证码登录", notes = "用户登录")
-    @ApiImplicitParam(name = "loginUser", value = "用户详细实体user", required = true, dataType = "LoginUser")
+    @ApiImplicitParam(name = "loginUserByCode", value = "用户详细实体user", required = true, dataType = "LoginUserByCode")
     @RequestMapping(value = "/", method = RequestMethod.POST)   //params = "grantType=code"
-    private ResultDate loginByUserPhone(@ModelAttribute LoginUser loginUser) throws CustomizedException {
+    private ResultDate loginByUserPhone(@ModelAttribute LoginUserByCode loginUserByCode) throws CustomizedException {
 
-        if (loginUser.getPhone() == null)
+        if (loginUserByCode.getPhone() == null)
             throw new CustomizedException("手机号不能为空");
 
-        if (loginUser.getCode() == null)
+        if (loginUserByCode.getCode() == null)
             throw new CustomizedException("验证码不能为空");
 
-        if (!PhoneUtil.isMobile(loginUser.getPhone()))
+        if (!PhoneUtil.isMobile(loginUserByCode.getPhone()))
             throw new CustomizedException("请填写正确的手机号");
 
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
         //判断验证码是否合法（包括正确与否，失效与否两方面验证）
-        VerificationCode verificationCode = verificationCodeMapper.getVerificationCodeByPhone(loginUser.getPhone());
+        VerificationCode verificationCode = verificationCodeMapper.getVerificationCodeByPhone(loginUserByCode.getPhone());
 
         if (verificationCode == null)
             throw new CustomizedException("请先获取验证码");
 
         //验证用户输入的验证码和数据库ver_code表中保寸的验证码是否一致
-        if (loginUser.getCode().equals(verificationCode.getCodeContent())) {
+        if (loginUserByCode.getCode().equals(verificationCode.getCodeContent())) {
 
             //超过10分钟失效了
             //上线时把此处放开，测试阶段不设置短信验证码失效的问题
-//			if(new Date().getTime()-verificationCode.getSendDate().getTime() > 600000)
-//			    throw new CustomizedException("超过10分钟，请重新获取验证码");
+			if(new Date().getTime()-verificationCode.getSendDate().getTime() > 600000)
+			    throw new CustomizedException("超过10分钟，请重新获取验证码");
 
             //根据用户手机号去查询用户是否已经是注册用户
-            Integer userId = userInfoMapper.isRegisteredUser(loginUser.getPhone());
+            Integer userId = userInfoMapper.isRegisteredUser(loginUserByCode.getPhone());
+
+            System.out.println("userId" + userId);
 
             UserInfo mUserInfo = new UserInfo();
 
             //判断账号是否已经注册过了并存在于user_info表中
             if (userId == null) {
 //                Map<String, Object> map = new HashMap<>();
-//
 //                //什么鬼！自定义的鉴权机制？？后期必定添加OAuth2框架！！！！！！
 //                //创建一个6位默认的字符串用于默认昵称后面的字符和签到确认码字符串
 //                map.put("token_id", String.valueOf(UUID.randomUUID()));
@@ -202,7 +203,7 @@ public class UserInfoController {
                 //换xml注入方式解决，真是日！
                 mUserInfo.setTokenId(String.valueOf(UUID.randomUUID()));
                 mUserInfo.setNickName("医宝" + RandUtil.rand(6, array));
-                mUserInfo.setMobilePhone(loginUser.getPhone());
+                mUserInfo.setMobilePhone(loginUserByCode.getPhone());
                 mUserInfo.setUserType("1");
                 mUserInfo.setAuthenStatus("X");
                 mUserInfo.setStatus("A");
@@ -210,23 +211,19 @@ public class UserInfoController {
                 mUserInfo.setStateDate(new Date());
                 mUserInfo.setUserPic("defaultPic");
 
-                userInfoMapper.insertNewUser(mUserInfo);
+//                userInfoMapper.insertNewUser(mUserInfo);
+                userInfoMapper.insertByUserInfo(mUserInfo);
 
                 //在环信服务器注册新用户
-                chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), loginUser.getCode());
+//                chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), loginUserByCode.getCode());
             } else {
-                responseMap.put("chat", chatService.modifyIMUserPasswordService(Integer.toString(userId), loginUser.getCode()));
+                responseMap.put("chat", chatService.modifyIMUserPasswordService(Integer.toString(userId), loginUserByCode.getCode()));
             }
 
             System.out.println(mUserInfo != null ? mUserInfo.getId() : "null");
 
-            responseMap.put("user", userInfoMapper.getUserInfoByPhone(loginUser.getPhone()));
+            responseMap.put("user", userInfoMapper.getUserInfoByPhone(loginUserByCode.getPhone()));
 
-//            if (userId == null) {
-//                responseMap.put("chat", chatService.imUserLoginService(Integer.toString(userInfoMapper.getMaxUserId()), loginUser.getCode()));
-//            } else {
-//                responseMap.put("chat", chatService.imUserLoginService(Integer.toString(userId), loginUser.getCode()));
-//            }
             resultDate.setCode(200);
             resultDate.setData(responseMap);
 
@@ -240,23 +237,23 @@ public class UserInfoController {
     }
 
     @ApiOperation(value = "手机号+密码登录", notes = "用户登录")
-    @ApiImplicitParam(name = "loginUser", value = "用户详细实体user", required = true, dataType = "LoginUser")
+    @ApiImplicitParam(name = "loginUserByPassword", value = "用户详细实体user", required = true, dataType = "LoginUserByPassword")
     @RequestMapping(value = "/pwd", method = RequestMethod.POST)   //params = "grantType=code"
-    private ResultDate loginByUserPassword(@ModelAttribute LoginUser loginUser) throws CustomizedException {
-        if (loginUser.getPhone() == null)
+    private ResultDate loginByUserPassword(@ModelAttribute LoginUserByPassword loginUserByPassword) throws CustomizedException {
+        if (loginUserByPassword.getPhone() == null)
             throw new CustomizedException("手机号不能为空");
 
-        if (loginUser.getPassword() == null)
+        if (loginUserByPassword.getPassword() == null)
             throw new CustomizedException("密码不能为空");
 
-        if (!PhoneUtil.isMobile(loginUser.getPhone()))
+        if (!PhoneUtil.isMobile(loginUserByPassword.getPhone()))
             throw new CustomizedException("请填写正确的手机号");
 
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
         //根据用户手机号去查询用户是否已经是注册用户
-        Integer userId = userInfoMapper.isRegisteredUser(loginUser.getPhone());
+        Integer userId = userInfoMapper.isRegisteredUser(loginUserByPassword.getPhone());
 
         UserInfo mUserInfo = new UserInfo();
 
@@ -264,13 +261,13 @@ public class UserInfoController {
         if (userId == null)
             throw new CustomizedException("没有该用户，请先获取验证码注册");
 
-        if (!loginUser.getPassword().equals(userInfoMapper.getUserInfoByPhone(loginUser.getPhone()).getPassword()))
+        if (!loginUserByPassword.getPassword().equals(userInfoMapper.getUserInfoByPhone(loginUserByPassword.getPhone()).getPassword()))
             throw new CustomizedException("密码错误");
 
         resultDate.setCode(200);
         responseMap.put("mag", "success");
         responseMap.put("user", userInfoMapper.getUserInfoByUserId(userId));
-        responseMap.put("chat", chatService.modifyIMUserPasswordService(Integer.toString(userId), loginUser.getPassword()));
+        responseMap.put("chat", chatService.modifyIMUserPasswordService(Integer.toString(userId), loginUserByPassword.getPassword()));
 
 //        responseMap.put("chat", chatService.imUserLoginService(Integer.toString(userId), loginUser.getPassword()));
         resultDate.setData(responseMap);

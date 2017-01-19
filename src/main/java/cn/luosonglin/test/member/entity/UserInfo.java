@@ -285,4 +285,6 @@ public class UserInfo {
     public void setCounty(String county) {
         this.county = county;
     }
+
+
 }

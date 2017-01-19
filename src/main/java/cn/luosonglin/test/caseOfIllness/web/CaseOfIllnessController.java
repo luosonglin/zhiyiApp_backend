@@ -85,7 +85,7 @@ public class CaseOfIllnessController {
         responseMap.put("msg", "success");
         responseMap.put("blog", userAndCase);
         responseMap.put("islike", caseLikeMapper.isLiked(from_uid, case_id) == null? "false": "true");
-        responseMap.put("iscollected", caseCollectionMapper.isCaseCollected(from_uid, case_id) == null? "false": "true");
+        responseMap.put("iscollected", caseCollectionMapper.isCaseCollected(from_uid, case_id) == 0? "false": "true");
 
         resultDate.setData(responseMap);
 

@@ -16,6 +16,7 @@
     </select>
     <!--ORDER BY created_at DESC-->
 
+    <!--没有用上-->
     <insert id="insertNewUser" parameterType="cn.luosonglin.test.member.entity.UserInfo" useGeneratedKeys="true"
             keyProperty="id">
         INSERT INTO user_info (
@@ -25,8 +26,11 @@
         email ,
         mobile_phone ,
         company ,
+        department ,
         postion ,
+        hospital ,
         sex ,
+        birthday ,
         title ,
         address ,
         country ,
@@ -45,7 +49,8 @@
         login_source ,
         user_pic,
         authen_status,
-        token_id
+        token_id ,
+        county
         ) VALUES (
         #{id} ,
         #{name} ,
@@ -53,8 +58,11 @@
         #{email} ,
         #{mobilePhone} ,
         #{company} ,
+        #{department} ,
         #{postion} ,
+        #{hospital} ,
         #{sex} ,
+        #{birthday} ,
         #{title} ,
         #{address} ,
         #{country} ,
@@ -73,7 +81,8 @@
         #{loginSource} ,
         #{userPic},
         #{authenStatus},
-        #{tokenId}
+        #{tokenId} ,
+        #{county}
         )
     </insert>
 
