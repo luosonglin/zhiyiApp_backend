@@ -16,6 +16,10 @@ public interface CaseLikeMapper {
             "VALUES(#{id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{case_id,jdbcType=INTEGER}, #{created_at,jdbcType=TIMESTAMP}, #{is_display,jdbcType=INTEGER})")
     int insertByLikeMap(Map<String, Object> map);
 
+    //点赞后在该微博的点赞数+1
+    @Update("update case_of_illness set like_count=if(isNull(like_count),0,like_count)+1 where id = #{case_id}")
+    void updateCaseLikeCount(@Param("case_id") Integer case_id);
+
     @Delete("DELETE FROM case_like WHERE user_id =#{user_id} and case_id = #{case_id}")
     void delete(CaseLike caselike);
 

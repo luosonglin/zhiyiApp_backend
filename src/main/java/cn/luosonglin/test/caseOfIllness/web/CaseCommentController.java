@@ -61,6 +61,8 @@ public class CaseCommentController {
         commentMap.put("created_at", new Date());
         commentMapper.insertComment(commentMap);
 
+        commentMapper.updateCaseCommentCount(caseComment.getCaseId());
+
         resultDate.setCode(200);
         responseMap.put("msg", "success");
         responseMap.put("comment", commentMapper.getComments(caseComment.getCaseId()));

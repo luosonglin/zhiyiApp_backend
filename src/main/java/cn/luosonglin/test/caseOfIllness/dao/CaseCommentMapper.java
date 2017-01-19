@@ -15,6 +15,10 @@ public interface CaseCommentMapper {
     @Insert("INSERT INTO case_comment(id, user_id, case_id, comment_id, content, created_at, deleted_at) VALUES(#{id}, #{user_id}, #{case_id}, #{comment_id}, #{content}, #{created_at}, #{deleted_at})")
     int insertComment(Map<String, Object> map);
 
+    //评论后在该微博的评论数+1
+    @Update("update case_of_illness set comment_count=if(isNull(comment_count),0,comment_count)+1 where id = #{case_id}")
+    void updateCaseCommentCount(@Param("case_id") Integer case_id);
+
     @Update("UPDATE case_comment SET deleted_at=#{deleted_at} WHERE user_id =#{user_id} and case_id = #{case_id} and comment_id = #{comment_id}")
     void deleteComment(Map<String, Object> map);
 

@@ -42,6 +42,8 @@ public class CaseLikeController {
 
         caseLikeMapper.insertByLikeMap(likeMap);
 
+        caseLikeMapper.updateCaseLikeCount(caseLike.getCaseId());
+
         resultDate.setCode(200);
         responseMap.put("msg", "success");
         resultDate.setData(responseMap);
