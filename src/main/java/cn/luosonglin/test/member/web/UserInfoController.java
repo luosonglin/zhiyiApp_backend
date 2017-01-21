@@ -65,7 +65,6 @@ public class UserInfoController {
         //检查手机号是否存在验证码表中
         VerificationCode verCodeInfo = verificationCodeMapper.getVerificationCodeByPhone(phone);
 
-
         ResultDate resultDate = new ResultDate();
         Map<Object, Object> responseMap = new HashMap<>();
         Map<String, Object> map = new HashMap<>();
@@ -174,10 +173,14 @@ public class UserInfoController {
 
             //超过10分钟失效了
             //上线时把此处放开，测试阶段不设置短信验证码失效的问题
-			if(new Date().getTime()-verificationCode.getSendDate().getTime() > 600000)
-			    throw new CustomizedException("超过10分钟，请重新获取验证码");
+//			if(new Date().getTime()-verificationCode.getSendDate().getTime() > 600000)
+//			    throw new CustomizedException("超过10分钟，请重新获取验证码");
 
             //根据用户手机号去查询用户是否已经是注册用户
+            /*
+             *   此处数据库user_info表的mobile_phone加上唯一性约束
+             *   ALTER TABLE `user_info` ADD unique(`mobile_phone`);
+             */
             Integer userId = userInfoMapper.isRegisteredUser(loginUserByCode.getPhone());
 
             System.out.println("userId" + userId);
