@@ -1,6 +1,7 @@
 package cn.luosonglin.test.banner.web;
 
 import cn.luosonglin.test.banner.dao.BannerMapper;
+import cn.luosonglin.test.banner.dao.EventBannerMapper;
 import cn.luosonglin.test.base.entity.ResultDate;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,22 @@ public class BannerController {
 
         resultDate.setCode(200);
         responseMap.put("banners", bannerMapper.getAllBanner());
+        resultDate.setData(responseMap);
+
+        return resultDate;
+    }
+
+    @Autowired
+    EventBannerMapper eventBannerMapper;
+
+    @ApiOperation(value="获取会议幻灯片", notes="会议banner")
+    @RequestMapping(value="/meeting", method= RequestMethod.GET)
+    public ResultDate getEventBannerList() {
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        resultDate.setCode(200);
+        responseMap.put("banners", eventBannerMapper.getAllEventBanner());
         resultDate.setData(responseMap);
 
         return resultDate;
