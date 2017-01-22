@@ -113,6 +113,8 @@ public class CaseOfIllnessController {
         caseOfIllnessMap.put("follow_up", caseOfIllness.getFollowUp());
         caseOfIllnessMap.put("follow_up_image", caseOfIllness.getFollowUpImage());
         caseOfIllnessMap.put("created_at", caseOfIllness.getCreatedAt());
+        caseOfIllnessMap.put("comment_count", 0);
+        caseOfIllnessMap.put("like_count", 0);
         caseMapper.insertCaseOfIllnessByMap(caseOfIllnessMap);
 
         resultDate.setCode(200);

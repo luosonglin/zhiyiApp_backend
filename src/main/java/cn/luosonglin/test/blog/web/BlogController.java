@@ -138,6 +138,8 @@ public class BlogController {
         blogMap.put("images", blog.getImages());
         blogMap.put("create_at", blog.getCreatedAt());
         blogMap.put("tag_id", blog.getTagId());
+        blogMap.put("comment_count", 0);
+        blogMap.put("like_count", 0);
         blogMapper.insertBlogInfoByMap(blogMap);
 
         resultDate.setCode(200);
