@@ -1,5 +1,7 @@
 package cn.luosonglin.test;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -20,13 +22,18 @@ import javax.servlet.MultipartConfigElement;
 //@ComponentScan("cn.luosonglin.test.blog.entity")
 @EnableAutoConfiguration
 public class Application extends SpringBootServletInitializer {
+
+    private static Logger log = LoggerFactory.getLogger(Application.class);
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+        log.info("SpringApplication jar run");
     }
 
     //spring-boot提供的解决方案：生成tomcat服务器能管理的war包，而非内嵌的tomcat直接生成的jar包
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        log.info("SpringApplication war run");
         return application.sources(Application.class);
     }
 
