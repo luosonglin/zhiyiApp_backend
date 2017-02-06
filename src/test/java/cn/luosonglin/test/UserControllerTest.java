@@ -1,6 +1,6 @@
 package cn.luosonglin.test;
 
-import cn.luosonglin.test.web.HelloController;
+import cn.luosonglin.test.web.HelloRestController;
 import cn.luosonglin.test.web.UserController;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +34,7 @@ public class UserControllerTest {
     @Before
     public void setUp() throws Exception {
         mvc = MockMvcBuilders.standaloneSetup(
-                new HelloController(),
+                new HelloRestController(),
                 new UserController()).build();
     }
 

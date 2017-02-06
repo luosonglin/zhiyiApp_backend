@@ -1,25 +1,18 @@
 package cn.luosonglin.test.web;
 
-import cn.luosonglin.test.service.TestProperties;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
- *
+ * Created by luosonglin on 06/02/2017.
  */
-@RestController
+
+@Controller
 public class HelloController {
 
-    @RequestMapping("/hello")
-    @ResponseBody
-    public String index() {
-//        TestProperties testProperties = new TestProperties();
-//        testProperties.setName("luosonglin");
-//        return "Hello World "+testProperties.getName();
-
-        return "Hello World";
+    @RequestMapping(value = "/swagger")
+    public String swagger() {
+        System.out.println("swagger-ui.html");
+        return "redirect:swagger-ui.html";
     }
-
 }
