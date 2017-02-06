@@ -1,6 +1,8 @@
 package cn.luosonglin.test.interceptor;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -10,10 +12,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class AddInterceptor extends WebMvcConfigurerAdapter{
 
+    @Bean
+    public HandlerInterceptor getMyInterceptor() {
+        return new MyInterceptor();
+    }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-        //addPattern(“/api/**”) 用来指定要拦截的请求路径
-        registry.addInterceptor(new MyInterceptor()).addPathPatterns("/v2/api-docs");
+        // 多个拦截器组成一个拦截器链
+        // addPathPatterns 用于添加拦截规则
+        // excludePathPatterns 排除拦截
+        registry.addInterceptor(getMyInterceptor()).addPathPatterns("/**"); //   /v2/api-docs
+        super.addInterceptors(registry);
     }
+
 }
