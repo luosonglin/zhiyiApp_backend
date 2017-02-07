@@ -6,7 +6,10 @@ import cn.luosonglin.test.blog.dao.BlogMapper;
 import cn.luosonglin.test.blog.entity.Blog;
 import cn.luosonglin.test.blog.entity.BlogCollection;
 import cn.luosonglin.test.exception.CustomizedException;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -68,20 +71,29 @@ public class BlogCollectionController {
         return resultDate;
     }
 
-    @ApiOperation(value="我收藏的微博列表", notes="")
-    @ApiImplicitParam(name = "userId", value = "我的ID", required = true, dataType = "int", paramType = "path")
-    @RequestMapping(value="/{userId}", method=RequestMethod.GET)
-    public ResultDate getMyCollectionList(@PathVariable Integer userId) {
+    @ApiOperation(value="我收藏的微博列表 分页", notes="")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userId", value = "我的ID", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
+    })
+    @RequestMapping(value="/{userId}/{pageNum}/{pageSize}", method=RequestMethod.GET)
+    public ResultDate getMyCollectionList(@PathVariable Integer userId,
+                                          @PathVariable Integer pageNum,
+                                          @PathVariable Integer pageSize) {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
         List<Integer> collectionIds = collectionMapper.getMyCollectionBlogIds(userId);
 
         resultDate.setCode(200);
-//        responseMap.put("collectionIds", collectionIds);
-//        responseMap.put("collection", collectionMapper.findMyCollectionBlog(userId));
+
         if(!collectionIds.isEmpty()) {
-            responseMap.put("blog", blogMapper.getBlogListByBlogId(collectionIds));
+
+            if (pageNum != null && pageSize != null) {
+                PageHelper.startPage(pageNum, pageSize);
+            }
+            responseMap.put("blog", new PageInfo<>(blogMapper.getBlogListByBlogId(collectionIds)));
             resultDate.setData(responseMap);
         } else {
             resultDate.setData(null);
