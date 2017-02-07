@@ -103,15 +103,23 @@ public class BlogController {
         return resultDate;
     }
 
-    @ApiOperation(value = "大咖说博客列表", notes = "")
-    @RequestMapping(value = "/vip", method = RequestMethod.GET)
-    public ResultDate getVipBlogList() {
+    @ApiOperation(value = "大咖说博客列表 分页", notes = "")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
+    })
+    @RequestMapping(value = "/vip/{pageNum}/{pageSize}", method = RequestMethod.GET)
+    public ResultDate getVipBlogList(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, pageSize);
+        }
+
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("blog", blogMapper.getVipBlog());
+        responseMap.put("blog", new PageInfo<>(blogMapper.getVipBlog()));
         resultDate.setData(responseMap);
 
         return resultDate;
@@ -217,28 +225,42 @@ public class BlogController {
 //        return resultDate;
 //    }
 
-    @ApiOperation(value = "获取某个用户的全部微博信息", notes = "根据url的user_id来获取")
-    @ApiImplicitParam(name = "user_id", value = "用户自己的ID", required = true, dataType = "int", paramType = "path")
-    @RequestMapping(value = "/{user_id}", method = RequestMethod.GET)
-    public ResultDate getBlogByUserId(@PathVariable Integer user_id) {
+    @ApiOperation(value = "获取某个用户的全部微博信息 分页", notes = "根据url的user_id来获取")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "user_id", value = "用户自己的ID", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
+    })
+    @RequestMapping(value = "/{user_id}/{pageNum}/{pageSize}", method = RequestMethod.GET)
+    public ResultDate getBlogByUserId(@PathVariable Integer user_id,
+                                      @PathVariable Integer pageNum,
+                                      @PathVariable Integer pageSize) {
 
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, pageSize);
+        }
+
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("blog", blogMapper.findBlogById(user_id));
+        responseMap.put("blog", new PageInfo<>(blogMapper.findBlogById(user_id)));
         resultDate.setData(responseMap);
         return resultDate;
     }
 
-    @ApiOperation(value = "获取我关注的人的全部微博信息，按时间降序", notes = "根据url的user_id来获取")
+    @ApiOperation(value = "获取我关注的人的全部微博信息，按时间降序 分页", notes = "根据url的user_id来获取")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
 //            @ApiImplicitParam(name = "header", value = "用户token", required = true, dataType = "String", paramType = "path")
     })
-    @RequestMapping(value = "/{user_id}/follows", method = RequestMethod.GET)
-    public ResultDate getMyFollowsBlog(@PathVariable Integer user_id, @RequestHeader String Authorization) throws CustomizedException {//, @RequestHeader String header
+    @RequestMapping(value = "/{user_id}/follows/{pageNum}/{pageSize}", method = RequestMethod.GET)
+    public ResultDate getMyFollowsBlog(@PathVariable Integer user_id,
+                                       @PathVariable Integer pageNum,
+                                       @PathVariable Integer pageSize) throws CustomizedException {//, @RequestHeader String header @RequestHeader String Authorization
 
         if (user_id == null)
             throw new CustomizedException("user_id不可为空");
@@ -252,20 +274,29 @@ public class BlogController {
 
         List<Integer> followIds = usersRelationshipMapper.getMyFollowIds(user_id);
 
+
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, pageSize);
+        }
+
         resultDate.setCode(200);
         responseMap.put("msg", "success");
         responseMap.put("follows", followIds);
-        responseMap.put("followsBlog", blogMapper.getFollowsBlogByListId(followIds)); //
+        responseMap.put("followsBlog", followIds.size() != 0? new PageInfo<>(blogMapper.getFollowsBlogByListId(followIds)) : followIds);
         resultDate.setData(responseMap);
         return resultDate;
     }
 
-    @ApiOperation(value = "获取宝友圈（我自己、我关注的人）的全部微博信息，按时间降序", notes = "根据url的user_id来获取")
+    @ApiOperation(value = "获取宝友圈（我自己、我关注的人）的全部微博信息，按时间降序 分页", notes = "根据url的user_id来获取")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "int", paramType = "path")
+            @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
     })
-    @RequestMapping(value = "/{user_id}/friends", method = RequestMethod.GET)
-    public ResultDate getMyFriendsBlog(@PathVariable Integer user_id) throws CustomizedException {
+    @RequestMapping(value = "/{user_id}/friends/{pageNum}/{pageSize}", method = RequestMethod.GET)
+    public ResultDate getMyFriendsBlog(@PathVariable Integer user_id,
+                                       @PathVariable Integer pageNum,
+                                       @PathVariable Integer pageSize) throws CustomizedException {
 
         if (user_id == null)
             throw new CustomizedException("user_id不可为空");
@@ -276,10 +307,14 @@ public class BlogController {
         List<Integer> followIds = usersRelationshipMapper.getMyFollowIds(user_id);
         followIds.add(user_id);
 
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, pageSize);
+        }
+
         resultDate.setCode(200);
         responseMap.put("msg", "success");
         responseMap.put("follows", followIds);
-        responseMap.put("followsBlog", blogMapper.getFollowsBlogByListId(followIds)); //
+        responseMap.put("followsBlog", new PageInfo<>(blogMapper.getFollowsBlogByListId(followIds))); //
         resultDate.setData(responseMap);
         return resultDate;
     }
