@@ -199,7 +199,7 @@ public class CaseOfIllnessController {
         resultDate.setCode(200);
         responseMap.put("msg", "success");
         responseMap.put("follows", followIds);
-        responseMap.put("followsCase", caseMapper.getFollowsCaseByListId(followIds));
+        responseMap.put("followsCase", followIds.size()!=0 ? caseMapper.getFollowsCaseByListId(followIds) : followIds); //followIds 为null，显示[]
         resultDate.setData(responseMap);
         return resultDate;
     }

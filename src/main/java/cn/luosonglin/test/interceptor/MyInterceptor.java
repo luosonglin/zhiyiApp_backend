@@ -38,11 +38,7 @@ public class MyInterceptor implements HandlerInterceptor{
 
         logger.info("url: " + url);
 
-        if (url.equals("/v2/api-docs")) {
-            return false;
-        } else {
-            return true;
-        }// 只有返回true才会继续向下执行，返回false取消当前请求
+        return true; // 只有返回true才会继续向下执行，返回false取消当前请求
     }
 
     @Override
