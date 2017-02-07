@@ -59,13 +59,19 @@ public class BlogController {
 
         return resultDate;
     }*/
-    @ApiOperation(value = "获取博客列表", notes = "")
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResultDate getBlogList() {
+    @ApiOperation(value = "获取博客列表 分页", notes = "")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
+    })
+    @RequestMapping(value = "/{pageNum}/{pageSize}", method = RequestMethod.GET)
+    public ResultDate getBlogList(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
-        PageHelper.startPage(1,2);
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, pageSize);
+        }
 
         resultDate.setCode(200);
         responseMap.put("msg", "success");
