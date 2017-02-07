@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="cn.luosonglin.test.UserControllerTest" time="0.04" tests="2" errors="2" skipped="0" failures="0">
+  <properties>
+    <property name="idea.version" value="2016.2.5"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib"/>
+    <property name="java.vm.version" value="25.111-b14"/>
+    <property name="user.country.format" value="CN"/>
+    <property name="gopherProxySet" value="false"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/luosonglin/IdeaProjects/SpringBootDemo"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="idea.launcher.port" value="7534"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/Users/luosonglin/IdeaProjects/SpringBootDemo"/>
+    <property name="java.runtime.version" value="1.8.0_111-b14"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/endorsed"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.io.tmpdir" value="/var/folders/23/g6_q70_x7_db4xlznl7_8wrc0000gn/T/"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="classworlds.conf" value="/Users/luosonglin/Maven/apache-maven-3.3.9/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/luosonglin/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.12.1"/>
+    <property name="user.home" value="/Users/luosonglin"/>
+    <property name="user.timezone" value="Asia/Shanghai"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="idea.launcher.bin.path" value="/Applications/IntelliJ IDEA.app/Contents/bin"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="luosonglin"/>
+    <property name="java.class.path" value="/Users/luosonglin/Maven/apache-maven-3.3.9/boot/plexus-classworlds-2.5.2.jar:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre"/>
+    <property name="sun.java.command" value="com.intellij.rt.execution.application.AppMain org.codehaus.classworlds.Launcher -Didea.version=2016.2.5 package"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_111"/>
+    <property name="java.ext.dirs" value="/Users/luosonglin/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="/Users/luosonglin/Maven/apache-maven-3.3.9"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase name="testUserController" classname="cn.luosonglin.test.UserControllerTest" time="0.033">
+    <error message="Could not resolve placeholder &apos;cn.luosonglin.test.project.type&apos; in string value &quot;/${cn.luosonglin.test.project.type}/${cn.luosonglin.test.project.version}/users&quot;" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: Could not resolve placeholder 'cn.luosonglin.test.project.type' in string value "/${cn.luosonglin.test.project.type}/${cn.luosonglin.test.project.version}/users"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:174)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticStringValueResolver.resolveStringValue(StandaloneMockMvcBuilder.java:507)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.resolveEmbeddedValuesInPatterns(RequestMappingHandlerMapping.java:272)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.createRequestMappingInfo(RequestMappingHandlerMapping.java:249)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.createRequestMappingInfo(RequestMappingHandlerMapping.java:206)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.getMappingForMethod(RequestMappingHandlerMapping.java:187)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.getMappingForMethod(RequestMappingHandlerMapping.java:53)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$1.inspect(AbstractHandlerMethodMapping.java:218)
+	at org.springframework.core.MethodIntrospector$1.doWith(MethodIntrospector.java:72)
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:527)
+	at org.springframework.core.MethodIntrospector.selectMethods(MethodIntrospector.java:68)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:214)
+	at org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping.registerHandlers(StandaloneMockMvcBuilder.java:480)
+	at org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder.registerMvcSingletons(StandaloneMockMvcBuilder.java:346)
+	at org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder.initWebAppContext(StandaloneMockMvcBuilder.java:331)
+	at org.springframework.test.web.servlet.setup.AbstractMockMvcBuilder.build(AbstractMockMvcBuilder.java:127)
+	at cn.luosonglin.test.UserControllerTest.setUp(UserControllerTest.java:38)
+</error>
+    <system-out><![CDATA[2016-12-12 10:37:26.096  INFO 11871 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [cn.luosonglin.test.UserControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2016-12-12 10:37:26.105  INFO 11871 --- [           main] o.s.t.c.web.WebTestContextBootstrapper   : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2016-12-12 10:37:26.106  INFO 11871 --- [           main] o.s.t.c.web.WebTestContextBootstrapper   : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@3016fd5e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@35d08e6c, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@53d102a2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6c45ee6e, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6b3e12b5, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@5aac4250]
+2016-12-12 10:37:26.124  INFO 11871 --- [           main] ilder$StaticRequestMappingHandlerMapping : Mapped "{[/hello]}" onto public java.lang.String cn.luosonglin.test.web.HelloController.index()
+]]></system-out>
+  </testcase>
+  <testcase name="getHello" classname="cn.luosonglin.test.UserControllerTest" time="0.007">
+    <error message="Could not resolve placeholder &apos;cn.luosonglin.test.project.type&apos; in string value &quot;/${cn.luosonglin.test.project.type}/${cn.luosonglin.test.project.version}/users&quot;" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: Could not resolve placeholder 'cn.luosonglin.test.project.type' in string value "/${cn.luosonglin.test.project.type}/${cn.luosonglin.test.project.version}/users"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:174)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticStringValueResolver.resolveStringValue(StandaloneMockMvcBuilder.java:507)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.resolveEmbeddedValuesInPatterns(RequestMappingHandlerMapping.java:272)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.createRequestMappingInfo(RequestMappingHandlerMapping.java:249)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.createRequestMappingInfo(RequestMappingHandlerMapping.java:206)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.getMappingForMethod(RequestMappingHandlerMapping.java:187)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.getMappingForMethod(RequestMappingHandlerMapping.java:53)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$1.inspect(AbstractHandlerMethodMapping.java:218)
+	at org.springframework.core.MethodIntrospector$1.doWith(MethodIntrospector.java:72)
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:527)
+	at org.springframework.core.MethodIntrospector.selectMethods(MethodIntrospector.java:68)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:214)
+	at org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping.registerHandlers(StandaloneMockMvcBuilder.java:480)
+	at org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder.registerMvcSingletons(StandaloneMockMvcBuilder.java:346)
+	at org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder.initWebAppContext(StandaloneMockMvcBuilder.java:331)
+	at org.springframework.test.web.servlet.setup.AbstractMockMvcBuilder.build(AbstractMockMvcBuilder.java:127)
+	at cn.luosonglin.test.UserControllerTest.setUp(UserControllerTest.java:38)
+</error>
+    <system-out><![CDATA[2016-12-12 10:37:26.151  INFO 11871 --- [           main] ilder$StaticRequestMappingHandlerMapping : Mapped "{[/hello]}" onto public java.lang.String cn.luosonglin.test.web.HelloController.index()
+]]></system-out>
+  </testcase>
+</testsuite>

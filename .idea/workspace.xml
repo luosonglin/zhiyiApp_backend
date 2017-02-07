@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="SpringBootDemo:war" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="45ab8222-3361-4056-a04d-a1fa12e6f849" name="Default" comment="" />
+    <list default="true" id="45ab8222-3361-4056-a04d-a1fa12e6f849" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="SpringBootDemo.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -23,48 +30,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="CommentMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/CommentMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+            <state relative-caret-position="345">
+              <caret line="27" column="190" selection-start-line="27" selection-start-column="173" selection-end-line="27" selection-end-column="190" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/User.java">
+      <file leaf-file-name="BlogController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+            <state relative-caret-position="190">
+              <caret line="258" column="6" selection-start-line="253" selection-start-column="4" selection-end-line="258" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/UserController.java">
+      <file leaf-file-name="BlogCollectionController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogCollectionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="17" column="68" selection-start-line="17" selection-start-column="68" selection-end-line="17" selection-end-column="68" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="208">
+              <caret line="78" column="6" selection-start-line="74" selection-start-column="4" selection-end-line="78" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/Application.java">
+      <file leaf-file-name="CommentController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/CommentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#447#448#0" expanded="true" />
-                <element signature="e#503#504#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="327">
+              <caret line="40" column="6" selection-start-line="36" selection-start-column="4" selection-end-line="40" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LikeController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/LikeController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="95" column="64" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -74,9 +85,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -86,11 +101,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/entity/Case.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/entity/CaseCollection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/entity/CaseComment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/entity/CaseLike.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/entity/Case.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/entity/UserAndCase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/entity/UserAndCaseComment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/dao/CaseColloectionMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/entity/CaseOfIllness.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/ThirdUser.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/BlogMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/CaseOfIllnessMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/easemob/huanxinapi/EasemobIMUsers.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/UpdateUserAvatar.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/UpdateUserPhone.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/dao/CaseCollectionMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/BlogCollectionMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/web/CaseCollectionController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/dao/CaseLikeMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/web/CaseLikeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/web/CaseCommentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/LoginUserByPassword.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/LoginUserByCode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/UserInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/dao/UserInfoMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/BlogMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/dao/CaseMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/web/UserInfoController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/banner/entity/Event.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/banner/dao/EventBannerMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/banner/web/EventBannerController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/banner/entity/EventBanner.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/banner/web/BannerController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/web/HelloRestController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/web/HelloController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/interceptor/AddInterceptor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/interceptor/MyInterceptor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/web/CaseOfIllnessController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/CommentMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/dao/CaseCommentMapper.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogCollectionController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/CommentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/entity/UserAndLike.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/LikeMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/LikeController.java" />
       </list>
     </option>
   </component>
@@ -110,7 +171,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="Bundled (Maven 3)" />
+        <option name="mavenHome" value="$USER_HOME$/Maven/apache-maven-3.3.9" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -119,11 +180,33 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
+  </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="1280" />
     <option name="y" value="-257" />
     <option name="width" value="1920" />
     <option name="height" value="1057" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>General</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Duplicates</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -132,7 +215,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="1" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
@@ -150,6 +233,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -181,10 +266,6 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -201,6 +282,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -230,26 +315,324 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringBootDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringBootDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringBootDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringBootDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="caseOfIllness" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringBootDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringBootDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="caseOfIllness" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringBootDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringBootDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringBootDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringBootDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringBootDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringBootDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.5121007" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../operation" />
+    <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
   </component>
-  <component name="RunManager" selected="Application.Application">
-    <configuration default="false" name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/easemob/vo" />
+      <recent name="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/easemob/utils" />
+      <recent name="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/easemob/api" />
+      <recent name="$PROJECT_DIR$/src/main/resources/image" />
+      <recent name="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/file/storage" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/easemob/common" />
+      <recent name="$PROJECT_DIR$/src/main/resources/mapper" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.springbootDemoService">
+    <configuration default="false" name="FetchDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="cn.luosonglin.test.*" />
+          <option name="PATTERN" value="cn.luosonglin.test.qiniu.api.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="cn.luosonglin.test.Application" />
+      <option name="MAIN_CLASS_NAME" value="cn.luosonglin.test.qiniu.api.FetchDemo" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SpringBootDemo" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="getQiniuToken" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="cn.luosonglin.test.qiniu.api.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="cn.luosonglin.test.qiniu.api.getQiniuToken" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SpringBootDemo" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="EasemobMessages" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="cn.luosonglin.test.easemob.huanxinapi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="cn.luosonglin.test.easemob.huanxinapi.EasemobMessages" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SpringBootDemo" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="EasemobIMUsers" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="cn.luosonglin.test.easemob.huanxinapi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="cn.luosonglin.test.easemob.huanxinapi.EasemobIMUsers" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SpringBootDemo" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="EasemobChatMessage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="cn.luosonglin.test.easemob.huanxinapi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="cn.luosonglin.test.easemob.huanxinapi.EasemobChatMessage" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -271,6 +654,19 @@
       <predefined_log_file id="Tomcat Host Manager" enabled="false" />
       <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <method />
+    </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="LOCAL" value="false" />
+      <deployment />
+      <server-settings>
+        <data>
+          <option name="transportHostId" value="" />
+          <host-id />
+        </data>
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -536,6 +932,28 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method />
+    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -623,8 +1041,14 @@
       <method />
     </configuration>
     <configuration default="false" name="springbootDemoService" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.73" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment />
+      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
+      <deployment>
+        <artifact name="SpringBootDemo:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="Unnamed_SpringBootDemo" />
       </server-settings>
@@ -682,15 +1106,73 @@
           <option name="PROGRAM_PARAMETERS" value="" />
         </SHUTDOWN>
       </ConfigurationWrapper>
-      <method />
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="SpringBootDemo:war exploded" />
+        </option>
+      </method>
     </configuration>
-    <list size="2">
+    <configuration default="false" name="zhiyiServer" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" APPLICATION_SERVER_NAME="Tomcat 7.0.73" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="HOST" value="139.224.206.129" />
+      <option name="PORT" value="80" />
+      <option name="LOCAL" value="false" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://139.224.206.129:80/" />
+      <option name="UPDATING_POLICY" value="hot-swap-classes" />
+      <deployment>
+        <artifact name="SpringBootDemo:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <data>
+          <option name="stagingRemotePath" value="" />
+          <option name="transportHostId" value="" />
+          <option name="transportStagingTarget">
+            <TransportTarget>
+              <option name="id" value="9952541e-4f0f-40fa-9777-3b8bf537a739" />
+              <id>9952541e-4f0f-40fa-9777-3b8bf537a739</id>
+            </TransportTarget>
+          </option>
+          <transport-target>
+            <TransportTarget>
+              <option name="id" value="9952541e-4f0f-40fa-9777-3b8bf537a739" />
+              <id>9952541e-4f0f-40fa-9777-3b8bf537a739</id>
+            </TransportTarget>
+          </transport-target>
+          <staging-path />
+          <host-id />
+        </data>
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="50720" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="SpringBootDemo:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.springbootDemoService" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Application" />
+      <item index="1" class="java.lang.String" itemvalue="Tomcat Server.zhiyiServer" />
+      <item index="2" class="java.lang.String" itemvalue="Application.FetchDemo" />
+      <item index="3" class="java.lang.String" itemvalue="Application.getQiniuToken" />
+      <item index="4" class="java.lang.String" itemvalue="Application.EasemobMessages" />
+      <item index="5" class="java.lang.String" itemvalue="Application.EasemobIMUsers" />
+      <item index="6" class="java.lang.String" itemvalue="Application.EasemobChatMessage" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.Application" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Application.getQiniuToken" />
+        <item index="1" class="java.lang.String" itemvalue="Application.EasemobIMUsers" />
+        <item index="2" class="java.lang.String" itemvalue="Application.EasemobMessages" />
+        <item index="3" class="java.lang.String" itemvalue="Application.EasemobChatMessage" />
+        <item index="4" class="java.lang.String" itemvalue="Application.FetchDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -705,45 +1187,177 @@
       <option name="presentableId" value="Default" />
       <updated>1479867669753</updated>
       <workItem from="1479867671185" duration="495000" />
-      <workItem from="1479868171276" duration="2068000" />
+      <workItem from="1479868171276" duration="7824000" />
+      <workItem from="1479892407745" duration="7440000" />
+      <workItem from="1479901174575" duration="6588000" />
+      <workItem from="1479916434361" duration="15435000" />
+      <workItem from="1479966260286" duration="6772000" />
+      <workItem from="1479986761524" duration="10603000" />
+      <workItem from="1480040112431" duration="3222000" />
+      <workItem from="1480055503471" duration="206000" />
+      <workItem from="1480055713152" duration="3245000" />
+      <workItem from="1480068792058" duration="14839000" />
+      <workItem from="1480149914711" duration="4417000" />
+      <workItem from="1480248251473" duration="82849000" />
+      <workItem from="1480555686323" duration="34687000" />
+      <workItem from="1480667141733" duration="11621000" />
+      <workItem from="1480731380316" duration="16906000" />
+      <workItem from="1480818253318" duration="509000" />
+      <workItem from="1480855238416" duration="1343000" />
+      <workItem from="1480860479151" duration="2644000" />
+      <workItem from="1480905190301" duration="9273000" />
+      <workItem from="1481507939521" duration="6657000" />
+      <workItem from="1481589094554" duration="9000" />
+      <workItem from="1481599231034" duration="1421000" />
+      <workItem from="1481673047956" duration="59940000" />
+      <workItem from="1481961826589" duration="473000" />
+      <workItem from="1481962355755" duration="4441000" />
+      <workItem from="1482111937527" duration="30382000" />
+      <workItem from="1482231749265" duration="6527000" />
+      <workItem from="1482289131924" duration="17709000" />
+      <workItem from="1482313241253" duration="27672000" />
+      <workItem from="1482461018138" duration="6245000" />
+      <workItem from="1482474285058" duration="12656000" />
+      <workItem from="1482546218250" duration="614000" />
+      <workItem from="1482547604028" duration="12000" />
+      <workItem from="1482548146968" duration="385000" />
+      <workItem from="1482548614740" duration="536000" />
+      <workItem from="1482549250763" duration="7403000" />
+      <workItem from="1482673127894" duration="1452000" />
+      <workItem from="1482732793595" duration="1617000" />
+      <workItem from="1482906938885" duration="906000" />
+      <workItem from="1482908472790" duration="199000" />
+      <workItem from="1482909439856" duration="2238000" />
+      <workItem from="1482981012007" duration="25000" />
+      <workItem from="1483754279058" duration="18213000" />
+      <workItem from="1484034369693" duration="1230000" />
+      <workItem from="1484035637839" duration="154000" />
+      <workItem from="1484035811816" duration="20328000" />
+      <workItem from="1484121986279" duration="210000" />
+      <workItem from="1484128771691" duration="257000" />
+      <workItem from="1484130859496" duration="7154000" />
+      <workItem from="1484203776282" duration="12675000" />
+      <workItem from="1484487108179" duration="120000" />
+      <workItem from="1484734846481" duration="8810000" />
+      <workItem from="1484792466140" duration="3207000" />
+      <workItem from="1484805569361" duration="7037000" />
+      <workItem from="1484817151998" duration="782000" />
+      <workItem from="1484907961677" duration="351000" />
+      <workItem from="1484980169247" duration="596000" />
+      <workItem from="1484989623628" duration="1355000" />
+      <workItem from="1485070185623" duration="5342000" />
+      <workItem from="1485078666360" duration="241000" />
+      <workItem from="1486364817657" duration="5148000" />
+      <workItem from="1486446018847" duration="8906000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="BlogControllerTest - 2016.11.29 at 11h 41m 49s.xml">
+      <configuration name="BlogControllerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BlogControllerTest - 2016.11.29 at 11h 43m 09s.xml">
+      <configuration name="BlogControllerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BlogControllerTest - 2016.11.29 at 11h 45m 17s.xml">
+      <configuration name="BlogControllerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisUserTest - 2016.11.24 at 19h 44m 27s.xml">
+      <configuration name="MybatisUserTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisUserTest - 2016.11.24 at 19h 45m 16s.xml">
+      <configuration name="MybatisUserTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisUserTest_findByName - 2016.11.24 at 15h 42m 05s.xml">
+      <configuration name="MybatisUserTest.findByName" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UserControllerTest - 2016.11.24 at 15h 17m 53s.xml">
+      <configuration name="UserControllerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UserControllerTest - 2016.11.24 at 23h 47m 25s.xml">
+      <configuration name="UserControllerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UserControllerTest - 2016.11.24 at 23h 48m 38s.xml">
+      <configuration name="UserControllerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UserControllerTest - 2016.11.24 at 23h 49m 37s.xml">
+      <configuration name="UserControllerTest" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2563000" />
+    <option name="totallyTimeSpent" value="542566000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1280" y="-257" width="1920" height="1057" extended-state="6" />
-    <editor active="false" />
+    <frame x="1280" y="-257" width="1920" height="1057" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4953368" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.60829014" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32642487" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4715026" sideWeight="0.5021299" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16719915" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34507772" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30569947" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2571885" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="1686" y="-160" width="1720" height="857" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32746115" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4715026" sideWeight="0.5021299" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16719915" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32746115" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="1686" y="-160" width="1720" height="857" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48808292" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33722627" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2497939" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32746115" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -765,69 +1379,505 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/UpdateUserAvatar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="60">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/User.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/web/CaseLikeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/entity/CaseComment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/LoginUser.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/LoginUserByPassword.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="28" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/web/CaseCollectionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="85" column="39" selection-start-line="85" selection-start-column="39" selection-end-line="85" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/web/CaseCommentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/dao/CaseCollectionMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/dao/CaseLikeMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/UserInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="25" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+          <folding>
+            <marker date="1484808811000" expanded="true" signature="348:625" ph="SELECT id, n... user_info" />
+            <marker date="1484808811000" expanded="true" signature="844:2126" ph="INSERT INTO user_info... " />
+            <marker date="1484808811000" expanded="true" signature="2283:5923" ph="update user_... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/BlogMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="7" column="272" selection-start-line="7" selection-start-column="210" selection-end-line="7" selection-end-column="272" />
+          <folding>
+            <marker date="1484190940000" expanded="true" signature="330:858" ph="SELECT id, u... blog" />
+            <marker date="1484190940000" expanded="true" signature="969:1278" ph="SELECT id, u... blog" />
+            <marker date="1484190940000" expanded="true" signature="1423:1932" ph="INSERT INTO blog... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/CaseOfIllnessMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+          <folding>
+            <marker date="1484192737000" expanded="true" signature="348:1250" ph="SELECT id, u... case_of_illness" />
+            <marker date="1484192737000" expanded="true" signature="1379:1778" ph="SELECT id, u... case_of_illness" />
+            <marker date="1484192737000" expanded="true" signature="1950:2731" ph="INSERT INTO case_of_illness... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/MybatisApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/dao/CaseMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/BlogCollectionMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/LoginUserByCode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/UserController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/dao/VerificationCodeMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/dao/UserInfoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/web/UserInfoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3240">
+          <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/qiniu/api/FetchDemo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/User.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/qiniu/api/UploadFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-          <folding />
+        <state relative-caret-position="510">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/UserController.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/qiniu/qiniu-java-sdk/7.2.2/qiniu-java-sdk-7.2.2.jar!/com/qiniu/util/Auth.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="49">
+          <caret line="129" column="27" selection-start-line="129" selection-start-column="27" selection-end-line="129" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/banner/dao/BannerMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="17" column="68" selection-start-line="17" selection-start-column="68" selection-end-line="17" selection-end-column="68" />
+          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/qiniu/api/getQiniuToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/banner/web/EventBannerController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/banner/dao/EventBannerMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/entity/Blog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/banner/web/BannerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/banner/entity/EventBanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/web/HelloRestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/Swagger2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/web/HelloController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/interceptor/AddInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#558#559#0" expanded="false" />
+            <element signature="e#600#601#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/interceptor/MyInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#447#448#0" expanded="true" />
-            <element signature="e#503#504#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="300">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/dao/CaseCommentMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="24" column="190" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="190" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/BlogMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="46" column="96" selection-start-line="46" selection-start-column="96" selection-end-line="46" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/web/CaseOfIllnessController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="192" column="0" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+        <state relative-caret-position="160">
+          <caret line="156" column="20" selection-start-line="156" selection-start-column="20" selection-end-line="156" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="258" column="6" selection-start-line="253" selection-start-column="4" selection-end-line="258" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogCollectionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="78" column="6" selection-start-line="74" selection-start-column="4" selection-end-line="78" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/entity/UserAndBlog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/entity/Like.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="13" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/entity/UserAndLike.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+          <folding>
+            <element signature="e#452#453#0" expanded="true" />
+            <element signature="e#477#478#0" expanded="true" />
+            <element signature="e#514#515#0" expanded="true" />
+            <element signature="e#542#543#0" expanded="true" />
+            <element signature="e#576#577#0" expanded="true" />
+            <element signature="e#605#606#0" expanded="true" />
+            <element signature="e#650#651#0" expanded="true" />
+            <element signature="e#686#687#0" expanded="true" />
+            <element signature="e#720#721#0" expanded="true" />
+            <element signature="e#749#750#0" expanded="true" />
+            <element signature="e#794#795#0" expanded="true" />
+            <element signature="e#830#831#0" expanded="true" />
+            <element signature="e#864#865#0" expanded="true" />
+            <element signature="e#896#897#0" expanded="true" />
+            <element signature="e#944#945#0" expanded="true" />
+            <element signature="e#986#987#0" expanded="true" />
+            <element signature="e#1023#1024#0" expanded="true" />
+            <element signature="e#1055#1056#0" expanded="true" />
+            <element signature="e#1106#1107#0" expanded="true" />
+            <element signature="e#1148#1149#0" expanded="true" />
+            <element signature="e#1179#1180#0" expanded="true" />
+            <element signature="e#1206#1207#0" expanded="true" />
+            <element signature="e#1246#1247#0" expanded="true" />
+            <element signature="e#1278#1279#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="e#1344#1345#0" expanded="true" />
+            <element signature="e#1392#1393#0" expanded="true" />
+            <element signature="e#1432#1433#0" expanded="true" />
+            <element signature="e#1466#1467#0" expanded="true" />
+            <element signature="e#1496#1497#0" expanded="true" />
+            <element signature="e#1542#1543#0" expanded="true" />
+            <element signature="e#1580#1581#0" expanded="true" />
+            <element signature="e#1614#1615#0" expanded="true" />
+            <element signature="e#1644#1645#0" expanded="true" />
+            <element signature="e#1690#1691#0" expanded="true" />
+            <element signature="e#1728#1729#0" expanded="true" />
+            <element signature="e#1767#1768#0" expanded="true" />
+            <element signature="e#1802#1803#0" expanded="true" />
+            <element signature="e#1858#1859#0" expanded="true" />
+            <element signature="e#1906#1907#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/CommentMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="27" column="190" selection-start-line="27" selection-start-column="173" selection-end-line="27" selection-end-column="190" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/LikeMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="46" column="244" selection-start-line="46" selection-start-column="244" selection-end-line="46" selection-end-column="244" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/CommentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="40" column="6" selection-start-line="36" selection-start-column="4" selection-end-line="40" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/LikeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="95" column="64" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>SpringBootDemo:war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.5121007" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.5121007" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.5121007" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.5121007" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring|SpringBootDemo</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.5121007" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: aopalliance:aopalliance:1.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.5121007" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
