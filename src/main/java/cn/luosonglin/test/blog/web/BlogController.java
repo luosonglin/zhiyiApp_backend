@@ -81,15 +81,23 @@ public class BlogController {
         return resultDate;
     }
 
-    @ApiOperation(value = "推荐博客列表", notes = "")
-    @RequestMapping(value = "/recommend", method = RequestMethod.GET)
-    public ResultDate getRecommendBlogList() {
+    @ApiOperation(value = "推荐博客列表 分页", notes = "")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
+    })
+    @RequestMapping(value = "/recommend/{pageNum}/{pageSize}", method = RequestMethod.GET)
+    public ResultDate getRecommendBlogList(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, pageSize);
+        }
+
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("blog", blogMapper.getRecommendBlog());
+        responseMap.put("blog", new PageInfo<>(blogMapper.getRecommendBlog()));
         resultDate.setData(responseMap);
 
         return resultDate;
