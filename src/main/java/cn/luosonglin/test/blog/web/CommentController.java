@@ -5,11 +5,15 @@ import cn.luosonglin.test.blog.dao.CommentMapper;
 import cn.luosonglin.test.blog.entity.BlogCollection;
 import cn.luosonglin.test.blog.entity.Comment;
 import cn.luosonglin.test.member.dao.UserInfoMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.Path;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -29,15 +33,24 @@ public class CommentController {
     private UserInfoMapper userInfoMapper;
 
 
-    @ApiOperation(value="某条微博的评论列表", notes="")
-    @ApiImplicitParam(name = "blogId", value = "微博ID", required = true, dataType = "int", paramType = "path")
-    @RequestMapping(value="/{blogId}", method= RequestMethod.GET)
-    public ResultDate getMyCommentList(@PathVariable Integer blogId) {
+    @ApiOperation(value="某条微博的评论列表 分页", notes="")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "blogId", value = "微博ID", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
+    })
+    @RequestMapping(value="/{blogId}/{pageNum}/{pageSize}", method= RequestMethod.GET)
+    public ResultDate getMyCommentList(@PathVariable Integer blogId,
+                                       @PathVariable Integer pageNum,
+                                       @PathVariable Integer pageSize) {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, pageSize);
+        }
         resultDate.setCode(200);
-        responseMap.put("comment", commentMapper.getComments(blogId));
+        responseMap.put("comment", new PageInfo<>(commentMapper.getComments(blogId)));
         resultDate.setData(responseMap);
 
         return resultDate;
