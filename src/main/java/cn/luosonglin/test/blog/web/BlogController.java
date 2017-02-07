@@ -11,6 +11,8 @@ import cn.luosonglin.test.member.dao.UserInfoMapper;
 import cn.luosonglin.test.member.entity.UserInfo;
 import cn.luosonglin.test.relationship.dao.UsersRelationshipMapper;
 import cn.luosonglin.test.relationship.entity.UsersRelationship;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -44,7 +46,7 @@ public class BlogController {
     private BlogCollectionMapper blogCollectionMapper;
 
 
-    @ApiOperation(value = "获取博客列表", notes = "")
+/*    @ApiOperation(value = "获取博客列表", notes = "")
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResultDate getBlogList() {
         ResultDate resultDate = new ResultDate();
@@ -53,6 +55,21 @@ public class BlogController {
         resultDate.setCode(200);
         responseMap.put("msg", "success");
         responseMap.put("blog", blogMapper.findAllBlog());
+        resultDate.setData(responseMap);
+
+        return resultDate;
+    }*/
+    @ApiOperation(value = "获取博客列表", notes = "")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ResultDate getBlogList() {
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        PageHelper.startPage(1,2);
+
+        resultDate.setCode(200);
+        responseMap.put("msg", "success");
+        responseMap.put("blog", new PageInfo<>(blogMapper.findAllBlog()));
         resultDate.setData(responseMap);
 
         return resultDate;
