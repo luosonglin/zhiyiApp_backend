@@ -22,7 +22,7 @@ public interface CaseCommentMapper {
     @Update("UPDATE case_comment SET deleted_at=#{deleted_at} WHERE user_id =#{user_id} and case_id = #{case_id} and comment_id = #{comment_id}")
     void deleteComment(Map<String, Object> map);
 
-    @Select("SELECT a.*, b.name, b.nick_name, b.user_pic, b.authen_status, b.company FROM case_comment a,user_info b WHERE a.user_id = b.id and case_id = #{case_id}")
+    @Select("SELECT a.*, b.name, b.nick_name, b.user_pic, b.authen_status, b.company FROM case_comment a,user_info b WHERE a.user_id = b.id and case_id = #{case_id} order by a.created_at ASC")
     List<UserAndCaseComment> getComments(@Param("case_id") Integer case_id);
 
     @Select("select user_id from case_comment where id = #{comment_id}")
