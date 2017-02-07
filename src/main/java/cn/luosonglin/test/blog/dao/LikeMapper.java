@@ -1,6 +1,7 @@
 package cn.luosonglin.test.blog.dao;
 
 import cn.luosonglin.test.blog.entity.Like;
+import cn.luosonglin.test.blog.entity.UserAndLike;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -43,8 +44,8 @@ public interface LikeMapper {
 
     Like getLikeById(Integer user_id);
 
-    @Select("select id, user_id, blog_id, created_at, is_display from blog_like where blog_id = #{blog_id}")
-    List<Like> findAllUser(@Param("blog_id") Integer blog_id);
+    @Select("select a.id, a.user_id, a.blog_id, a.created_at, a.is_display, b.name, b.nick_name, b.user_pic, b.authen_status, b.company from blog_like a, user_info b where a.user_id = b.id and a.blog_id = #{blog_id} order by a.created_at DESC")
+    List<UserAndLike> findAllUser(@Param("blog_id") Integer blog_id);
 
     @Select("select count(*) from blog_like where blog_id = #{blog_id}")
     Integer getLikeCount(@Param("blog_id") Integer blog_id);
