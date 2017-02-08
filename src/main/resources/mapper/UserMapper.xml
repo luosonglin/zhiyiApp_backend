@@ -12,7 +12,9 @@
         <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
             #{id}
         </foreach>
-        order by convert(name USING gbk) COLLATE gbk_chinese_ci asc
+--         order by convert(name USING gbk) COLLATE gbk_chinese_ci asc
+--         优先排列我们自己系统的用户，所有第三方登陆的用户放最后面
+        order by if(isnull(convert(name USING gbk) COLLATE gbk_chinese_ci),1,0),convert(name USING gbk) COLLATE gbk_chinese_ci asc
     </select>
     <!--ORDER BY created_at DESC-->
 
