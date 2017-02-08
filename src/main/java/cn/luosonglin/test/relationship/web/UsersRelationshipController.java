@@ -7,7 +7,11 @@ import cn.luosonglin.test.member.dao.UserInfoMapper;
 import cn.luosonglin.test.member.entity.UserInfo;
 import cn.luosonglin.test.relationship.dao.UsersRelationshipMapper;
 import cn.luosonglin.test.relationship.entity.UsersRelationship;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -90,10 +94,16 @@ public class UsersRelationshipController {
     }
 
 
-    @ApiOperation(value="获取我的粉丝信息", notes="根据user_id来获取我的粉丝详细信息")
-    @ApiImplicitParam(name = "id", value = "用户自己的ID", required = true, dataType = "int", paramType = "path")
-    @RequestMapping(value="/{id}/fanInfo", method=RequestMethod.GET)
-    public ResultDate getMyFans(@PathVariable Integer id) {
+    @ApiOperation(value="获取我的粉丝信息 分页", notes="根据user_id来获取我的粉丝详细信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "用户自己的ID", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
+    })
+    @RequestMapping(value="/{id}/fanInfo/{pageNum}/{pageSize}", method=RequestMethod.GET)
+    public ResultDate getMyFans(@PathVariable Integer id,
+                                @PathVariable Integer pageNum,
+                                @PathVariable Integer pageSize) {
 
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
@@ -111,9 +121,13 @@ public class UsersRelationshipController {
         for (Integer u : fanIds)
             fanInfos.add(userInfoMapper.getUserInfoByUserId(u));
 
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, pageSize);
+        }
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("fans", fanInfos);
+        responseMap.put("fanIds", fanIds);
+        responseMap.put("fans", new PageInfo<>(fanInfos));
         resultDate.setData(responseMap);
         return resultDate;
     }
