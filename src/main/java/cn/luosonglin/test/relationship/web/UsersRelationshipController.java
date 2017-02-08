@@ -46,7 +46,7 @@ public class UsersRelationshipController {
         return resultDate;
     }
 
-    @ApiOperation(value="加关注(业务服务器和环信服务器添加好友关系)", notes="根据Relationship对象创建关注关系")
+    @ApiOperation(value="加关注 (业务服务器和环信服务器添加好友关系)", notes="根据Relationship对象创建关注关系")
     @ApiImplicitParam(name = "usersRelationship", value = "关系详细实体usersRelationship", required = true, dataType = "UsersRelationship")
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResultDate follow(@ModelAttribute UsersRelationship usersRelationship) throws CustomizedException {

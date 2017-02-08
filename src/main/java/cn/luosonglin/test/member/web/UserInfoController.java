@@ -7,6 +7,8 @@ import cn.luosonglin.test.exception.CustomizedException;
 import cn.luosonglin.test.member.dao.UserInfoMapper;
 import cn.luosonglin.test.member.dao.VerificationCodeMapper;
 import cn.luosonglin.test.member.entity.*;
+import cn.luosonglin.test.relationship.dao.UsersRelationshipMapper;
+import cn.luosonglin.test.relationship.entity.UsersRelationship;
 import cn.luosonglin.test.sms.service.SendCommonMessageService;
 import cn.luosonglin.test.base.util.DateUtil;
 import cn.luosonglin.test.base.util.RandUtil;
@@ -42,6 +44,9 @@ public class UserInfoController {
 
     @Autowired
     private ChatService chatService;
+
+    @Autowired
+    private UsersRelationshipMapper usersRelationshipMapper;
 
     @ApiOperation(value = "手机号获取验证码", notes = "手机号获取验证码")
     @ApiImplicitParam(name = "phone", value = "用户phone", required = true, dataType = "String", paramType = "path")
@@ -218,8 +223,14 @@ public class UserInfoController {
                 userInfoMapper.insertByUserInfo(mUserInfo);
 
                 //在环信服务器注册新用户
-                chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), loginUserByCode.getCode());
+                Integer user_id = userInfoMapper.getMaxUserId();
+                chatService.createNewIMUserService(Integer.toString(user_id), loginUserByCode.getCode());
 
+
+                //关系表插入新记录 7为新注册即可关注的对象，就是我哈哈哈哈哈哈
+                //等客户端加及时推送再开放
+//                usersRelationshipMapper.insertByRelationShip(new UsersRelationship(user_id, 7));
+//                chatService.addFriendSingleService(Integer.toString(user_id), Integer.toString(7));
 
 
             } else {

@@ -13,6 +13,14 @@ public class UsersRelationship {
     private Integer touid;
     private Date addTime;
 
+    public UsersRelationship() {
+    }
+
+    public UsersRelationship(Integer fromuid, Integer touid) {
+        this.fromuid = fromuid;
+        this.touid = touid;
+    }
+
     public Integer getTid() {
         return tid;
     }
