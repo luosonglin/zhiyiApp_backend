@@ -59,5 +59,5 @@ public interface BlogMapper {
     List<UserAndBlog> getFollowsBlogByListId(List<Integer> user_ids); //
 
     //依据blog_id来获取blog列表
-    List<Blog> getBlogListByBlogId(List<Integer> id);
+    List<UserAndBlog> getBlogListByBlogId(List<Integer> blog_id);
 }

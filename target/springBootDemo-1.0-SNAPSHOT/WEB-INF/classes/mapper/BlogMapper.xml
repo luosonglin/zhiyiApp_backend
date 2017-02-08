@@ -14,10 +14,10 @@
         ORDER BY created_at DESC
     </select>
 
-    <select id="getBlogListByBlogId" resultType="cn.luosonglin.test.blog.entity.Blog">
-        SELECT id, user_id, title, content, comment_count, like_count,created_at, deleted_at, tag_id, is_hot, images
-        FROM blog
-        WHERE id IN
+    <select id="getBlogListByBlogId" resultType="cn.luosonglin.test.blog.entity.UserAndBlog">
+        SELECT a.id, a.user_id, a.title, a.content, a.comment_count, a.like_count, a.created_at, a.deleted_at, a.tag_id, a.is_hot, a.images, b.name, b.nick_name, b.company, b.user_pic, b.authen_status
+        FROM blog a, user_info b
+        WHERE a.user_id = b.id AND a.id IN
         <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
             #{id}
         </foreach>
