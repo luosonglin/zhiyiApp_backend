@@ -1,6 +1,7 @@
 package cn.luosonglin.test.caseOfIllness.dao;
 
 import cn.luosonglin.test.caseOfIllness.entity.CaseLike;
+import cn.luosonglin.test.caseOfIllness.entity.UserAndCaseLike;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -26,8 +27,8 @@ public interface CaseLikeMapper {
     @Update("UPDATE case_like SET is_display=#{is_display} WHERE user_id = #{user_id} and case_id = #{case_id}")
     void cancelCaseLikeByMap(Map<String, Object> map);
 
-    @Select("select id, user_id, case_id, created_at, is_display from case_like where case_id = #{case_id}")
-    List<CaseLike> findAllUser(@Param("case_id") Integer case_id);
+    @Select("select a.id, a.user_id, a.case_id, a.created_at, a.is_display, b.name, b.nick_name, b.user_pic, b.authen_status, b.company from case_like a, user_info b where a.user_id = b.id and case_id = #{case_id} order by a.created_at DESC")
+    List<UserAndCaseLike> findAllUser(@Param("case_id") Integer case_id);
 
     @Select("select count(*) from case_like where case_id = #{case_id}")
     Integer getLikeCount(@Param("case_id") Integer case_id);

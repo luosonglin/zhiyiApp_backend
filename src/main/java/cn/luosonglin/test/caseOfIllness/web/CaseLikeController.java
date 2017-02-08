@@ -4,7 +4,10 @@ import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.caseOfIllness.dao.CaseLikeMapper;
 import cn.luosonglin.test.caseOfIllness.entity.CaseLike;
 import cn.luosonglin.test.exception.CustomizedException;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -74,16 +77,26 @@ public class CaseLikeController {
     }
 
     @ApiOperation(value="获取某篇病例的所有点赞的用户列表", notes="")
-    @ApiImplicitParam(name = "caseId", value = "病例ID", required = true, dataType = "int", paramType = "path")
-    @RequestMapping(value="/{caseId}", method=RequestMethod.GET)
-    public ResultDate getUserList(@PathVariable Integer caseId) {
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "caseId", value = "病例ID", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
+    })
+    @RequestMapping(value="/{caseId}/{pageNum}/{pageSize}", method=RequestMethod.GET)
+    public ResultDate getUserList(@PathVariable Integer caseId,
+                                  @PathVariable Integer pageNum,
+                                  @PathVariable Integer pageSize) {
         // 处理"/users/"的GET请求，用来获取用户列表
         // 还可以通过@RequestParam从页面中传递参数来进行查询条件或者翻页信息的传递
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, pageSize);
+        }
+
         resultDate.setCode(200);
-        responseMap.put("user", caseLikeMapper.findAllUser(caseId));
+        responseMap.put("user", new PageInfo<>(caseLikeMapper.findAllUser(caseId)));
         resultDate.setData(responseMap);
 
         return resultDate;
