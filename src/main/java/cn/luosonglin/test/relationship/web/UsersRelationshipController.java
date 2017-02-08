@@ -108,6 +108,10 @@ public class UsersRelationshipController {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, pageSize);
+        }
+
         //获取关注我的所有用户信息
         List<UsersRelationship> fans = usersRelationshipMapper.getMyFans(id);
 
@@ -121,12 +125,14 @@ public class UsersRelationshipController {
         for (Integer u : fanIds)
             fanInfos.add(userInfoMapper.getUserInfoByUserId(u));
 
-        if (pageNum != null && pageSize != null) {
-            PageHelper.startPage(pageNum, pageSize);
-        }
+//        PageHelper放此处设置无效！！！
+//        if (pageNum != null && pageSize != null) {
+//            PageHelper.startPage(pageNum, 1);
+//        }
+
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("fanIds", fanIds);
+        responseMap.put("fanIds", new PageInfo<>(fanIds));
         responseMap.put("fans", new PageInfo<>(fanInfos));
         resultDate.setData(responseMap);
         return resultDate;
