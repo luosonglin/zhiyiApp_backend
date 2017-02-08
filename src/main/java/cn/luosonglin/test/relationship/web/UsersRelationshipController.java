@@ -112,28 +112,26 @@ public class UsersRelationshipController {
             PageHelper.startPage(pageNum, pageSize);
         }
 
-        //获取关注我的所有用户信息
-        List<UsersRelationship> fans = usersRelationshipMapper.getMyFans(id);
-
         //获取关注我的所有用户id
-        List<Integer> fanIds = new ArrayList<>();
-        for (UsersRelationship i: fans)
-            fanIds.add(i.getFromuid());
+        List<Integer> fanIds = usersRelationshipMapper.getMyFanIds(id);
+
+        PageInfo<Integer> pageInfo = new PageInfo<>(fanIds);
 
         //获取所有关注我的用户详细信息
         List<UserInfo> fanInfos = new ArrayList<>();
-        for (Integer u : fanIds)
-            fanInfos.add(userInfoMapper.getUserInfoByUserId(u));
+        for (Integer u : pageInfo.getList())
+            fanInfos.add(usersRelationshipMapper.getUserInfoByUserId(u));
 
-//        PageHelper放此处设置无效！！！
-//        if (pageNum != null && pageSize != null) {
-//            PageHelper.startPage(pageNum, 1);
-//        }
+       /*
+        PageHelper放此处设置无效！！！
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, 1);
+        }*/
 
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("fanIds", new PageInfo<>(fanIds));
-        responseMap.put("fans", new PageInfo<>(fanInfos));
+        responseMap.put("fanIds", pageInfo);
+        responseMap.put("fans", fanInfos);
         resultDate.setData(responseMap);
         return resultDate;
     }

@@ -23,9 +23,13 @@ public interface UsersRelationshipMapper {
     @Delete("DELETE FROM users_relationship WHERE fromuid = #{fromuid} and touid = #{touid}")
     void deleteByRelationShip(UsersRelationship usersRelationship);
 
-    //我的粉丝信息
-    @Select("select * from users_relationship where touid = #{touid} order by addTime DESC")
-    List<UsersRelationship> getMyFans(@Param("touid") Integer touid);
+    //我的粉丝id
+    @Select("select fromuid from users_relationship where touid = #{touid} order by addTime DESC")
+    List<Integer> getMyFanIds(@Param("touid") Integer touid);
+
+    //用户信息
+    @Select("select id, name, nick_name, mobile_phone,user_pic,authen_status  from user_info where id = #{id}")
+    UserInfo getUserInfoByUserId(@Param("id") Integer id);
 
     //我的关注人信息
     @Select("select * from users_relationship where fromuid = #{fromuid}")
