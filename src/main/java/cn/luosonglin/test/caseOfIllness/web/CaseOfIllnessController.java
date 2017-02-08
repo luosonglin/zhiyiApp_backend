@@ -10,6 +10,8 @@ import cn.luosonglin.test.exception.CustomizedException;
 import cn.luosonglin.test.member.dao.UserInfoMapper;
 import cn.luosonglin.test.relationship.dao.UsersRelationshipMapper;
 import cn.luosonglin.test.relationship.entity.UsersRelationship;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -45,15 +47,23 @@ public class CaseOfIllnessController {
 
 
 
-    @ApiOperation(value = "获取病例列表", notes = "")
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResultDate getBlogList() {
+    @ApiOperation(value = "获取病例列表 分页", notes = "")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
+    })
+    @RequestMapping(value = "/{pageNum}/{pageSize}", method = RequestMethod.GET)
+    public ResultDate getBlogList(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, pageSize);
+        }
+
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("case", caseMapper.findAllCase());
+        responseMap.put("case", new PageInfo<>(caseMapper.findAllCase()));
         resultDate.setData(responseMap);
 
         return resultDate;
@@ -161,28 +171,40 @@ public class CaseOfIllnessController {
 //        return resultDate;
 //    }
 
-    @ApiOperation(value = "获取某个用户的全部病例信息", notes = "根据url的user_id来获取")
-    @ApiImplicitParam(name = "user_id", value = "用户自己的ID", required = true, dataType = "int", paramType = "path")
-    @RequestMapping(value = "/{user_id}", method = RequestMethod.GET)
-    public ResultDate getBlogByUserId(@PathVariable Integer user_id) {
+    @ApiOperation(value = "获取某个用户的全部病例信息 分页", notes = "根据url的user_id来获取")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "user_id", value = "用户自己的ID", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
+    })
+    @RequestMapping(value = "/{user_id}/{pageNum}/{pageSize}", method = RequestMethod.GET)
+    public ResultDate getBlogByUserId(@PathVariable Integer user_id,
+                                      @PathVariable Integer pageNum,
+                                      @PathVariable Integer pageSize) {
 
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
+        if (pageNum != null && pageSize != null){
+            PageHelper.startPage(pageNum, pageSize);
+        }
         resultDate.setCode(200);
         responseMap.put("msg", "success");
-        responseMap.put("case", caseMapper.findCaseById(user_id));
+        responseMap.put("case", new PageInfo<>(caseMapper.findCaseById(user_id)));
         resultDate.setData(responseMap);
         return resultDate;
     }
 
-    @ApiOperation(value = "获取我关注的人的全部病例信息，按时间降序", notes = "根据url的user_id来获取")
+    @ApiOperation(value = "获取我关注的人的全部病例信息，按时间降序 分页", notes = "根据url的user_id来获取")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "int", paramType = "path"),
-//            @ApiImplicitParam(name = "header", value = "用户token", required = true, dataType = "String", paramType = "path")
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
     })
-    @RequestMapping(value = "/{user_id}/follows", method = RequestMethod.GET)
-    public ResultDate getMyFollowsBlog(@PathVariable Integer user_id, @RequestHeader String Authorization) throws CustomizedException {//, @RequestHeader String header
+    @RequestMapping(value = "/{user_id}/follows/{pageNum}/{pageSize}", method = RequestMethod.GET)
+    public ResultDate getMyFollowsBlog(@PathVariable Integer user_id,
+                                       @PathVariable Integer pageNum,
+                                       @PathVariable Integer pageSize) throws CustomizedException {//, @RequestHeader String header
 
         if (user_id == null)
             throw new CustomizedException("user_id不可为空");
@@ -196,10 +218,13 @@ public class CaseOfIllnessController {
 
         List<Integer> followIds = usersRelationshipMapper.getMyFollowIds(user_id);
 
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, pageSize);
+        }
         resultDate.setCode(200);
         responseMap.put("msg", "success");
         responseMap.put("follows", followIds);
-        responseMap.put("followsCase", followIds.size()!=0 ? caseMapper.getFollowsCaseByListId(followIds) : followIds); //followIds 为null，显示[]
+        responseMap.put("followsCase", followIds.size()!=0 ? new PageInfo<>(caseMapper.getFollowsCaseByListId(followIds)) : followIds); //followIds 为null，显示[]
         resultDate.setData(responseMap);
         return resultDate;
     }

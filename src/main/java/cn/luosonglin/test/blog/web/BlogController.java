@@ -45,20 +45,6 @@ public class BlogController {
     @Autowired
     private BlogCollectionMapper blogCollectionMapper;
 
-
-/*    @ApiOperation(value = "获取博客列表", notes = "")
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResultDate getBlogList() {
-        ResultDate resultDate = new ResultDate();
-        Map<String, Object> responseMap = new HashMap<>();
-
-        resultDate.setCode(200);
-        responseMap.put("msg", "success");
-        responseMap.put("blog", blogMapper.findAllBlog());
-        resultDate.setData(responseMap);
-
-        return resultDate;
-    }*/
     @ApiOperation(value = "获取博客列表 分页", notes = "")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
