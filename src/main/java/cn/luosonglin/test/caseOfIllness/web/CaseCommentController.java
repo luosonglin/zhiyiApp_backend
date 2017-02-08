@@ -6,7 +6,10 @@ import cn.luosonglin.test.blog.entity.Comment;
 import cn.luosonglin.test.caseOfIllness.dao.CaseCommentMapper;
 import cn.luosonglin.test.caseOfIllness.entity.CaseComment;
 import cn.luosonglin.test.member.dao.UserInfoMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,15 +32,24 @@ public class CaseCommentController {
     private UserInfoMapper userInfoMapper;
 
 
-    @ApiOperation(value="某条病例的评论列表", notes="")
-    @ApiImplicitParam(name = "caseId", value = "病例ID", required = true, dataType = "int", paramType = "path")
-    @RequestMapping(value="/{caseId}", method= RequestMethod.GET)
-    public ResultDate getMyCommentList(@PathVariable Integer caseId) {
+    @ApiOperation(value="某条病例的评论列表 分页", notes="")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "caseId", value = "病例ID", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
+    })
+    @RequestMapping(value="/{caseId}/{pageNum}/{pageSize}", method= RequestMethod.GET)
+    public ResultDate getMyCommentList(@PathVariable Integer caseId,
+                                       @PathVariable Integer pageNum,
+                                       @PathVariable Integer pageSize) {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, pageSize);
+        }
         resultDate.setCode(200);
-        responseMap.put("comment", commentMapper.getComments(caseId));
+        responseMap.put("comment", new PageInfo<>(commentMapper.getComments(caseId)));
         resultDate.setData(responseMap);
 
         return resultDate;
