@@ -24,7 +24,7 @@ public interface UsersRelationshipMapper {
     void deleteByRelationShip(UsersRelationship usersRelationship);
 
     //我的粉丝信息
-    @Select("select * from users_relationship where touid = #{touid}")
+    @Select("select * from users_relationship where touid = #{touid} order by addTime DESC")
     List<UsersRelationship> getMyFans(@Param("touid") Integer touid);
 
     //我的关注人信息
