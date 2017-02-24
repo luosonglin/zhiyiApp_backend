@@ -4,6 +4,7 @@ import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.base.util.PhoneUtil;
 import cn.luosonglin.test.easemob.service.ChatService;
 import cn.luosonglin.test.exception.CustomizedException;
+import cn.luosonglin.test.member.dao.AuthenMapper;
 import cn.luosonglin.test.member.dao.UserInfoMapper;
 import cn.luosonglin.test.member.dao.VerificationCodeMapper;
 import cn.luosonglin.test.member.entity.*;
@@ -47,6 +48,9 @@ public class UserInfoController {
 
     @Autowired
     private UsersRelationshipMapper usersRelationshipMapper;
+
+    @Autowired
+    private AuthenMapper authenMapper;
 
     @ApiOperation(value = "手机号获取验证码", notes = "手机号获取验证码")
     @ApiImplicitParam(name = "phone", value = "用户phone", required = true, dataType = "String", paramType = "path")
@@ -232,7 +236,6 @@ public class UserInfoController {
 //                usersRelationshipMapper.insertByRelationShip(new UsersRelationship(user_id, 7));
 //                chatService.addFriendSingleService(Integer.toString(user_id), Integer.toString(7));
 
-
             } else {
                 responseMap.put("chat", chatService.modifyIMUserPasswordService(Integer.toString(userId), loginUserByCode.getCode()));
             }
@@ -312,10 +315,25 @@ public class UserInfoController {
         userInfoMap.put("name", userInfo.getName());
         userInfoMap.put("company", userInfo.getCompany());
         userInfoMap.put("position", userInfo.getPostion());
+        userInfoMap.put("hospital", userInfo.getHospital());
         userInfoMap.put("title", userInfo.getTitle());
         userInfoMap.put("authen_status", "B");
 
         userInfoMapper.authorization(userInfoMap);
+
+        //认证用户
+        //现在需要将用户的认证申请的信息再存在authen表，尴尬
+        Authen authen = new Authen();
+        authen.setUserId(userInfo.getId());
+        authen.setUserType("A");
+        authen.setAuthenStatus("B");
+        authen.setStateDate(new Date());
+        authen.setMobliePhone(userInfo.getMobilePhone());
+        authen.setUserName(userInfo.getName());
+        authen.setUserHospital(userInfo.getHospital());
+        authen.setUserDepartment(userInfo.getDepartment());
+        authen.setUserTitle(userInfo.getTitle());
+        authenMapper.insertAuthen(authen);
 
         ResultDate resultDate = new ResultDate();
         Map<Object, Object> responseMap = new HashMap<>();

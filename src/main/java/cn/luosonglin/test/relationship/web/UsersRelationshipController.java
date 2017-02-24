@@ -205,13 +205,16 @@ public class UsersRelationshipController {
     @ApiOperation(value="获取通讯录(我关注的人)的信息,并按中文首字母排序", notes="根据user_id来获取我的关注人详细信息")
     @ApiImplicitParam(name = "id", value = "用户自己的ID", required = true, dataType = "int", paramType = "path")
     @RequestMapping(value="/{id}/contactsInfo", method=RequestMethod.GET)
-    public ResultDate getMycontactsInfo(@PathVariable Integer id) {
+    public ResultDate getMycontactsInfo(@PathVariable Integer id) throws CustomizedException {
 
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
         //获取我关注的所有用户信息
         List<UsersRelationship> follows = usersRelationshipMapper.getMyFollows(id);
+
+        if (follows.size() == 0)
+            throw  new CustomizedException("暂无好友");
 
         //获取我关注的所有用户id
         List<Integer> followIds = new ArrayList<>();

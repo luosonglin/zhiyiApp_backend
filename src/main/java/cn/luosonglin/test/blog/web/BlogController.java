@@ -273,7 +273,7 @@ public class BlogController {
         return resultDate;
     }
 
-    @ApiOperation(value = "获取宝友圈（我自己、我关注的人）的全部微博信息，按时间降序 分页", notes = "根据url的user_id来获取")
+    @ApiOperation(value = "获取医宝友圈（我自己、我关注的人）的全部微博信息，按时间降序 分页", notes = "根据url的user_id来获取")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "user_id", value = "用户ID", required = true, dataType = "int", paramType = "path"),
             @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
