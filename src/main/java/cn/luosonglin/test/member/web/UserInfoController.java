@@ -1,6 +1,7 @@
 package cn.luosonglin.test.member.web;
 
 import cn.luosonglin.test.base.entity.ResultDate;
+import cn.luosonglin.test.base.util.MD5Gen;
 import cn.luosonglin.test.base.util.PhoneUtil;
 import cn.luosonglin.test.easemob.service.ChatService;
 import cn.luosonglin.test.exception.CustomizedException;
@@ -228,7 +229,9 @@ public class UserInfoController {
 
                 //在环信服务器注册新用户
                 Integer user_id = userInfoMapper.getMaxUserId();
-                chatService.createNewIMUserService(Integer.toString(user_id), loginUserByCode.getCode());
+//                chatService.createNewIMUserService(Integer.toString(user_id), loginUserByCode.getCode());
+                //所有用户密码为luosonglin123456的md5值
+                chatService.createNewIMUserService(Integer.toString(user_id), MD5Gen.getMD5("luosonglin123456"));
 
 
                 //关系表插入新记录 7为新注册即可关注的对象，就是我哈哈哈哈哈哈
@@ -287,7 +290,9 @@ public class UserInfoController {
         resultDate.setCode(200);
         responseMap.put("mag", "success");
         responseMap.put("user", userInfoMapper.getUserInfoByUserId(userId));
-        responseMap.put("chat", chatService.modifyIMUserPasswordService(Integer.toString(userId), loginUserByPassword.getPassword()));
+
+        //环信的所有用户密码为MD5Gen.getMD5("luosonglin123456")
+//        responseMap.put("chat", chatService.modifyIMUserPasswordService(Integer.toString(userId), loginUserByPassword.getPassword()));
 
 //        responseMap.put("chat", chatService.imUserLoginService(Integer.toString(userId), loginUser.getPassword()));
         resultDate.setData(responseMap);
@@ -460,9 +465,10 @@ public class UserInfoController {
 
             userInfoMapper.insertUserInfoByMap(userInfoMap);
 
-            //在环信服务器注册新用
-            chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), "123456");
-//
+            //在环信服务器注册新用户
+//            chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), "123456");
+            chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), MD5Gen.getMD5("luosonglin123456"));
+
 
 //        } else {
 //            responseMap.put("user", userInfo);

@@ -68,6 +68,7 @@ public class UsersRelationshipController {
         //关系表插入新记录
         usersRelationshipMapper.insertByRelationShip(usersRelationship);
 
+        //环信是双向关注了
         chatService.addFriendSingleService(Integer.toString(usersRelationship.getFromuid()), Integer.toString(usersRelationship.getTouid()));
 
         resultDate.setCode(200);

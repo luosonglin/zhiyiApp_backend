@@ -3,6 +3,7 @@ package cn.luosonglin.test.easemob.huanxinapi;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.luosonglin.test.base.util.MD5Gen;
 import cn.luosonglin.test.easemob.vo.ClientSecretCredential;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.NameValuePair;
@@ -65,8 +66,8 @@ public class EasemobIMUsers {
         /**
          * IM用户登录
          */
-//		datanode.put("username","7");
-//		datanode.put("password", MD5Gen.getMD5("123456"));
+//		datanode.put("username","21");
+//		datanode.put("password", "123456");//MD5Gen.getMD5("123456")
 //        ObjectNode imUserLoginNode = imUserLogin(datanode.get("username").asText(), datanode.get("password").asText());
 //        if (null != imUserLoginNode) {
 //            LOGGER.info("IM用户登录: " + imUserLoginNode.toString());
@@ -96,13 +97,13 @@ public class EasemobIMUsers {
         /**
          * 重置IM用户密码 提供管理员token
          */
-		String username = "7";
-        ObjectNode json2 = JsonNodeFactory.instance.objectNode();
-        json2.put("newpassword", "e10adc3949ba59abbe56e057f20f883e");
-        ObjectNode modifyIMUserPasswordWithAdminTokenNode = modifyIMUserPasswordWithAdminToken(username, json2);
-        if (null != modifyIMUserPasswordWithAdminTokenNode) {
-            LOGGER.info("重置IM用户密码 提供管理员token: " + modifyIMUserPasswordWithAdminTokenNode.toString());
-        }
+//		String username = "7";
+//        ObjectNode json2 = JsonNodeFactory.instance.objectNode();
+//        json2.put("newpassword", "e10adc3949ba59abbe56e057f20f883e");
+//        ObjectNode modifyIMUserPasswordWithAdminTokenNode = modifyIMUserPasswordWithAdminToken(username, json2);
+//        if (null != modifyIMUserPasswordWithAdminTokenNode) {
+//            LOGGER.info("重置IM用户密码 提供管理员token: " + modifyIMUserPasswordWithAdminTokenNode.toString());
+//        }
 
 //        ObjectNode imUserLoginNode2 = imUserLogin(username, json2.get("newpassword").asText());
 //        if (null != imUserLoginNode2) {
