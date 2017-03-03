@@ -34,7 +34,7 @@ public class EventBanner {
     }
 
     public void setBanner(String banner) {
-        this.banner = "http://www.medmeeting.com/img/modelImgs/"+banner;
+        this.banner = banner;
     }
 
     public Date getStartDate() {
