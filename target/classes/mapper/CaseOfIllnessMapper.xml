@@ -14,10 +14,10 @@
         ORDER BY created_at DESC
     </select>
 
-    <select id="getCaseListByCaseId" resultType="cn.luosonglin.test.caseOfIllness.entity.CaseOfIllness">
-        SELECT id, user_id, title, chief_complain, chief_complain_image, body_check, body_check_image, follow_up, follow_up_image, comment_count, like_count,created_at, deleted_at, tag_id, is_hot
-        FROM case_of_illness
-        WHERE id IN
+    <select id="getCaseListByCaseId" resultType="cn.luosonglin.test.caseOfIllness.entity.UserAndCase">
+        SELECT a.id, a.user_id, a.title, a.chief_complain, a.chief_complain_image, a.body_check, a.body_check_image, a.follow_up, a.follow_up_image, a.comment_count, a.like_count, a.created_at, a.deleted_at, a.tag_id, a.is_hot, b.name, b.nick_name, b.company, b.user_pic, b.authen_status
+        FROM case_of_illness a, user_info b
+        WHERE  a.user_id = b.id AND a.id IN
         <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
             #{id}
         </foreach>

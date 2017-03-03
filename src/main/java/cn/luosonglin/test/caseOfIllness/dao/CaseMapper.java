@@ -45,5 +45,5 @@ public interface CaseMapper {
     List<UserAndCase> getFollowsCaseByListId(List<Integer> user_ids); //
 
     //依据blog_id来获取blog列表
-    List<CaseOfIllness> getCaseListByCaseId(List<Integer> id);
+    List<UserAndCase> getCaseListByCaseId(List<Integer> id);
 }
