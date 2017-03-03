@@ -5,7 +5,10 @@ import cn.luosonglin.test.caseOfIllness.dao.CaseCollectionMapper;
 import cn.luosonglin.test.caseOfIllness.dao.CaseMapper;
 import cn.luosonglin.test.caseOfIllness.entity.CaseCollection;
 import cn.luosonglin.test.exception.CustomizedException;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -72,9 +75,15 @@ public class CaseCollectionController {
     }
 
     @ApiOperation(value = "我收藏的病例列表", notes = "")
-    @ApiImplicitParam(name = "userId", value = "我的ID", required = true, dataType = "int", paramType = "path")
-    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-    public ResultDate getMyCollectionList(@PathVariable Integer userId) {
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userId", value = "我的ID", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", required = true, dataType = "int", paramType = "path"),
+            @ApiImplicitParam(name = "pageSize", value = "每页的数目", required = true, dataType = "int", paramType = "path")
+    })
+    @RequestMapping(value = "/{userId}/{pageNum}/{pageSize}", method = RequestMethod.GET)
+    public ResultDate getMyCollectionList(@PathVariable Integer userId,
+                                          @PathVariable Integer pageNum,
+                                          @PathVariable Integer pageSize) {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
@@ -84,7 +93,11 @@ public class CaseCollectionController {
 //        responseMap.put("collectionIds", collectionIds);
 //        responseMap.put("collection", collectionMapper.findMyCollectionBlog(userId));
         if (!collectionIds.isEmpty()) {
-            responseMap.put("case", caseMapper.getCaseListByCaseId(collectionIds));
+
+            if (pageNum != null && pageSize != null) {
+                PageHelper.startPage(pageNum, pageSize);
+            }
+            responseMap.put("case", new PageInfo<>(caseMapper.getCaseListByCaseId(collectionIds)));
             resultDate.setData(responseMap);
         } else {
             resultDate.setData(null);
