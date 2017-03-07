@@ -1,6 +1,7 @@
 package cn.luosonglin.test.member.dao;
 
 import cn.luosonglin.test.domain.User;
+import cn.luosonglin.test.member.entity.ThirdUserBindPhoneInfo;
 import cn.luosonglin.test.member.entity.UpdateUserAvatar;
 import cn.luosonglin.test.member.entity.UpdateUserPhone;
 import cn.luosonglin.test.member.entity.UserInfo;
@@ -67,7 +68,7 @@ public interface UserInfoMapper {
     String getTokenId(@Param("user_id") Integer user_id);
 
     //fuck!  the parameter "position" of database is false!!!
-    @Update("UPDATE user_info SET name=#{name}, company=#{company}, postion=#{position}, title=#{title}, authen_status=#{authen_status} WHERE id =#{id}")
+    @Update("UPDATE user_info SET name=#{name}, company=#{company}, postion=#{position}, hospital=#{hospital}, title=#{title}, mobile_phone=#{mobile_phone}, authen_status=#{authen_status} WHERE id =#{id}")
     void authorization(Map<String, Object> map);
 
     //更新user数据
@@ -95,4 +96,15 @@ public interface UserInfoMapper {
     //查询openId
     @Select("select * from user_info where open_id = #{open_id}")
     UserInfo getUserInfoByOpenId(@Param("open_id") String open_id);
+
+    //根据userId查看该用户是否是第三方注册用户
+    @Select("select open_id from user_info where id = #{user_id}")
+    String isThirdRegisteredUser(@Param("user_id") Integer user_id);
+
+    //三方登陆用户绑定手机号
+    @Update("UPDATE user_info SET mobile_phone=#{phone} WHERE id =#{user_id} ")
+    int updateThirdUserByPhoneInfo(@Param("user_id") Integer user_id, @Param("phone") String phone);
+
+    @Select("select nick_name from user_info where confirm_number = #{confirm_number}")
+    String isConfirmNumberExists(@Param("confirm_number") String confirm_number);
 }

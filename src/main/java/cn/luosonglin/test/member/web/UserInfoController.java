@@ -154,6 +154,20 @@ public class UserInfoController {
         return resultDate;
     }
 
+    @ApiOperation(value = "test", notes = "test")
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    private String test() throws CustomizedException {
+        String confirmNumber = "708395";
+        String number = userInfoMapper.isConfirmNumberExists(confirmNumber);
+        System.out.print(number + " hhh");
+        while (number != null) {
+            confirmNumber = RandUtil.rand(6, array);
+            number = userInfoMapper.isConfirmNumberExists(confirmNumber);
+            if (number == null) break;
+        }
+
+        return confirmNumber + number;
+    }
 
     @ApiOperation(value = "手机号+验证码登录", notes = "用户登录")
     @ApiImplicitParam(name = "loginUserByCode", value = "用户详细实体user", required = true, dataType = "LoginUserByCode")
@@ -220,7 +234,17 @@ public class UserInfoController {
                 mUserInfo.setUserType("1");
                 mUserInfo.setAuthenStatus("X");
                 mUserInfo.setStatus("A");
-                mUserInfo.setConfirmNumber(RandUtil.rand(6, array));
+
+                String confirmNumber = RandUtil.rand(6, array);
+                String number = userInfoMapper.isConfirmNumberExists(confirmNumber);
+                System.out.print(number + " hhh");
+                while (number != null) {
+                    confirmNumber = RandUtil.rand(6, array);
+                    number = userInfoMapper.isConfirmNumberExists(confirmNumber);
+                    if (number == null) break;
+                }
+                mUserInfo.setConfirmNumber(confirmNumber);
+
                 mUserInfo.setStateDate(new Date());
                 mUserInfo.setUserPic("defaultPic");
 
@@ -322,6 +346,7 @@ public class UserInfoController {
         userInfoMap.put("position", userInfo.getPostion());
         userInfoMap.put("hospital", userInfo.getHospital());
         userInfoMap.put("title", userInfo.getTitle());
+        userInfoMap.put("mobile_phone", userInfo.getMobilePhone());
         userInfoMap.put("authen_status", "B");
 
         userInfoMapper.authorization(userInfoMap);
@@ -459,7 +484,17 @@ public class UserInfoController {
             userInfoMap.put("user_type", "1");
             userInfoMap.put("authen_status", "X");
             userInfoMap.put("status", "A");
-            userInfoMap.put("confirm_number", RandUtil.rand(6, array));
+
+            String confirmNumber = RandUtil.rand(6, array);
+            String number = userInfoMapper.isConfirmNumberExists(confirmNumber);
+            System.out.print(number + " hhh");
+            while (number != null) {
+                confirmNumber = RandUtil.rand(6, array);
+                number = userInfoMapper.isConfirmNumberExists(confirmNumber);
+                if (number == null) break;
+            }
+            userInfoMap.put("confirm_number", confirmNumber);
+
             userInfoMap.put("state_date", new Date());
             userInfoMap.put("password", "123456");//为了在环信注册，默认密码为123456
 
@@ -479,6 +514,68 @@ public class UserInfoController {
         resultDate.setData(responseMap);
 
         return resultDate;
+    }
 
+
+    @ApiOperation(value = "三方登陆用户绑定手机号", notes = "根据id来指定添加用户手机号(id,mobilePhone)")
+    @ApiImplicitParam(name = "ThirdUserBindPhoneInfo", value = "ThirdUserBindPhoneInfo实体", required = true, dataType = "ThirdUserBindPhoneInfo")
+    @RequestMapping(value = "/third/phone", method = RequestMethod.PUT)
+    public ResultDate insertThridUserPhone(@ModelAttribute ThirdUserBindPhoneInfo thirdUserBindPhoneInfo) throws CustomizedException {
+
+        if (thirdUserBindPhoneInfo.getPhone() == null)
+            throw new CustomizedException("手机号不能为空");
+
+        if (thirdUserBindPhoneInfo.getCode() == null)
+            throw new CustomizedException("验证码不能为空");
+
+        if (!PhoneUtil.isMobile(thirdUserBindPhoneInfo.getPhone()))
+            throw new CustomizedException("请填写正确的手机号");
+
+        //根据用户手机号去查询用户是否已经是注册用户
+        String openId = userInfoMapper.isThirdRegisteredUser(thirdUserBindPhoneInfo.getUserId());
+        //判断openId是否存在于user_info表中
+        if (openId == null)
+            throw new CustomizedException("该用户非三方应用正常登陆");
+
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        //判断验证码是否合法（包括正确与否，失效与否两方面验证）
+        VerificationCode verificationCode = verificationCodeMapper.getVerificationCodeByPhone(thirdUserBindPhoneInfo.getPhone());
+
+        if (verificationCode == null)
+            throw new CustomizedException("请先获取验证码");
+
+        //验证用户输入的验证码和数据库ver_code表中保寸的验证码是否一致
+        if (thirdUserBindPhoneInfo.getCode().equals(verificationCode.getCodeContent())) {
+            //超过10分钟失效了
+            //上线时把此处放开，测试阶段不设置短信验证码失效的问题
+//			if(new Date().getTime()-verificationCode.getSendDate().getTime() > 600000)
+//			    throw new CustomizedException("超过10分钟，请重新获取验证码");
+
+
+            //该用户是否已用该手机号注册过
+//            Integer userId = userInfoMapper.isRegisteredUser(thirdUserBindPhoneInfo.getPhone());
+//            if (userId != null) {
+//                throw new CustomizedException("该手机号已经被注册过");
+//            } else {
+////            userInfoMapper.updateThirdUserByPhoneInfo(thirdUserBindPhoneInfo.getUserId(), thirdUserBindPhoneInfo.getPhone());
+//            }
+            userInfoMapper.updateThirdUserByPhoneInfo(thirdUserBindPhoneInfo.getUserId(), thirdUserBindPhoneInfo.getPhone());
+
+
+
+            responseMap.put("user", userInfoMapper.getUserInfoByPhone(thirdUserBindPhoneInfo.getPhone()));
+
+            resultDate.setCode(200);
+            resultDate.setData(responseMap);
+
+        } else if (verificationCode == null) {
+            throw new CustomizedException("请先获取验证码");
+        } else {
+            throw new CustomizedException("验证码错误");
+        }
+
+        return resultDate;
     }
 }
