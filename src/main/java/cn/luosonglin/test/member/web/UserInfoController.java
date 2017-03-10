@@ -255,7 +255,7 @@ public class UserInfoController {
                 Integer user_id = userInfoMapper.getMaxUserId();
 //                chatService.createNewIMUserService(Integer.toString(user_id), loginUserByCode.getCode());
                 //所有用户密码为luosonglin123456的md5值
-                chatService.createNewIMUserService(Integer.toString(user_id), MD5Gen.getMD5("luosonglin123456"));
+                chatService.createNewIMUserService(Integer.toString(user_id), "123456");//MD5Gen.getMD5("luosonglin123456")
 
 
                 //关系表插入新记录 7为新注册即可关注的对象，就是我哈哈哈哈哈哈
@@ -329,7 +329,7 @@ public class UserInfoController {
     @ApiOperation(value = "认证医师", notes = "根据url的id来指定更新对象，并根据传过来的user信息来更新用户详细信息")
     @ApiImplicitParam(name = "userInfo", value = "用户详细实体user", required = true, dataType = "UserInfo")
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public ResultDate authoruzationUser(@ModelAttribute UserInfo userInfo) {
+    public ResultDate authoruzationUser(@ModelAttribute UserInfo userInfo) throws CustomizedException {
 
 //        UserInfo u = userInfoMapper.getUserInfoByUserId(userInfo.getId());
 //        u.setName(userInfo.getName());
@@ -338,6 +338,9 @@ public class UserInfoController {
 //        u.setTitle(userInfo.getTitle());
 //        u.setAuthenStatus("B"); //认证状态(''A:已认证'',''B:待认证''''X:未认证'')
 //        userInfoMapper.update(u);
+
+        if (!PhoneUtil.isMobile(userInfo.getMobilePhone()))
+            throw new CustomizedException("请填写正确的手机号");
 
         Map<String, Object> userInfoMap = new HashMap<>();
         userInfoMap.put("id", userInfo.getId());
@@ -502,7 +505,7 @@ public class UserInfoController {
 
             //在环信服务器注册新用户
 //            chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), "123456");
-            chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), MD5Gen.getMD5("luosonglin123456"));
+            chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), "123456");//MD5Gen.getMD5("luosonglin123456"));
 
 
 //        } else {
@@ -562,8 +565,6 @@ public class UserInfoController {
 ////            userInfoMapper.updateThirdUserByPhoneInfo(thirdUserBindPhoneInfo.getUserId(), thirdUserBindPhoneInfo.getPhone());
 //            }
             userInfoMapper.updateThirdUserByPhoneInfo(thirdUserBindPhoneInfo.getUserId(), thirdUserBindPhoneInfo.getPhone());
-
-
 
             responseMap.put("user", userInfoMapper.getUserInfoByPhone(thirdUserBindPhoneInfo.getPhone()));
 
