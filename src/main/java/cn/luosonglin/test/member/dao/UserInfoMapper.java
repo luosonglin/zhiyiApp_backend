@@ -115,4 +115,8 @@ public interface UserInfoMapper {
     //绑定emails
     @Update("UPDATE user_info SET email=#{email} WHERE id =#{user_id} ")
     int updateUserByEmailInfo(@Param("user_id") Integer user_id, @Param("email") String email);
+
+    //绑定password
+    @Update("UPDATE user_info SET password=#{password} WHERE id =#{user_id} ")
+    int updateUserByPasswordInfo(@Param("user_id") Integer user_id, @Param("password") String password);
 }

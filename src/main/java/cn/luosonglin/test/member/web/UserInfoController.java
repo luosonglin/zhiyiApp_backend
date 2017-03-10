@@ -637,6 +637,61 @@ public class UserInfoController {
         resultDate.setCode(200);
         resultDate.setData(responseMap);
 
+        return resultDate;
+    }
+
+
+    @ApiOperation(value = "设置密码", notes = "根据id来指定添加用户手机号(id,openId,loginSource)")
+    @ApiImplicitParam(name = "BindUserPasswordInfo", value = "BindUserPasswordInfo实体", required = true, dataType = "BindUserPasswordInfo")
+    @RequestMapping(value = "/passwordinfo", method = RequestMethod.PUT)
+    public ResultDate BindUserPasswordInfo(@ModelAttribute BindUserPasswordInfo bindUserPasswordInfo) throws CustomizedException {
+
+        if (bindUserPasswordInfo.getUserId() == null)
+            throw new CustomizedException("用户ID不能为空");
+
+        if (bindUserPasswordInfo.getPassword() == null)
+            throw new CustomizedException("密码不能为空");
+
+        if (bindUserPasswordInfo.getPhone() == null)
+            throw new CustomizedException("手机号不能为空");
+
+        if (bindUserPasswordInfo.getCode() == null)
+            throw new CustomizedException("验证码不能为空");
+
+        if (!PhoneUtil.isMobile(bindUserPasswordInfo.getPhone()))
+            throw new CustomizedException("请填写正确的手机号");
+
+        //根据用户id去查询是否有该用户
+        UserInfo userInfo = userInfoMapper.getUserInfoByUserId(bindUserPasswordInfo.getUserId());
+        if (userInfo == null)
+            throw new CustomizedException("无该用户");
+
+        //判断验证码是否合法（包括正确与否，失效与否两方面验证）
+        VerificationCode verificationCode = verificationCodeMapper.getVerificationCodeByPhone(bindUserPasswordInfo.getPhone());
+
+        if (verificationCode == null)
+            throw new CustomizedException("请先获取验证码");
+
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+
+        //验证用户输入的验证码和数据库ver_code表中保寸的验证码是否一致
+        if (bindUserPasswordInfo.getCode().equals(verificationCode.getCodeContent())) {
+
+            userInfoMapper.updateUserByPasswordInfo(bindUserPasswordInfo.getUserId(), bindUserPasswordInfo.getPassword());
+
+            responseMap.put("user", userInfoMapper.getUserInfoByUserId(bindUserPasswordInfo.getUserId()));
+
+            resultDate.setCode(200);
+            resultDate.setData(responseMap);
+
+        } else if (verificationCode == null) {
+            throw new CustomizedException("请先获取验证码");
+        } else {
+            throw new CustomizedException("验证码错误");
+        }
+
 
         return resultDate;
     }
