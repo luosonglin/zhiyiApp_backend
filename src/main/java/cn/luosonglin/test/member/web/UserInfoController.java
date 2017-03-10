@@ -579,4 +579,38 @@ public class UserInfoController {
 
         return resultDate;
     }
+
+    @ApiOperation(value = "绑定微信、qq", notes = "根据id来指定添加用户手机号(id,openId,loginSource)")
+    @ApiImplicitParam(name = "BindUserInfo", value = "BindUserInfo实体", required = true, dataType = "BindUserInfo")
+    @RequestMapping(value = "/info", method = RequestMethod.PUT)
+    public ResultDate BindUserPhone(@ModelAttribute BindUserInfo bindUserInfo) throws CustomizedException {
+
+        if (bindUserInfo.getUserId() == null)
+            throw new CustomizedException("用户ID不能为空");
+
+        if (bindUserInfo.getOpenId() == null)
+            throw new CustomizedException("openID不能为空");
+
+        if (bindUserInfo.getLoginSource() == null)
+            throw new CustomizedException("来源不能为空");
+
+        //根据用户手机号去查询用户是否已经是注册用户
+        String openId = userInfoMapper.isThirdRegisteredUser(bindUserInfo.getUserId());
+        //判断openId是否存在于user_info表中
+        if (openId != null)
+            throw new CustomizedException("该用户已绑定某一三方账号");
+
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        userInfoMapper.updateUserByThirdInfo(bindUserInfo.getUserId(), bindUserInfo.getOpenId(), bindUserInfo.getLoginSource());
+
+        responseMap.put("user", userInfoMapper.getUserInfoByUserId(bindUserInfo.getUserId()));
+
+        resultDate.setCode(200);
+        resultDate.setData(responseMap);
+
+
+        return resultDate;
+    }
 }

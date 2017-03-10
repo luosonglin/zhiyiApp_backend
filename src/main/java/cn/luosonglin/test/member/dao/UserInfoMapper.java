@@ -107,4 +107,8 @@ public interface UserInfoMapper {
 
     @Select("select nick_name from user_info where confirm_number = #{confirm_number}")
     String isConfirmNumberExists(@Param("confirm_number") String confirm_number);
+
+    //手机号登陆用户绑定三方账号
+    @Update("UPDATE user_info SET open_id=#{open_id},login_source=#{login_source} WHERE id =#{user_id} ")
+    int updateUserByThirdInfo(@Param("user_id") Integer user_id, @Param("open_id") String open_id, @Param("login_source") String login_source);
 }
