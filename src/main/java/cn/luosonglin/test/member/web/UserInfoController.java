@@ -1,7 +1,6 @@
 package cn.luosonglin.test.member.web;
 
 import cn.luosonglin.test.base.entity.ResultDate;
-import cn.luosonglin.test.base.util.MD5Gen;
 import cn.luosonglin.test.base.util.PhoneUtil;
 import cn.luosonglin.test.easemob.service.ChatService;
 import cn.luosonglin.test.exception.CustomizedException;
@@ -10,7 +9,6 @@ import cn.luosonglin.test.member.dao.UserInfoMapper;
 import cn.luosonglin.test.member.dao.VerificationCodeMapper;
 import cn.luosonglin.test.member.entity.*;
 import cn.luosonglin.test.relationship.dao.UsersRelationshipMapper;
-import cn.luosonglin.test.relationship.entity.UsersRelationship;
 import cn.luosonglin.test.sms.service.SendCommonMessageService;
 import cn.luosonglin.test.base.util.DateUtil;
 import cn.luosonglin.test.base.util.RandUtil;
@@ -23,7 +21,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.logging.Logger;
 
 import static cn.luosonglin.test.base.util.RandUtil.array;
 
@@ -581,21 +578,21 @@ public class UserInfoController {
     }
 
     @ApiOperation(value = "绑定微信、qq", notes = "根据id来指定添加用户手机号(id,openId,loginSource)")
-    @ApiImplicitParam(name = "BindUserInfo", value = "BindUserInfo实体", required = true, dataType = "BindUserInfo")
-    @RequestMapping(value = "/info", method = RequestMethod.PUT)
-    public ResultDate BindUserPhone(@ModelAttribute BindUserInfo bindUserInfo) throws CustomizedException {
+    @ApiImplicitParam(name = "BindUserThirdInfo", value = "BindUserInfo实体", required = true, dataType = "BindUserThirdInfo")
+    @RequestMapping(value = "/thirdinfo", method = RequestMethod.PUT)
+    public ResultDate BindUserThirdInfo(@ModelAttribute BindUserThirdInfo bindUserThirdInfo) throws CustomizedException {
 
-        if (bindUserInfo.getUserId() == null)
+        if (bindUserThirdInfo.getUserId() == null)
             throw new CustomizedException("用户ID不能为空");
 
-        if (bindUserInfo.getOpenId() == null)
+        if (bindUserThirdInfo.getOpenId() == null)
             throw new CustomizedException("openID不能为空");
 
-        if (bindUserInfo.getLoginSource() == null)
+        if (bindUserThirdInfo.getLoginSource() == null)
             throw new CustomizedException("来源不能为空");
 
         //根据用户手机号去查询用户是否已经是注册用户
-        String openId = userInfoMapper.isThirdRegisteredUser(bindUserInfo.getUserId());
+        String openId = userInfoMapper.isThirdRegisteredUser(bindUserThirdInfo.getUserId());
         //判断openId是否存在于user_info表中
         if (openId != null)
             throw new CustomizedException("该用户已绑定某一三方账号");
@@ -603,9 +600,39 @@ public class UserInfoController {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
-        userInfoMapper.updateUserByThirdInfo(bindUserInfo.getUserId(), bindUserInfo.getOpenId(), bindUserInfo.getLoginSource());
+        userInfoMapper.updateUserByThirdInfo(bindUserThirdInfo.getUserId(), bindUserThirdInfo.getOpenId(), bindUserThirdInfo.getLoginSource());
 
-        responseMap.put("user", userInfoMapper.getUserInfoByUserId(bindUserInfo.getUserId()));
+        responseMap.put("user", userInfoMapper.getUserInfoByUserId(bindUserThirdInfo.getUserId()));
+
+        resultDate.setCode(200);
+        resultDate.setData(responseMap);
+
+
+        return resultDate;
+    }
+
+    @ApiOperation(value = "绑定email", notes = "根据id来指定添加用户手机号(id,openId,loginSource)")
+    @ApiImplicitParam(name = "BindUserEmailInfo", value = "BindUserEmailInfo实体", required = true, dataType = "BindUserEmailInfo")
+    @RequestMapping(value = "/emailinfo", method = RequestMethod.PUT)
+    public ResultDate BindUserEmailInfo(@ModelAttribute BindUserEmailInfo bindUserEmailInfo) throws CustomizedException {
+
+        if (bindUserEmailInfo.getUserId() == null)
+            throw new CustomizedException("用户ID不能为空");
+
+        if (bindUserEmailInfo.getEmail() == null)
+            throw new CustomizedException("email不能为空");
+
+        //根据用户id去查询是否有该用户
+        UserInfo userInfo = userInfoMapper.getUserInfoByUserId(bindUserEmailInfo.getUserId());
+        if (userInfo == null)
+            throw new CustomizedException("无该用户");
+
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        userInfoMapper.updateUserByEmailInfo(bindUserEmailInfo.getUserId(), bindUserEmailInfo.getEmail());
+
+        responseMap.put("user", userInfoMapper.getUserInfoByUserId(bindUserEmailInfo.getUserId()));
 
         resultDate.setCode(200);
         resultDate.setData(responseMap);

@@ -93,7 +93,7 @@ public interface UserInfoMapper {
     @Update("UPDATE user_info SET mobile_phone=#{mobilePhone} WHERE id =#{userId} ")
     void updateUserPhone(UpdateUserPhone updateUserPhone);
 
-    //查询openId
+    //根据openId查询用户
     @Select("select * from user_info where open_id = #{open_id}")
     UserInfo getUserInfoByOpenId(@Param("open_id") String open_id);
 
@@ -111,4 +111,8 @@ public interface UserInfoMapper {
     //手机号登陆用户绑定三方账号
     @Update("UPDATE user_info SET open_id=#{open_id},login_source=#{login_source} WHERE id =#{user_id} ")
     int updateUserByThirdInfo(@Param("user_id") Integer user_id, @Param("open_id") String open_id, @Param("login_source") String login_source);
+
+    //绑定emails
+    @Update("UPDATE user_info SET email=#{email} WHERE id =#{user_id} ")
+    int updateUserByEmailInfo(@Param("user_id") Integer user_id, @Param("email") String email);
 }
