@@ -5,7 +5,7 @@
 
 <mapper namespace="cn.luosonglin.test.blog.dao.BlogMapper">
     <select id="getFollowsBlogByListId" resultType="cn.luosonglin.test.blog.entity.UserAndBlog">
-        SELECT blog.id, blog.user_id, blog.title, blog.content, blog.comment_count, blog.like_count,blog.created_at, blog.deleted_at, blog.tag_id, blog.is_hot, blog.images, user_info.name, user_info.nick_name, user_info.company, user_info.user_pic, user_info.authen_status
+        SELECT blog.id, blog.user_id, blog.title, blog.content, blog.comment_count, blog.like_count,blog.created_at, blog.deleted_at, blog.tag_id, blog.is_hot, blog.images, user_info.name, user_info.nick_name, user_info.company, user_info.hospital, user_info.user_pic, user_info.authen_status
         FROM blog, user_info
         WHERE blog.user_id = user_info.id AND blog.user_id IN
         <foreach item="user_id" index="index" collection="list" open="(" separator="," close=")">
@@ -15,7 +15,7 @@
     </select>
 
     <select id="getBlogListByBlogId" resultType="cn.luosonglin.test.blog.entity.UserAndBlog">
-        SELECT a.id, a.user_id, a.title, a.content, a.comment_count, a.like_count, a.created_at, a.deleted_at, a.tag_id, a.is_hot, a.images, b.name, b.nick_name, b.company, b.user_pic, b.authen_status
+        SELECT a.id, a.user_id, a.title, a.content, a.comment_count, a.like_count, a.created_at, a.deleted_at, a.tag_id, a.is_hot, a.images, b.name, b.nick_name, b.company, b.hospital, b.user_pic, b.authen_status
         FROM blog a, user_info b
         WHERE a.user_id = b.id AND a.id IN
         <foreach item="id" index="index" collection="list" open="(" separator="," close=")">

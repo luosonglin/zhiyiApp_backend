@@ -27,7 +27,7 @@ public interface CaseLikeMapper {
     @Update("UPDATE case_like SET is_display=#{is_display} WHERE user_id = #{user_id} and case_id = #{case_id}")
     void cancelCaseLikeByMap(Map<String, Object> map);
 
-    @Select("select a.id, a.user_id, a.case_id, a.created_at, a.is_display, b.name, b.nick_name, b.user_pic, b.authen_status, b.company from case_like a, user_info b where a.user_id = b.id and case_id = #{case_id}  and a.is_display = 0 order by a.created_at DESC")
+    @Select("select a.id, a.user_id, a.case_id, a.created_at, a.is_display, b.name, b.nick_name, b.user_pic, b.authen_status, b.company, b.hospital from case_like a, user_info b where a.user_id = b.id and case_id = #{case_id}  and a.is_display = 0 order by a.created_at DESC")
     List<UserAndCaseLike> findAllUser(@Param("case_id") Integer case_id);
 
     @Select("select count(*) from case_like where case_id = #{case_id} and is_display = 0 ")

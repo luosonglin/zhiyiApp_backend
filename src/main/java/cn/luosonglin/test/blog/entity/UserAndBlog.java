@@ -23,6 +23,7 @@ public class UserAndBlog {
     private String company;
     private String userPic;
     private String authenStatus;
+    private String hospital;
 
     public Integer getId() {
         return id;
@@ -150,5 +151,13 @@ public class UserAndBlog {
 
     public void setUserPic(String userPic) {
         this.userPic = userPic;
+    }
+
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
     }
 }

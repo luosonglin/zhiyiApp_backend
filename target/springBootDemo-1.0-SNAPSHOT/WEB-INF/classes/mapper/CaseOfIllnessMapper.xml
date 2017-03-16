@@ -5,7 +5,7 @@
 
 <mapper namespace="cn.luosonglin.test.caseOfIllness.dao.CaseMapper">
     <select id="getFollowsCaseByListId" resultType="cn.luosonglin.test.caseOfIllness.entity.UserAndCase">
-        SELECT case_of_illness.id, case_of_illness.user_id, case_of_illness.title, case_of_illness.chief_complain, case_of_illness.chief_complain_image, case_of_illness.body_check, case_of_illness.body_check_image, case_of_illness.medical_diagnosis, case_of_illness.medical_diagnosis_image, case_of_illness.follow_up, case_of_illness.follow_up_image, case_of_illness.comment_count, case_of_illness.like_count, case_of_illness.created_at, case_of_illness.deleted_at, case_of_illness.tag_id, case_of_illness.is_hot, user_info.name, user_info.nick_name, user_info.company, user_info.user_pic, user_info.authen_status
+        SELECT case_of_illness.id, case_of_illness.user_id, case_of_illness.title, case_of_illness.chief_complain, case_of_illness.chief_complain_image, case_of_illness.body_check, case_of_illness.body_check_image, case_of_illness.medical_diagnosis, case_of_illness.medical_diagnosis_image, case_of_illness.follow_up, case_of_illness.follow_up_image, case_of_illness.comment_count, case_of_illness.like_count, case_of_illness.created_at, case_of_illness.deleted_at, case_of_illness.tag_id, case_of_illness.is_hot, user_info.name, user_info.nick_name, user_info.company, user_info.hospital, user_info.user_pic, user_info.authen_status
         FROM case_of_illness, user_info
         WHERE case_of_illness.user_id = user_info.id AND case_of_illness.user_id IN
         <foreach item="user_id" index="index" collection="list" open="(" separator="," close=")">
@@ -15,7 +15,7 @@
     </select>
 
     <select id="getCaseListByCaseId" resultType="cn.luosonglin.test.caseOfIllness.entity.UserAndCase">
-        SELECT a.id, a.user_id, a.title, a.chief_complain, a.chief_complain_image, a.body_check, a.body_check_image, a.follow_up, a.follow_up_image, a.comment_count, a.like_count, a.created_at, a.deleted_at, a.tag_id, a.is_hot, b.name, b.nick_name, b.company, b.user_pic, b.authen_status
+        SELECT a.id, a.user_id, a.title, a.chief_complain, a.chief_complain_image, a.body_check, a.body_check_image, a.follow_up, a.follow_up_image, a.comment_count, a.like_count, a.created_at, a.deleted_at, a.tag_id, a.is_hot, b.name, b.nick_name, b.company, b.hospital, b.user_pic, b.authen_status
         FROM case_of_illness a, user_info b
         WHERE  a.user_id = b.id AND a.id IN
         <foreach item="id" index="index" collection="list" open="(" separator="," close=")">

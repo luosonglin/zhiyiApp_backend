@@ -15,9 +15,8 @@ import java.util.Map;
  */
 @Mapper
 public interface BlogMapper {
-    @Select("SELECT id, user_id, title, content, comment_count, like_count," +
-            "created_at, deleted_at, tag_id, is_hot, images FROM blog order by created_at DESC")
-    List<Blog> findAllBlog();
+    @Select("SELECT a.id, a.user_id, a.title, a.content, a.comment_count, a.like_count, a.created_at, a.deleted_at, a.tag_id, a.is_hot, a.images, b.name, b.nick_name, b.company, b.hospital, b.user_pic, b.authen_status FROM blog a, user_info b where a.user_id = b.id order by created_at DESC")
+    List<UserAndBlog> findAllBlog();
 
     //推荐微博 is_hot=1为推荐的精帖
     @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and blog.is_hot=1 order by created_at DESC ")

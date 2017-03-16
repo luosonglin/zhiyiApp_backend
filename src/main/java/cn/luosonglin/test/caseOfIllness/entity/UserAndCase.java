@@ -30,6 +30,7 @@ public class UserAndCase {
     private String company;
     private String userPic;
     private String authenStatus;
+    private String hospital;
 
     public Integer getId() {
         return id;
@@ -205,5 +206,13 @@ public class UserAndCase {
 
     public void setAuthenStatus(String authenStatus) {
         this.authenStatus = authenStatus;
+    }
+
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
     }
 }
