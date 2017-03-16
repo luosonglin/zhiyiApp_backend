@@ -12,7 +12,6 @@ import java.util.List;
  */
 @Mapper
 public interface EventBannerMapper {
-    @Select("select id, title, banner, start_date, end_date from event where end_date >= CURRENT_TIMESTAMP")
+    @Select("select id, title, banner, start_date, end_date from event where end_date >= CURRENT_TIMESTAMP LIMIT 3 OFFSET 2")
     List<EventBanner> getAllEventBanner();
-
 }

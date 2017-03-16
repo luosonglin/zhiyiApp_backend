@@ -339,6 +339,17 @@ public class UserInfoController {
         if (!PhoneUtil.isMobile(userInfo.getMobilePhone()))
             throw new CustomizedException("请填写正确的手机号");
 
+//        //该用户是否已用该手机号注册过
+//        Integer userId = userInfoMapper.isRegisteredUser(userInfo.getMobilePhone());
+//        if (userId != null) {
+//            throw new CustomizedException("该手机号已经被注册过");
+//        }
+//
+//        String phone = userInfoMapper.getUserInfoMobilePhone(userInfo.getId());
+//        if (phone.equals(userInfo.getMobilePhone())) {
+//            throw new CustomizedException("该手机号已经被其他用户绑定");
+//        }
+
         Map<String, Object> userInfoMap = new HashMap<>();
         userInfoMap.put("id", userInfo.getId());
         userInfoMap.put("name", userInfo.getName());

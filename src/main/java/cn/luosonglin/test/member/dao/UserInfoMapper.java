@@ -64,6 +64,9 @@ public interface UserInfoMapper {
     @Select("select name from user_info where id = #{user_id}")
     String getUserInfoName(@Param("user_id") Integer user_id);
 
+    @Select("select mobile_phone from user_info where id = #{user_id}")
+    String getUserInfoMobilePhone(@Param("user_id") Integer user_id);
+
     @Select("select token_id from user_info where id = #{user_id}")
     String getTokenId(@Param("user_id") Integer user_id);
 
