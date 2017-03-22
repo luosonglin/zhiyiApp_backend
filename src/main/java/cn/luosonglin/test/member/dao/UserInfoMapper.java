@@ -40,11 +40,12 @@ public interface UserInfoMapper {
     @Select("select id from user_info where mobile_phone = #{mobile_phone}")
     Integer isRegisteredUser(@Param("mobile_phone") String mobile_phone);
 
+
     @Select("select * from user_info where mobile_phone = #{mobile_phone}")
     UserInfo getUserInfoByPhone(@Param("mobile_phone") String mobile_phone);
 
     //以下2种方式不能用，原因不明  原因在于position字段在数据库里是postion！！！shit!!
-    @Insert("INSERT INTO user_info(id, name, nick_name, email, mobile_phone, company, postion, sex, title, address, country, province, city, zip_code, id_code, status, state_date, confirm_number, phone, user_type, user_source, password, open_id, login_source, user_pic, authen_status, token_id) VALUES(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{nick_name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile_phone,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{postion,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{zip_code,jdbcType=VARCHAR}, #{id_code,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{state_date,jdbcType=TIMESTAMP}, #{confirm_number,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{user_type,jdbcType=VARCHAR}, #{user_source,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{open_id,jdbcType=VARCHAR}, #{login_source,jdbcType=VARCHAR}, #{user_pic,jdbcType=VARCHAR}, #{authen_status,jdbcType=VARCHAR}, #{token_id,jdbcType=VARCHAR})")
+    @Insert("INSERT INTO user_info(id, name, nick_name, email, mobile_phone, company, postion, sex, title, address, country, province, city, zip_code, id_code, status, state_date, confirm_number, phone, user_type, user_source, password, open_id, qq_open_id, login_source, user_pic, authen_status, token_id) VALUES(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{nick_name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile_phone,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{postion,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{zip_code,jdbcType=VARCHAR}, #{id_code,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{state_date,jdbcType=TIMESTAMP}, #{confirm_number,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{user_type,jdbcType=VARCHAR}, #{user_source,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{open_id,jdbcType=VARCHAR}, #{qq_open_id,jdbcType=VARCHAR}, #{login_source,jdbcType=VARCHAR}, #{user_pic,jdbcType=VARCHAR}, #{authen_status,jdbcType=VARCHAR}, #{token_id,jdbcType=VARCHAR})")
     int insertUserInfoByMap(Map<String, Object> map);
 
 //    @Insert("INSERT INTO user_info(id, name, nick_name, email, mobile_phone, company, postion, sex, title, address, country, province, city, zip_code, id_code," +
@@ -111,9 +112,12 @@ public interface UserInfoMapper {
     @Select("select nick_name from user_info where confirm_number = #{confirm_number}")
     String isConfirmNumberExists(@Param("confirm_number") String confirm_number);
 
+
+
+
     //手机号登陆用户绑定三方账号
-    @Update("UPDATE user_info SET open_id=#{open_id},login_source=#{login_source} WHERE id =#{user_id} ")
-    int updateUserByThirdInfo(@Param("user_id") Integer user_id, @Param("open_id") String open_id, @Param("login_source") String login_source);
+    @Update("UPDATE user_info SET open_id=#{open_id}, qq_open_id=#{qq_open_id}, login_source=#{login_source} WHERE id =#{user_id} ")
+    int updateUserByThirdInfo(@Param("user_id") Integer user_id, @Param("open_id") String open_id, @Param("qq_open_id") String qq_open_id, @Param("login_source") String login_source);
 
     //绑定emails
     @Update("UPDATE user_info SET email=#{email} WHERE id =#{user_id} ")
@@ -122,4 +126,12 @@ public interface UserInfoMapper {
     //绑定password
     @Update("UPDATE user_info SET password=#{password} WHERE id =#{user_id} ")
     int updateUserByPasswordInfo(@Param("user_id") Integer user_id, @Param("password") String password);
+
+    //已有手机号注册用户添加wechat登陆信息
+    @Update("UPDATE user_info SET nick_name=#{nick_name}, open_id=#{open_id}, login_source=#{login_source}, user_pic=#{user_pic} WHERE mobile_phone =#{mobile_phone} ")
+    void updateUserByWeChatInfo(Map<String, Object> map);
+
+    //已有手机号注册用户添加qq登陆信息
+    @Update("UPDATE user_info SET nick_name=#{nick_name}, qq_open_id=#{qq_open_id}, login_source=#{login_source}, user_pic=#{user_pic} WHERE mobile_phone =#{mobile_phone} ")
+    void updateUserByQQInfo(Map<String, Object> map);
 }

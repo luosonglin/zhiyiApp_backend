@@ -6,6 +6,7 @@ package cn.luosonglin.test.member.entity;
 public class BindUserThirdInfo {
     private Integer userId;
     private String openId;
+    private String qqOpenId;
     private String loginSource;
 
     public Integer getUserId() {
@@ -30,5 +31,13 @@ public class BindUserThirdInfo {
 
     public void setLoginSource(String loginSource) {
         this.loginSource = loginSource;
+    }
+
+    public String getQqOpenId() {
+        return qqOpenId;
+    }
+
+    public void setQqOpenId(String qqOpenId) {
+        this.qqOpenId = qqOpenId;
     }
 }

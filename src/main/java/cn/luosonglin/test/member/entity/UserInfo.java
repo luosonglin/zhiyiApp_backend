@@ -1,5 +1,7 @@
 package cn.luosonglin.test.member.entity;
 
+import cn.luosonglin.test.base.util.CodeUtil;
+
 import java.util.Date;
 
 /**
@@ -37,6 +39,7 @@ public class UserInfo {
     private String authenStatus;
     private String tokenId;
     private String county;
+    private String qqOpenId;
 
     public Integer getId() {
         return id;
@@ -59,7 +62,7 @@ public class UserInfo {
     }
 
     public void setNickName(String nickName) {
-        this.nickName = nickName;
+        this.nickName = CodeUtil.encode(nickName.getBytes());
     }
 
     public String getEmail() {
@@ -286,5 +289,11 @@ public class UserInfo {
         this.county = county;
     }
 
+    public String getQqOpenId() {
+        return qqOpenId;
+    }
 
+    public void setQqOpenId(String qqOpenId) {
+        this.qqOpenId = qqOpenId;
+    }
 }
