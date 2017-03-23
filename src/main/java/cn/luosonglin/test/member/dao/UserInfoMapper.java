@@ -6,6 +6,7 @@ import cn.luosonglin.test.member.entity.UpdateUserAvatar;
 import cn.luosonglin.test.member.entity.UpdateUserPhone;
 import cn.luosonglin.test.member.entity.UserInfo;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.javassist.bytecode.annotation.IntegerMemberValue;
 
 import java.util.Map;
 
@@ -118,6 +119,11 @@ public interface UserInfoMapper {
     //手机号登陆用户绑定三方账号
     @Update("UPDATE user_info SET open_id=#{open_id}, qq_open_id=#{qq_open_id}, login_source=#{login_source} WHERE id =#{user_id} ")
     int updateUserByThirdInfo(@Param("user_id") Integer user_id, @Param("open_id") String open_id, @Param("qq_open_id") String qq_open_id, @Param("login_source") String login_source);
+
+    //删除用户
+    @Delete("DELETE FROM user_info WHERE id =#{id}")
+    void deleteUserInfo(Integer id);
+
 
     //绑定emails
     @Update("UPDATE user_info SET email=#{email} WHERE id =#{user_id} ")

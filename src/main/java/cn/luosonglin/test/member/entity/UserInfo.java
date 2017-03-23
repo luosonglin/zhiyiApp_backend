@@ -58,7 +58,7 @@ public class UserInfo {
     }
 
     public String getNickName() {
-        return nickName;
+        return CodeUtil.decode(nickName);
     }
 
     public void setNickName(String nickName) {

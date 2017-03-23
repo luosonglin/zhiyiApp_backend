@@ -22,7 +22,7 @@ public class CodeUtil {
      * @param str
      * @return
      */
-    public static byte[] decode(String str) {
+    public static String decode(String str) {
         byte[] bt = null;
         try {
             sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();
@@ -31,7 +31,6 @@ public class CodeUtil {
             e.printStackTrace();
         }
 
-        return bt;
+        return bt.toString();
     }
-
 }

@@ -629,13 +629,21 @@ public class UserInfoController {
 
 
             //该用户是否已用该手机号注册过
-//            Integer userId = userInfoMapper.isRegisteredUser(thirdUserBindPhoneInfo.getPhone());
-//            if (userId != null) {
+            Integer userId = userInfoMapper.isRegisteredUser(thirdUserBindPhoneInfo.getPhone());
+            if (userId != null) {
 //                throw new CustomizedException("该手机号已经被注册过");
-//            } else {
-////            userInfoMapper.updateThirdUserByPhoneInfo(thirdUserBindPhoneInfo.getUserId(), thirdUserBindPhoneInfo.getPhone());
-//            }
-            userInfoMapper.updateThirdUserByPhoneInfo(thirdUserBindPhoneInfo.getUserId(), thirdUserBindPhoneInfo.getPhone());
+                UserInfo userInfo = userInfoMapper.getUserInfoByUserId(thirdUserBindPhoneInfo.getUserId());
+                if (userInfo.getLoginSource().equals("WeChat")) {
+                    userInfoMapper.updateUserByThirdInfo(userId, userInfo.getOpenId(), null, userInfo.getLoginSource());
+                } else if (userInfo.getLoginSource().equals("QQ")){
+                    userInfoMapper.updateUserByThirdInfo(userId, null, userInfo.getOpenId(), userInfo.getLoginSource());
+                }
+                //被逼的，为了适应iOS第一版本不得不做的（当三方登陆用户绑定的手机号是已有手机号的时候，合并用户，保留手机号那一条，删除三方用户那条）
+                userInfoMapper.deleteUserInfo(thirdUserBindPhoneInfo.getUserId());
+            } else {
+                userInfoMapper.updateThirdUserByPhoneInfo(thirdUserBindPhoneInfo.getUserId(), thirdUserBindPhoneInfo.getPhone());
+            }
+//            userInfoMapper.updateThirdUserByPhoneInfo(thirdUserBindPhoneInfo.getUserId(), thirdUserBindPhoneInfo.getPhone());
 
             responseMap.put("user", userInfoMapper.getUserInfoByPhone(thirdUserBindPhoneInfo.getPhone()));
 
