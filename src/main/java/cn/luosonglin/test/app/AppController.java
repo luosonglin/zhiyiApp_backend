@@ -98,7 +98,6 @@ public class AppController {
         return resultDate;
     }
 
-
     @ApiOperation(value = "第三方登录(判断要不要去手机页面)", notes = "")
     @ApiImplicitParam(name = "loginActivity", value = "用户platform,openId,qqOpenId", required = true, dataType = "LoginActivity")
     @RequestMapping(value = "/loginpage", method = RequestMethod.GET)
