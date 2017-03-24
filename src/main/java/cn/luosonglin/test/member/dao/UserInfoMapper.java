@@ -121,8 +121,11 @@ public interface UserInfoMapper {
 
 
     //手机号登陆用户绑定三方账号
-    @Update("UPDATE user_info SET open_id=#{open_id}, qq_open_id=#{qq_open_id}, login_source=#{login_source} WHERE id =#{user_id} ")
-    int updateUserByThirdInfo(@Param("user_id") Integer user_id, @Param("open_id") String open_id, @Param("qq_open_id") String qq_open_id, @Param("login_source") String login_source);
+    @Update("UPDATE user_info SET open_id=#{open_id}, login_source=#{login_source} WHERE id =#{user_id} ")
+    int updateUserWeChatByThirdInfo(@Param("user_id") Integer user_id, @Param("open_id") String open_id, @Param("login_source") String login_source);
+
+    @Update("UPDATE user_info SET qq_open_id=#{qq_open_id}, login_source=#{login_source} WHERE id =#{user_id} ")
+    int updateUserQQByThirdInfo(@Param("user_id") Integer user_id, @Param("qq_open_id") String qq_open_id, @Param("login_source") String login_source);
 
     //删除用户
     @Delete("DELETE FROM user_info WHERE id =#{id}")

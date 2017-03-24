@@ -1,5 +1,6 @@
 package cn.luosonglin.test.app;
 
+import cn.luosonglin.test.app.entity.LoginActivity;
 import cn.luosonglin.test.banner.dao.EventBannerMapper;
 import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.blog.dao.BlogMapper;
@@ -16,10 +17,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -101,6 +99,43 @@ public class AppController {
     }
 
 
+    @ApiOperation(value = "第三方登录(判断要不要去手机页面)", notes = "")
+    @ApiImplicitParam(name = "loginActivity", value = "用户platform,openId,qqOpenId", required = true, dataType = "LoginActivity")
+    @RequestMapping(value = "/loginpage", method = RequestMethod.GET)
+    public ResultDate getNextPage(@ModelAttribute LoginActivity loginActivity) {
+
+        ResultDate resultDate = new ResultDate();
+        Map<String, Object> responseMap = new HashMap<>();
+
+        UserInfo userInfo = null;
+
+        if (loginActivity.getLoginSource().equals("WeChat")) {
+            userInfo = userInfoMapper.getUserInfoByOpenId(loginActivity.getOpenId());
+        } else if (loginActivity.getLoginSource().equals("QQ")) {
+            userInfo = userInfoMapper.getUserInfoByQQOpenId(loginActivity.getQqOpenId());
+        }
+
+        if (userInfo == null) {
+            resultDate.setCode(200);
+            responseMap.put("sc", "1000");//status_code
+            responseMap.put("t", "tlp");//target
+            responseMap.put("user", null);
+        } else {
+            resultDate.setCode(200);
+            responseMap.put("sc", "1001");
+            responseMap.put("t", "ntlp");//not to Login Page
+            if (loginActivity.getLoginSource().equals("WeChat")) {
+                responseMap.put("user", userInfoMapper.getUserInfoByOpenId(loginActivity.getOpenId()));
+            } else if (loginActivity.getLoginSource().equals("QQ")) {
+                responseMap.put("user", userInfoMapper.getUserInfoByQQOpenId(loginActivity.getQqOpenId()));
+            }
+
+        }
+        responseMap.put("msg", "success");
+        resultDate.setData(responseMap);
+
+        return resultDate;
+    }
 
 
 }

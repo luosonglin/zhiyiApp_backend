@@ -519,7 +519,7 @@ public class UserInfoController {
             if (thirdUser.getPlatform().equals("WeChat")) {
                 responseMap.put("user", userInfoMapper.getUserInfoByOpenId(thirdUser.getOpenId()));
             } else if (thirdUser.getPlatform().equals("QQ")){
-                if (userInfoMapper.getUserInfoByQQOpenId(thirdUser.getQqOpenId()) == null && thirdUser.getQqOpenId() == null) {    //为了第一版本qq openId 存在了wechat openId
+                if (userInfoMapper.getUserInfoByQQOpenId(thirdUser.getOpenId()) == null && thirdUser.getQqOpenId() == null) {    //为了第一版本qq openId 存在了wechat openId
                     responseMap.put("user", userInfoMapper.getUserInfoByOpenId(thirdUser.getOpenId()));
                 } else {
                     responseMap.put("user", userInfoMapper.getUserInfoByQQOpenId(thirdUser.getQqOpenId()));
@@ -653,16 +653,15 @@ public class UserInfoController {
 //			if(new Date().getTime()-verificationCode.getSendDate().getTime() > 600000)
 //			    throw new CustomizedException("超过10分钟，请重新获取验证码");
 
-
             //该用户是否已用该手机号注册过
             Integer userId = userInfoMapper.isRegisteredUser(thirdUserBindPhoneInfo.getPhone());
-            if (userId != null) {
+            if (userId != null) { //老手机号
 //                throw new CustomizedException("该手机号已经被注册过");
                 UserInfo userInfo = userInfoMapper.getUserInfoByUserId(thirdUserBindPhoneInfo.getUserId());
                 if (userInfo.getLoginSource().equals("WeChat")) {
-                    userInfoMapper.updateUserByThirdInfo(userId, userInfo.getOpenId(), null, userInfo.getLoginSource());
+                    userInfoMapper.updateUserWeChatByThirdInfo(userId, userInfo.getOpenId(), userInfo.getLoginSource());
                 } else if (userInfo.getLoginSource().equals("QQ")){
-                    userInfoMapper.updateUserByThirdInfo(userId, null, userInfo.getOpenId(), userInfo.getLoginSource());
+                    userInfoMapper.updateUserQQByThirdInfo(userId, userInfo.getOpenId(), userInfo.getLoginSource());
                 }
                 //被逼的，为了适应iOS第一版本不得不做的（当三方登陆用户绑定的手机号是已有手机号的时候，合并用户，保留手机号那一条，删除三方用户那条）
                 userInfoMapper.deleteUserInfo(thirdUserBindPhoneInfo.getUserId());
@@ -709,9 +708,9 @@ public class UserInfoController {
         Map<String, Object> responseMap = new HashMap<>();
 
         if (bindUserThirdInfo.getLoginSource().equals("WeChat")) {
-            userInfoMapper.updateUserByThirdInfo(bindUserThirdInfo.getUserId(), bindUserThirdInfo.getOpenId(), null, bindUserThirdInfo.getLoginSource());
+            userInfoMapper.updateUserWeChatByThirdInfo(bindUserThirdInfo.getUserId(), bindUserThirdInfo.getOpenId(), bindUserThirdInfo.getLoginSource());
         } else if (bindUserThirdInfo.getLoginSource().equals("QQ")) {
-            userInfoMapper.updateUserByThirdInfo(bindUserThirdInfo.getUserId(), null, bindUserThirdInfo.getQqOpenId(), bindUserThirdInfo.getLoginSource());
+            userInfoMapper.updateUserQQByThirdInfo(bindUserThirdInfo.getUserId(), bindUserThirdInfo.getQqOpenId(), bindUserThirdInfo.getLoginSource());
         }
 
         responseMap.put("user", userInfoMapper.getUserInfoByUserId(bindUserThirdInfo.getUserId()));
