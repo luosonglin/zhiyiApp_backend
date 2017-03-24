@@ -58,12 +58,20 @@ public class UserInfo {
     }
 
     public String getNickName() {
-        return CodeUtil.decode(nickName);
+        return nickName;
     }
 
     public void setNickName(String nickName) {
-        this.nickName = CodeUtil.encode(nickName.getBytes());
+        this.nickName = nickName;
     }
+
+    //    public String getNickName() {
+//        return CodeUtil.decode(nickName);
+//    }
+//
+//    public void setNickName(String nickName) {
+//        this.nickName = CodeUtil.encode(nickName.getBytes());
+//    }
 
     public String getEmail() {
         return email;

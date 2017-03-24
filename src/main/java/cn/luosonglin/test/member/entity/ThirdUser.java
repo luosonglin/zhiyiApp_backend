@@ -23,12 +23,21 @@ public class ThirdUser {
         this.openId = openId;
     }
 
+//    public String getNickName() {
+//        return String.valueOf(CodeUtil.decode(nickName));
+//    }
+//
+//    public void setNickName(String nickName) {
+//        this.nickName = CodeUtil.encode(nickName.getBytes());
+//    }
+
+
     public String getNickName() {
-        return String.valueOf(CodeUtil.decode(nickName));
+        return nickName;
     }
 
     public void setNickName(String nickName) {
-        this.nickName = CodeUtil.encode(nickName.getBytes());
+        this.nickName = nickName;
     }
 
     public String getPlatform() {

@@ -114,14 +114,24 @@ public class CaseOfIllnessController {
         caseOfIllnessMap.put("user_id", caseOfIllness.getUserId());
         caseOfIllnessMap.put("title", caseOfIllness.getTitle());
         caseOfIllnessMap.put("tag_id", caseOfIllness.getTagId());
+
         caseOfIllnessMap.put("chief_complain", caseOfIllness.getChiefComplain());
+        //此处为防止iOS第一版而设置的
+        if (caseOfIllness.getChiefComplainImage().equals("")) caseOfIllness.setChiefComplainImage(null);
         caseOfIllnessMap.put("chief_complain_image", caseOfIllness.getChiefComplainImage());
+
         caseOfIllnessMap.put("body_check", caseOfIllness.getBodyCheck());
+        if (caseOfIllness.getBodyCheckImage().equals("")) caseOfIllness.setBodyCheckImage(null);
         caseOfIllnessMap.put("body_check_image", caseOfIllness.getBodyCheckImage());
+
         caseOfIllnessMap.put("medical_diagnosis", caseOfIllness.getMedicalDiagnosis());
+        if (caseOfIllness.getMedicalDiagnosisImage().equals("")) caseOfIllness.setMedicalDiagnosisImage(null);
         caseOfIllnessMap.put("medical_diagnosis_image", caseOfIllness.getMedicalDiagnosisImage());
+
         caseOfIllnessMap.put("follow_up", caseOfIllness.getFollowUp());
+        if (caseOfIllness.getFollowUpImage().equals("")) caseOfIllness.setFollowUpImage(null);
         caseOfIllnessMap.put("follow_up_image", caseOfIllness.getFollowUpImage());
+
         caseOfIllnessMap.put("created_at", caseOfIllness.getCreatedAt());
         caseOfIllnessMap.put("comment_count", 0);
         caseOfIllnessMap.put("like_count", 0);

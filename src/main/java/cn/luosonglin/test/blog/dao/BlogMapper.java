@@ -61,4 +61,5 @@ public interface BlogMapper {
 
     //依据blog_id来获取blog列表
     List<UserAndBlog> getBlogListByBlogId(List<Integer> blog_id);
+
 }

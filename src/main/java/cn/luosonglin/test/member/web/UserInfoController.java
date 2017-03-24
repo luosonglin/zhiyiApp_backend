@@ -354,7 +354,9 @@ public class UserInfoController {
         userInfoMap.put("id", userInfo.getId());
         userInfoMap.put("name", userInfo.getName());
         userInfoMap.put("company", userInfo.getCompany());
-        userInfoMap.put("position", userInfo.getPostion());
+        //数据库user_info表中，title职称  position职位
+//        userInfoMap.put("position", userInfo.getPostion());
+        userInfoMap.put("department", userInfo.getDepartment());
         userInfoMap.put("hospital", userInfo.getHospital());
         userInfoMap.put("title", userInfo.getTitle());
         userInfoMap.put("mobile_phone", userInfo.getMobilePhone());
@@ -461,51 +463,68 @@ public class UserInfoController {
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
-        if (thirdUser.getOpenId() == null)
-            throw new CustomizedException("openId不能为空");
+        if (thirdUser.getPlatform().equals("WeChat")) {     // wechat登陆进来
+            if (thirdUser.getOpenId() == null)
+                throw new CustomizedException("WeChat openId不能为空");
+        } else if (thirdUser.getPlatform().equals("QQ")){
+            //此处屏蔽为了iOS第一版
+//            if (thirdUser.getQqOpenId() == null)
+//                throw new CustomizedException("QQ openId不能为空");
+        }
 
         if (thirdUser.getMobilePhone() == null && thirdUser.getCode() != null) {
             throw new CustomizedException("手机号不能为空");
         } else if (thirdUser.getMobilePhone() != null &&thirdUser.getCode() == null) {
             throw new CustomizedException("验证码不能为空");
-        } else if (thirdUser.getMobilePhone() == null &&thirdUser.getCode() == null) {
-            Map<String, Object> userInfoMap = new HashMap<>();
-            userInfoMap.put("nick_name", thirdUser.getNickName());
-            userInfoMap.put("login_source", thirdUser.getPlatform());
-            userInfoMap.put("user_pic", thirdUser.getIconurl());
-            if (thirdUser.getPlatform().equals("WeChat")) {     // wechat登陆进来
-                userInfoMap.put("open_id", thirdUser.getOpenId());
-                userInfoMap.put("qq_open_id", null);
-            } else if (thirdUser.getPlatform().equals("QQ")){
-                userInfoMap.put("open_id", null);
-                userInfoMap.put("qq_open_id", thirdUser.getQqOpenId());
+        } else if (thirdUser.getMobilePhone() == null &&thirdUser.getCode() == null) { //老版本
+
+            UserInfo userInfo = userInfoMapper.getUserInfoByOpenId(thirdUser.getOpenId());
+            if (userInfo == null) { //查看该用户是否是iOS第一版本用户
+                Map<String, Object> userInfoMap = new HashMap<>();
+                userInfoMap.put("nick_name", thirdUser.getNickName());
+                userInfoMap.put("login_source", thirdUser.getPlatform());
+                userInfoMap.put("user_pic", thirdUser.getIconurl());
+                if (thirdUser.getPlatform().equals("WeChat")) {     // wechat登陆进来
+                    userInfoMap.put("open_id", thirdUser.getOpenId());
+                    userInfoMap.put("qq_open_id", null);
+                } else if (thirdUser.getPlatform().equals("QQ")) {
+                    userInfoMap.put("open_id", null);
+                    userInfoMap.put("qq_open_id", thirdUser.getQqOpenId());
+                }
+                userInfoMap.put("token_id", String.valueOf(UUID.randomUUID()));
+                userInfoMap.put("user_type", "1");
+                userInfoMap.put("authen_status", "X");
+                userInfoMap.put("status", "A");
+                userInfoMap.put("user_source", thirdUser.getUserSource());
+                String confirmNumber = RandUtil.rand(6, array);
+                String number = userInfoMapper.isConfirmNumberExists(confirmNumber);
+                System.out.print(number + " hhh");
+                while (number != null) {
+                    confirmNumber = RandUtil.rand(6, array);
+                    number = userInfoMapper.isConfirmNumberExists(confirmNumber);
+                    if (number == null) break;
+                }
+                userInfoMap.put("confirm_number", confirmNumber);
+
+                userInfoMap.put("state_date", new Date());
+                userInfoMap.put("password", "123456");//为了在环信注册，默认密码为123456
+
+                userInfoMapper.insertUserInfoByMap(userInfoMap);
+
+                //在环信服务器注册新用户
+                chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), "123456");//MD5Gen.getMD5("luosonglin123456"));
             }
-            userInfoMap.put("token_id", String.valueOf(UUID.randomUUID()));
-            userInfoMap.put("user_type", "1");
-            userInfoMap.put("authen_status", "X");
-            userInfoMap.put("status", "A");
-            userInfoMap.put("user_source", thirdUser.getUserSource());
-            String confirmNumber = RandUtil.rand(6, array);
-            String number = userInfoMapper.isConfirmNumberExists(confirmNumber);
-            System.out.print(number + " hhh");
-            while (number != null) {
-                confirmNumber = RandUtil.rand(6, array);
-                number = userInfoMapper.isConfirmNumberExists(confirmNumber);
-                if (number == null) break;
-            }
-            userInfoMap.put("confirm_number", confirmNumber);
-
-            userInfoMap.put("state_date", new Date());
-            userInfoMap.put("password", "123456");//为了在环信注册，默认密码为123456
-
-            userInfoMapper.insertUserInfoByMap(userInfoMap);
-
-            //在环信服务器注册新用户
-            chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), "123456");//MD5Gen.getMD5("luosonglin123456"));
-
 
             resultDate.setCode(200);
-            responseMap.put("user", userInfoMapper.getUserInfoByPhone(thirdUser.getMobilePhone()));
+            if (thirdUser.getPlatform().equals("WeChat")) {
+                responseMap.put("user", userInfoMapper.getUserInfoByOpenId(thirdUser.getOpenId()));
+            } else if (thirdUser.getPlatform().equals("QQ")){
+                if (userInfoMapper.getUserInfoByQQOpenId(thirdUser.getQqOpenId()) == null && thirdUser.getQqOpenId() == null) {    //为了第一版本qq openId 存在了wechat openId
+                    responseMap.put("user", userInfoMapper.getUserInfoByOpenId(thirdUser.getOpenId()));
+                } else {
+                    responseMap.put("user", userInfoMapper.getUserInfoByQQOpenId(thirdUser.getQqOpenId()));
+                }
+            }
             resultDate.setData(responseMap);
 
             return resultDate;
@@ -539,43 +558,50 @@ public class UserInfoController {
                     userInfoMapper.updateUserByQQInfo(userInfoMap);
                 }
             } else {
-                //手机号是新号
-                Map<String, Object> userInfoMap = new HashMap<>();
-                userInfoMap.put("nick_name", thirdUser.getNickName());
-                userInfoMap.put("login_source", thirdUser.getPlatform());
-                userInfoMap.put("user_pic", thirdUser.getIconurl());
-                if (thirdUser.getPlatform().equals("WeChat")) {     // wechat登陆进来
-                    userInfoMap.put("open_id", thirdUser.getOpenId());
-                    userInfoMap.put("qq_open_id", null);
-                } else if (thirdUser.getPlatform().equals("QQ")){
-                    userInfoMap.put("open_id", null);
-                    userInfoMap.put("qq_open_id", thirdUser.getQqOpenId());
+                //手机号是新号，则看open_id是否是新的
+
+                UserInfo openId = userInfoMapper.getUserInfoByOpenId(thirdUser.getOpenId());
+                if (openId != null) {   //openid是老用户
+                    userInfoMapper.updateUserPhoneByOpenId(thirdUser.getMobilePhone(), thirdUser.getOpenId());
+                } else {
+                    //openid 和 phone 都是新的
+                    Map<String, Object> userInfoMap = new HashMap<>();
+                    userInfoMap.put("nick_name", thirdUser.getNickName());
+                    userInfoMap.put("login_source", thirdUser.getPlatform());
+                    userInfoMap.put("user_pic", thirdUser.getIconurl());
+                    if (thirdUser.getPlatform().equals("WeChat")) {     // wechat登陆进来
+                        userInfoMap.put("open_id", thirdUser.getOpenId());
+                        userInfoMap.put("qq_open_id", null);
+                    } else if (thirdUser.getPlatform().equals("QQ")) {
+                        userInfoMap.put("open_id", null);
+                        userInfoMap.put("qq_open_id", thirdUser.getQqOpenId());
+                    }
+                    userInfoMap.put("token_id", String.valueOf(UUID.randomUUID()));
+                    userInfoMap.put("user_type", "1");
+                    userInfoMap.put("authen_status", "X");
+                    userInfoMap.put("status", "A");
+                    userInfoMap.put("user_source", thirdUser.getUserSource());
+                    userInfoMap.put("mobile_phone", thirdUser.getMobilePhone());
+
+
+                    String confirmNumber = RandUtil.rand(6, array);
+                    String number = userInfoMapper.isConfirmNumberExists(confirmNumber);
+                    System.out.print(number + " hhh");
+                    while (number != null) {
+                        confirmNumber = RandUtil.rand(6, array);
+                        number = userInfoMapper.isConfirmNumberExists(confirmNumber);
+                        if (number == null) break;
+                    }
+                    userInfoMap.put("confirm_number", confirmNumber);
+
+                    userInfoMap.put("state_date", new Date());
+                    userInfoMap.put("password", "123456");//为了在环信注册，默认密码为123456
+
+                    userInfoMapper.insertUserInfoByMap(userInfoMap);
+
+                    //在环信服务器注册新用户
+                    chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), "123456");//MD5Gen.getMD5("luosonglin123456"));
                 }
-                userInfoMap.put("token_id", String.valueOf(UUID.randomUUID()));
-                userInfoMap.put("user_type", "1");
-                userInfoMap.put("authen_status", "X");
-                userInfoMap.put("status", "A");
-                userInfoMap.put("user_source", thirdUser.getUserSource());
-                userInfoMap.put("mobile_phone", thirdUser.getMobilePhone());
-
-
-                String confirmNumber = RandUtil.rand(6, array);
-                String number = userInfoMapper.isConfirmNumberExists(confirmNumber);
-                System.out.print(number + " hhh");
-                while (number != null) {
-                    confirmNumber = RandUtil.rand(6, array);
-                    number = userInfoMapper.isConfirmNumberExists(confirmNumber);
-                    if (number == null) break;
-                }
-                userInfoMap.put("confirm_number", confirmNumber);
-
-                userInfoMap.put("state_date", new Date());
-                userInfoMap.put("password", "123456");//为了在环信注册，默认密码为123456
-
-                userInfoMapper.insertUserInfoByMap(userInfoMap);
-
-                //在环信服务器注册新用户
-                chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), "123456");//MD5Gen.getMD5("luosonglin123456"));
             }
         }else if (verificationCode == null) {
             throw new CustomizedException("请先获取验证码");

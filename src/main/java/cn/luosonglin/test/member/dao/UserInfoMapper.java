@@ -73,7 +73,7 @@ public interface UserInfoMapper {
     String getTokenId(@Param("user_id") Integer user_id);
 
     //fuck!  the parameter "position" of database is false!!!
-    @Update("UPDATE user_info SET name=#{name}, company=#{company}, postion=#{position}, hospital=#{hospital}, title=#{title}, mobile_phone=#{mobile_phone}, authen_status=#{authen_status} WHERE id =#{id}")
+    @Update("UPDATE user_info SET name=#{name}, company=#{company}, department=#{department}, hospital=#{hospital}, title=#{title}, mobile_phone=#{mobile_phone}, authen_status=#{authen_status} WHERE id =#{id}")
     void authorization(Map<String, Object> map);
 
     //更新user数据
@@ -98,9 +98,13 @@ public interface UserInfoMapper {
     @Update("UPDATE user_info SET mobile_phone=#{mobilePhone} WHERE id =#{userId} ")
     void updateUserPhone(UpdateUserPhone updateUserPhone);
 
-    //根据openId查询用户
+    //根据wechat openId查询用户
     @Select("select * from user_info where open_id = #{open_id}")
     UserInfo getUserInfoByOpenId(@Param("open_id") String open_id);
+
+    //根据qq openId查询用户
+    @Select("select * from user_info where qq_open_id = #{qq_open_id}")
+    UserInfo getUserInfoByQQOpenId(@Param("qq_open_id") String qq_open_id);
 
     //根据userId查看该用户是否是第三方注册用户
     @Select("select open_id from user_info where id = #{user_id}")
@@ -140,4 +144,9 @@ public interface UserInfoMapper {
     //已有手机号注册用户添加qq登陆信息
     @Update("UPDATE user_info SET nick_name=#{nick_name}, qq_open_id=#{qq_open_id}, login_source=#{login_source}, user_pic=#{user_pic} WHERE mobile_phone =#{mobile_phone} ")
     void updateUserByQQInfo(Map<String, Object> map);
+
+    //已有wechat openid用户添加手机信息
+    @Update("UPDATE user_info SET mobile_phone=#{mobile_phone} WHERE open_id =#{open_id} ")
+    int updateUserPhoneByOpenId(@Param("mobile_phone") String mobile_phone, @Param("open_id") String open_id);
+
 }
