@@ -617,6 +617,7 @@ public class UserInfoController {
     }
 
 
+    //第一版本
     @ApiOperation(value = "三方登陆用户绑定手机号", notes = "根据id来指定添加用户手机号(id,mobilePhone)")
     @ApiImplicitParam(name = "ThirdUserBindPhoneInfo", value = "ThirdUserBindPhoneInfo实体", required = true, dataType = "ThirdUserBindPhoneInfo")
     @RequestMapping(value = "/third/phone", method = RequestMethod.PUT)
@@ -632,7 +633,7 @@ public class UserInfoController {
             throw new CustomizedException("请填写正确的手机号");
 
         //根据用户手机号去查询用户是否已经是注册用户
-        String openId = userInfoMapper.isThirdRegisteredUser(thirdUserBindPhoneInfo.getUserId());
+        String openId = userInfoMapper.isWeChatRegisteredUser(thirdUserBindPhoneInfo.getUserId());
         //判断openId是否存在于user_info表中
         if (openId == null)
             throw new CustomizedException("该用户非三方应用正常登陆");
@@ -698,18 +699,24 @@ public class UserInfoController {
         if (bindUserThirdInfo.getLoginSource() == null)
             throw new CustomizedException("来源不能为空");
 
-        //根据用户手机号去查询用户是否已经是注册用户
-        String openId = userInfoMapper.isThirdRegisteredUser(bindUserThirdInfo.getUserId());
-        //判断openId是否存在于user_info表中
-        if (openId != null)
-            throw new CustomizedException("该用户已绑定某一三方账号");
-
         ResultDate resultDate = new ResultDate();
         Map<String, Object> responseMap = new HashMap<>();
 
         if (bindUserThirdInfo.getLoginSource().equals("WeChat")) {
+            //根据用户手机号去查询用户是否已经是注册用户
+            String openId = userInfoMapper.isWeChatRegisteredUser(bindUserThirdInfo.getUserId());
+            //判断openId是否存在于user_info表中
+            if (openId != null)
+                throw new CustomizedException("该用户已绑定微信账号");
+
             userInfoMapper.updateUserWeChatByThirdInfo(bindUserThirdInfo.getUserId(), bindUserThirdInfo.getOpenId(), bindUserThirdInfo.getLoginSource());
         } else if (bindUserThirdInfo.getLoginSource().equals("QQ")) {
+            //根据用户手机号去查询用户是否已经是注册用户
+            String qqOpenId = userInfoMapper.isQQRegisteredUser(bindUserThirdInfo.getUserId());
+            //判断openId是否存在于user_info表中
+            if (qqOpenId != null)
+                throw new CustomizedException("该用户已绑定QQ账号");
+
             userInfoMapper.updateUserQQByThirdInfo(bindUserThirdInfo.getUserId(), bindUserThirdInfo.getQqOpenId(), bindUserThirdInfo.getLoginSource());
         }
 

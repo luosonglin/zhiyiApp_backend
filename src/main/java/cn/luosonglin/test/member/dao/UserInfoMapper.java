@@ -108,7 +108,10 @@ public interface UserInfoMapper {
 
     //根据userId查看该用户是否是第三方注册用户
     @Select("select open_id from user_info where id = #{user_id}")
-    String isThirdRegisteredUser(@Param("user_id") Integer user_id);
+    String isWeChatRegisteredUser(@Param("user_id") Integer user_id);
+
+    @Select("select qq_open_id from user_info where id = #{user_id}")
+    String isQQRegisteredUser(@Param("user_id") Integer user_id);
 
     //三方登陆用户绑定手机号
     @Update("UPDATE user_info SET mobile_phone=#{phone} WHERE id =#{user_id} ")
