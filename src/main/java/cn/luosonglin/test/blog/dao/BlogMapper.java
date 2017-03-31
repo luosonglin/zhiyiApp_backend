@@ -21,7 +21,8 @@ public interface BlogMapper {
     //推荐微博 is_hot=1为推荐的精帖
 //    @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and blog.is_hot=1 order by created_at DESC ")
     //某一项要置顶
-    @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and blog.is_hot = 2 or blog.user_id = user_info.id and blog.is_hot = 1 order by blog.is_hot desc")
+//    @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and blog.is_hot = 2 or blog.user_id = user_info.id and blog.is_hot = 1 order by blog.is_hot desc")
+    @Select("SELECT * from blog, user_info where blog.user_id = user_info.id and blog.is_hot = 2 or blog.user_id = user_info.id and blog.is_hot = 1 or blog.user_id = user_info.id and user_info.authen_status = 'C' order by blog.created_at desc")
     List<UserAndBlog> getRecommendBlog();
 
     //大咖说微博
