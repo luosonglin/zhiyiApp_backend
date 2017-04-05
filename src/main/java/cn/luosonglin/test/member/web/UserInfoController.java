@@ -456,7 +456,7 @@ public class UserInfoController {
     }
 
 
-    @ApiOperation(value = "第三方登录(changed)", notes = "用户登录")
+    @ApiOperation(value = "第三方登录(changed ios)", notes = "用户登录")
     @ApiImplicitParam(name = "thirdUser", value = "用户详细实体thirdUser", required = true, dataType = "ThirdUser")
     @RequestMapping(value = "/third", method = RequestMethod.POST)
     private ResultDate loginByThird(@ModelAttribute ThirdUser thirdUser) throws CustomizedException {

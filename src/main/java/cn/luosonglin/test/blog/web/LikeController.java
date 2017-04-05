@@ -78,6 +78,8 @@ public class LikeController {
 //        likeMapper.deleteByLikeMap(likeMap);
         likeMapper.cancelLikeByMap(likeMap);
 
+        likeMapper.updateCancelLikeCount(like.getBlogId());
+
         resultDate.setCode(200);
         responseMap.put("mag", "success");
         resultDate.setData(responseMap);

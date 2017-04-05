@@ -27,6 +27,10 @@ public interface LikeMapper {
     @Update("update blog set like_count=if(isNull(like_count),0,like_count)+1 where id = #{blog_id}")
     void updateLikeCount(@Param("blog_id") Integer blog_id);
 
+    //取消点赞后在该微博的点赞数-1
+    @Update("update blog set like_count=if(isNull(like_count),0,like_count)-1 where id = #{blog_id}")
+    void updateCancelLikeCount(@Param("blog_id") Integer blog_id);
+
     @Delete("DELETE FROM blog_like WHERE user_id =#{user_id} and blog_id = #{blog_id}")
     void delete(Like like);
 

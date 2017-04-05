@@ -7,16 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45ab8222-3361-4056-a04d-a1fa12e6f849" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cn/luosonglin/test/banner/dao/EventBannerMapper.class" afterPath="$PROJECT_DIR$/target/classes/cn/luosonglin/test/banner/dao/EventBannerMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cn/luosonglin/test/blog/dao/BlogMapper.class" afterPath="$PROJECT_DIR$/target/classes/cn/luosonglin/test/blog/dao/BlogMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/springBootDemo-1.0-SNAPSHOT/WEB-INF/classes/cn/luosonglin/test/banner/dao/EventBannerMapper.class" afterPath="$PROJECT_DIR$/target/springBootDemo-1.0-SNAPSHOT/WEB-INF/classes/cn/luosonglin/test/banner/dao/EventBannerMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/springBootDemo-1.0-SNAPSHOT/WEB-INF/classes/cn/luosonglin/test/blog/dao/BlogMapper.class" afterPath="$PROJECT_DIR$/target/springBootDemo-1.0-SNAPSHOT/WEB-INF/classes/cn/luosonglin/test/blog/dao/BlogMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zhiyiApp.war" afterPath="$PROJECT_DIR$/target/zhiyiApp.war" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/banner/dao/EventBannerMapper.java" afterPath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/banner/dao/EventBannerMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/BlogMapper.java" afterPath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/BlogMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/application.properties" afterPath="$PROJECT_DIR$/target/classes/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/springBootDemo-1.0-SNAPSHOT/WEB-INF/classes/application.properties" afterPath="$PROJECT_DIR$/target/springBootDemo-1.0-SNAPSHOT/WEB-INF/classes/application.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/LikeMapper.java" afterPath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/LikeMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/LikeController.java" afterPath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/LikeController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/web/UserInfoController.java" afterPath="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/web/UserInfoController.java" />
     </list>
     <ignored path="SpringBootDemo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,11 +33,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UserInfoController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/web/UserInfoController.java">
+      <file leaf-file-name="LikeController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/LikeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-705">
-              <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+            <state relative-caret-position="105">
+              <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LikeMapper.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/LikeMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="30" column="99" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="99" />
               <folding />
             </state>
           </provider>
@@ -70,12 +74,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/relationship/entity/UsersRelationship.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/web/CaseLikeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/caseOfIllness/web/CaseCommentController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/relationship/dao/UsersRelationshipMapper.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/LikeMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/Authen.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/relationship/web/UsersRelationshipController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/easemob/web/test.java" />
@@ -116,11 +118,13 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/app/entity/LoginActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/app/AppController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/dao/UserInfoMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/web/UserInfoController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/banner/dao/EventBannerMapper.java" />
         <option value="$PROJECT_DIR$/target/classes/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/BlogController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/BlogMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/web/UserInfoController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/LikeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/LikeMapper.java" />
       </list>
     </option>
   </component>
@@ -202,7 +206,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -467,7 +471,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="member" />
+              <option name="myItemId" value="blog" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -501,14 +505,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="member" />
+              <option name="myItemId" value="blog" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1288,7 +1292,8 @@
       <workItem from="1490757072791" duration="231000" />
       <workItem from="1490860884797" duration="593000" />
       <workItem from="1490869631081" duration="1536000" />
-      <workItem from="1490952882923" duration="79000" />
+      <workItem from="1490952882923" duration="1297000" />
+      <workItem from="1491378432935" duration="110000" />
     </task>
     <servers />
   </component>
@@ -1325,7 +1330,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="700818000" />
+    <option name="totallyTimeSpent" value="702146000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="-257" width="1920" height="1057" extended-state="6" />
@@ -1419,20 +1424,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/LikeMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/base/util/RandUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1608,24 +1599,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/ThirdUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/entity/Blog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/UserInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="36" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1721,13 +1698,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/dao/UserInfoMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1755">
-          <caret line="112" column="57" selection-start-line="112" selection-start-column="13" selection-end-line="112" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/banner/dao/EventBannerMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1754,7 +1724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
           <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1770,14 +1739,52 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="24" column="242" selection-start-line="24" selection-start-column="242" selection-end-line="24" selection-end-column="242" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/UserInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="33" column="29" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/dao/UserInfoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/web/UserInfoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-705">
-          <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+        <state relative-caret-position="454">
+          <caret line="572" column="60" selection-start-line="572" selection-start-column="60" selection-end-line="572" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/member/entity/ThirdUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="41" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/web/LikeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/luosonglin/test/blog/dao/LikeMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="30" column="99" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="99" />
           <folding />
         </state>
       </provider>
