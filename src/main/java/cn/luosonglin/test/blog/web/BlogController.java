@@ -163,6 +163,7 @@ public class BlogController {
 
         //此处为防止iOS第一版而设置的
         if (blog.getImages().equals("")) blog.setImages(null);
+
         blogMap.put("images", blog.getImages());
         blogMap.put("create_at", blog.getCreatedAt());
         blogMap.put("tag_id", blog.getTagId());
