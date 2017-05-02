@@ -4,6 +4,7 @@ import cn.luosonglin.test.base.entity.ResultDate;
 import cn.luosonglin.test.caseOfIllness.dao.CaseCollectionMapper;
 import cn.luosonglin.test.caseOfIllness.dao.CaseMapper;
 import cn.luosonglin.test.caseOfIllness.entity.CaseCollection;
+import cn.luosonglin.test.caseOfIllness.entity.UserAndCase;
 import cn.luosonglin.test.exception.CustomizedException;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -13,10 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by luosonglin on 07/01/2017.
@@ -50,7 +48,6 @@ public class CaseCollectionController {
         resultDate.setCode(200);
         responseMap.put("msg", "success");
         resultDate.setData(responseMap);
-
 
         return resultDate;
     }
@@ -92,17 +89,17 @@ public class CaseCollectionController {
         resultDate.setCode(200);
 //        responseMap.put("collectionIds", collectionIds);
 //        responseMap.put("collection", collectionMapper.findMyCollectionBlog(userId));
-        if (!collectionIds.isEmpty()) {
 
+        if (!collectionIds.isEmpty()) {
             if (pageNum != null && pageSize != null) {
                 PageHelper.startPage(pageNum, pageSize);
             }
             responseMap.put("case", new PageInfo<>(caseMapper.getCaseListByCaseId(collectionIds)));
             resultDate.setData(responseMap);
         } else {
-            resultDate.setData(null);
+            responseMap.put("case", new ArrayList<UserAndCase>());
+            resultDate.setData(responseMap);
         }
-
 
         return resultDate;
     }
