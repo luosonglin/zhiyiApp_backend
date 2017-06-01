@@ -86,17 +86,19 @@ public class CaseCollectionController {
 
         List<Integer> collectionIds = caseCollectionMapper.getMyCollectionCaseIds(userId);
 
-        resultDate.setCode(200);
+
 //        responseMap.put("collectionIds", collectionIds);
 //        responseMap.put("collection", collectionMapper.findMyCollectionBlog(userId));
 
         if (!collectionIds.isEmpty()) {
+            resultDate.setCode(200);
             if (pageNum != null && pageSize != null) {
                 PageHelper.startPage(pageNum, pageSize);
             }
             responseMap.put("case", new PageInfo<>(caseMapper.getCaseListByCaseId(collectionIds)));
             resultDate.setData(responseMap);
         } else {
+            resultDate.setCode(199);
             responseMap.put("case", new ArrayList<UserAndCase>());
             resultDate.setData(responseMap);
         }
