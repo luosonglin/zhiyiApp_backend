@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
  * Created by luosonglin on 06/02/2017.
  */
 @Component
-public class MyInterceptor implements HandlerInterceptor{
+public class MyInterceptor implements HandlerInterceptor {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -28,9 +28,9 @@ public class MyInterceptor implements HandlerInterceptor{
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         logger.info("***********preHandle");
 
-        String ss[]=environment.getActiveProfiles();
-        for(String a :ss){
-            logger.info("environment: "+a);
+        String ss[] = environment.getActiveProfiles();
+        for (String a : ss) {
+            logger.info("environment: " + a);
         }
         String url = httpServletRequest.getRequestURL().toString();
 
@@ -38,7 +38,11 @@ public class MyInterceptor implements HandlerInterceptor{
 
         logger.info("url: " + url);
 
-        return true; // 只有返回true才会继续向下执行，返回false取消当前请求
+        String ip = httpServletRequest.getRemoteAddr();
+        if (ip.equals("121.56.46.57")) //ip.equals("121.56.46.57") ||
+            return false;
+        else
+            return true; // 只有返回true才会继续向下执行，返回false取消当前请求
     }
 
     @Override
@@ -53,10 +57,10 @@ public class MyInterceptor implements HandlerInterceptor{
         // 获取用户token
         Method method = handlerMethod.getMethod();
 
-        logger.info("request: "+ httpServletRequest.getRequestURI());
+        logger.info("request: " + httpServletRequest.getRequestURI());
         logger.info("status: " + httpServletResponse.getStatus());
         logger.info("request time: " + (endtime - starttime) + " ms");
-        logger.info("user ip: "+ip+", target: "+method.getDeclaringClass().getName() + "." + method.getName());
+        logger.info("user ip: " + ip + ", target: " + method.getDeclaringClass().getName() + "." + method.getName());
     }
 
     @Override

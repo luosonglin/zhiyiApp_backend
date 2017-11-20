@@ -9,6 +9,7 @@ import cn.luosonglin.test.member.dao.UserInfoMapper;
 import cn.luosonglin.test.member.dao.VerificationCodeMapper;
 import cn.luosonglin.test.member.entity.*;
 import cn.luosonglin.test.relationship.dao.UsersRelationshipMapper;
+import cn.luosonglin.test.sms.dao.ShortMessageRecordsMapper;
 import cn.luosonglin.test.sms.service.SendCommonMessageService;
 import cn.luosonglin.test.base.util.DateUtil;
 import cn.luosonglin.test.base.util.RandUtil;
@@ -17,10 +18,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import static cn.luosonglin.test.base.util.RandUtil.array;
 
@@ -50,6 +48,9 @@ public class UserInfoController {
     @Autowired
     private AuthenMapper authenMapper;
 
+    @Autowired
+    private ShortMessageRecordsMapper shortMessageRecordsMapper;
+
     @ApiOperation(value = "手机号获取验证码", notes = "手机号获取验证码")
     @ApiImplicitParam(name = "phone", value = "用户phone", required = true, dataType = "String", paramType = "path")
     @RequestMapping(value = "/{phone}", method = RequestMethod.GET)
@@ -76,79 +77,89 @@ public class UserInfoController {
         Map<Object, Object> responseMap = new HashMap<>();
         Map<String, Object> map = new HashMap<>();
 
-        if (verCodeInfo == null) {
-            //借陈Mindy 的测试
-//            verificationCodeMapper.insertVerificationCode(verCode);
-
-            //插入ver_code表
-            map.put("id", null);
-            map.put("phone", verCode.getPhone());
-            map.put("send_date", new Date());
-            map.put("send_time", null);
-            map.put("code_content", codeMessage);   //verCode.getCodeContent()
-            verificationCodeMapper.insertVerificationCodeByMap(map);
-
-        } else {
-//            verificationCodeMapper.updateVerificationCode(verCode);
-
-            //更新ver_code表
-            map.put("id", verCodeInfo.getId());
-            map.put("phone", verCode.getPhone());
-            map.put("send_date", new Date());
-            map.put("send_time", null);
-            map.put("code_content", codeMessage);
-            verificationCodeMapper.updateVerificationCodeByMap(map);
-        }
-
-
         try {
-            //发送验证码
-//        String result = commSendMessageAction.toSendMessage(phone , "yzm"  ,codeMessage);
-            String result = sendCommonMessageService.sendCommonMessage(phone, codeMessage, "yzm");
-
-            if ("-1".equals(result)) {
-                throw new CustomizedException("用户名或者密码不正确或用户禁用或者是管理账户");
-            } else if ("0".equals(result)) {
-                throw new CustomizedException("0发送短信失败");   //xxxxxxxx代表消息编号
-            } else if ("1".equals(result)) {    //1代表发送短信成功,xxxxxxxx代表消息编号（消息ID,在匹配状态报告时会用到）
-                resultDate.setCode(200);
-                responseMap.put("msg", "success");
-                resultDate.setData(responseMap);
-            } else if ("2".equals(result)) {
-                throw new CustomizedException("余额不够或扣费错误");
-            } else if ("3".equals(result)) {
-                throw new CustomizedException("扣费失败异常（请联系客服）");
-            } else if ("5".equals(result)) {
-                throw new CustomizedException("短信定时成功");
-            } else if ("6".equals(result)) {
-                throw new CustomizedException("有效号码为空");
-            } else if ("7".equals(result)) {
-                throw new CustomizedException("短信内容为空");
-            } else if ("8".equals(result)) {
-                throw new CustomizedException("无签名");   //必须，格式：【签名】
-            } else if ("9".equals(result)) {
-                throw new CustomizedException("没有Url提交权限");
-            } else if ("10".equals(result)) {
-                throw new CustomizedException("发送号码过多");    //最多支持2000个号码；
-            } else if ("11".equals(result)) {
-                throw new CustomizedException("产品ID异常或产品禁用");
-            } else if ("12".equals(result)) {
-                throw new CustomizedException("参数异常");
-            } else if ("13".equals(result)) {
-                throw new CustomizedException("12小时内重复提交");
-            } else if ("14".equals(result)) {
-                throw new CustomizedException("sms异常，需联系客服人员");  //用户名或密码不正确，产品余额为0，禁止提交，联系客服
-            } else if ("15".equals(result)) {
-                throw new CustomizedException("Ip验证失败");
-            } else if ("19".equals(result)) {
-                throw new CustomizedException("短信内容过长");    //最多支持500个,或提交编码异常导致
+            if (verCodeInfo == null) {
+                //插入ver_code表
+                map.put("id", null);
+                map.put("phone", verCode.getPhone());
+                map.put("send_date", new Date());
+                map.put("send_time", null);
+                map.put("code_content", codeMessage);   //verCode.getCodeContent()
+                verificationCodeMapper.insertVerificationCodeByMap(map);
+            } else {
+                //更新ver_code表
+                map.put("id", verCodeInfo.getId());
+                map.put("phone", verCode.getPhone());
+                map.put("send_date", new Date());
+                map.put("send_time", null);
+                map.put("code_content", codeMessage);
+                verificationCodeMapper.updateVerificationCodeByMap(map);
             }
 
+            if (shortMessageRecordsMapper.getSendTime(phone).size() > 19) {
+                resultDate.setCode(200);
+                responseMap.put("msg", "1天内只能发20次验证码");
+                resultDate.setData(responseMap);
+//                throw new CustomizedException("1天内只能发20次验证码");
+            } else {
+//            if (shortMessageRecordsMapper.getSendTime(phone).get(0).before(getOneDayBefore(new Date())))
+//                throw new CustomizedException("24小时内只能发1次验证码");
+//            else {
+                //发送验证码
+//        String result = commSendMessageAction.toSendMessage(phone , "yzm"  ,codeMessage);
+                String result = sendCommonMessageService.sendCommonMessage(phone, codeMessage, "yzm");
+
+                if ("-1".equals(result)) {
+                    throw new CustomizedException("用户名或者密码不正确或用户禁用或者是管理账户");
+                } else if ("0".equals(result)) {
+                    throw new CustomizedException("0发送短信失败");   //xxxxxxxx代表消息编号
+                } else if ("1".equals(result)) {    //1代表发送短信成功,xxxxxxxx代表消息编号（消息ID,在匹配状态报告时会用到）
+                    resultDate.setCode(200);
+                    responseMap.put("msg", "success");
+                    resultDate.setData(responseMap);
+                } else if ("2".equals(result)) {
+                    throw new CustomizedException("余额不够或扣费错误");
+                } else if ("3".equals(result)) {
+                    throw new CustomizedException("扣费失败异常（请联系客服）");
+                } else if ("5".equals(result)) {
+                    throw new CustomizedException("短信定时成功");
+                } else if ("6".equals(result)) {
+                    throw new CustomizedException("有效号码为空");
+                } else if ("7".equals(result)) {
+                    throw new CustomizedException("短信内容为空");
+                } else if ("8".equals(result)) {
+                    throw new CustomizedException("无签名");   //必须，格式：【签名】
+                } else if ("9".equals(result)) {
+                    throw new CustomizedException("没有Url提交权限");
+                } else if ("10".equals(result)) {
+                    throw new CustomizedException("发送号码过多");    //最多支持2000个号码；
+                } else if ("11".equals(result)) {
+                    throw new CustomizedException("产品ID异常或产品禁用");
+                } else if ("12".equals(result)) {
+                    throw new CustomizedException("参数异常");
+                } else if ("13".equals(result)) {
+                    throw new CustomizedException("12小时内重复提交");
+                } else if ("14".equals(result)) {
+                    throw new CustomizedException("sms异常，需联系客服人员");  //用户名或密码不正确，产品余额为0，禁止提交，联系客服
+                } else if ("15".equals(result)) {
+                    throw new CustomizedException("Ip验证失败");
+                } else if ("19".equals(result)) {
+                    throw new CustomizedException("短信内容过长");    //最多支持500个,或提交编码异常导致
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return resultDate;
+    }
+
+    //获取某时刻过去的24小时
+    public static Date getOneDayBefore(Date dateEnd) {
+        Calendar date = Calendar.getInstance();
+        date.setTime(dateEnd);
+        date.set(Calendar.DATE, date.get(Calendar.DATE) - 1);
+        return date.getTime();
     }
 
     @ApiOperation(value = "test", notes = "test")
@@ -466,7 +477,7 @@ public class UserInfoController {
         if (thirdUser.getPlatform().equals("WeChat")) {     // wechat登陆进来
             if (thirdUser.getOpenId() == null)
                 throw new CustomizedException("WeChat openId不能为空");
-        } else if (thirdUser.getPlatform().equals("QQ")){
+        } else if (thirdUser.getPlatform().equals("QQ")) {
             //此处屏蔽为了iOS第一版
 //            if (thirdUser.getQqOpenId() == null)
 //                throw new CustomizedException("QQ openId不能为空");
@@ -474,9 +485,9 @@ public class UserInfoController {
 
         if (thirdUser.getMobilePhone() == null && thirdUser.getCode() != null) {
             throw new CustomizedException("手机号不能为空");
-        } else if (thirdUser.getMobilePhone() != null &&thirdUser.getCode() == null) {
+        } else if (thirdUser.getMobilePhone() != null && thirdUser.getCode() == null) {
             throw new CustomizedException("验证码不能为空");
-        } else if (thirdUser.getMobilePhone() == null &&thirdUser.getCode() == null) { //老版本
+        } else if (thirdUser.getMobilePhone() == null && thirdUser.getCode() == null) { //老版本
 
             UserInfo userInfo = userInfoMapper.getUserInfoByOpenId(thirdUser.getOpenId());
             if (userInfo == null) { //查看该用户是否是iOS第一版本用户
@@ -518,7 +529,7 @@ public class UserInfoController {
             resultDate.setCode(200);
             if (thirdUser.getPlatform().equals("WeChat")) {
                 responseMap.put("user", userInfoMapper.getUserInfoByOpenId(thirdUser.getOpenId()));
-            } else if (thirdUser.getPlatform().equals("QQ")){
+            } else if (thirdUser.getPlatform().equals("QQ")) {
                 if (userInfoMapper.getUserInfoByQQOpenId(thirdUser.getOpenId()) == null && thirdUser.getQqOpenId() == null) {    //为了第一版本qq openId 存在了wechat openId
                     responseMap.put("user", userInfoMapper.getUserInfoByOpenId(thirdUser.getOpenId()));
                 } else {
@@ -553,7 +564,7 @@ public class UserInfoController {
                 if (thirdUser.getPlatform().equals("WeChat")) {     // wechat登陆进来
                     userInfoMap.put("open_id", thirdUser.getOpenId());
                     userInfoMapper.updateUserByWeChatInfo(userInfoMap);
-                } else if (thirdUser.getPlatform().equals("QQ")){
+                } else if (thirdUser.getPlatform().equals("QQ")) {
                     userInfoMap.put("qq_open_id", thirdUser.getQqOpenId());
                     userInfoMapper.updateUserByQQInfo(userInfoMap);
                 }
@@ -603,7 +614,7 @@ public class UserInfoController {
                     chatService.createNewIMUserService(Integer.toString(userInfoMapper.getMaxUserId()), "123456");//MD5Gen.getMD5("luosonglin123456"));
                 }
             }
-        }else if (verificationCode == null) {
+        } else if (verificationCode == null) {
             throw new CustomizedException("请先获取验证码");
         } else {
             throw new CustomizedException("验证码错误");
@@ -661,7 +672,7 @@ public class UserInfoController {
                 UserInfo userInfo = userInfoMapper.getUserInfoByUserId(thirdUserBindPhoneInfo.getUserId());
                 if (userInfo.getLoginSource().equals("WeChat")) {
                     userInfoMapper.updateUserWeChatByThirdInfo(userId, userInfo.getOpenId(), userInfo.getLoginSource());
-                } else if (userInfo.getLoginSource().equals("QQ")){
+                } else if (userInfo.getLoginSource().equals("QQ")) {
                     userInfoMapper.updateUserQQByThirdInfo(userId, userInfo.getOpenId(), userInfo.getLoginSource());
                 }
                 //被逼的，为了适应iOS第一版本不得不做的（当三方登陆用户绑定的手机号是已有手机号的时候，合并用户，保留手机号那一条，删除三方用户那条）

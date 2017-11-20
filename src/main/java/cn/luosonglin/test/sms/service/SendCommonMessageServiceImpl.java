@@ -1,6 +1,6 @@
 package cn.luosonglin.test.sms.service;
 
-import cn.luosonglin.test.sms.dao.shortMessageRecordsMapper;
+import cn.luosonglin.test.sms.dao.ShortMessageRecordsMapper;
 import cn.luosonglin.test.sms.entity.ShorMessageRecords;
 import cn.luosonglin.test.sms.util.CommonSendMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.Map;
 public class SendCommonMessageServiceImpl implements SendCommonMessageService {
 
     @Autowired
-    private shortMessageRecordsMapper shortMessageRecordsMapper;
+    private ShortMessageRecordsMapper ShortMessageRecordsMapper;
 
     /**
      * 定义发送短信的业务方法
@@ -50,7 +50,7 @@ public class SendCommonMessageServiceImpl implements SendCommonMessageService {
         shorMessageRecords.setSend_type(sendType);   //2种类型："yzm"，"tz"
 
         //将短信发送记录保存到数据库中
-//        shortMessageRecordsMapper.insertShortMessageRecords(shorMessageRecords);
+//        ShortMessageRecordsMapper.insertShortMessageRecords(shorMessageRecords);
 
         Map<String, Object> map = new HashMap<>();
         map.put("phone", phone);
@@ -58,7 +58,7 @@ public class SendCommonMessageServiceImpl implements SendCommonMessageService {
         map.put("send_time", new Date());
         map.put("message_content", message);
         map.put("send_type", sendType);//2种类型："yzm"，"tz"
-        shortMessageRecordsMapper.insertShortMessageRecordsByMap(map);
+        ShortMessageRecordsMapper.insertShortMessageRecordsByMap(map);
 //        shorMessageRecordsService.saveShorMessageRecords(shorMessageRecords ,"add");
 
         return result.substring(0,result.indexOf(","));

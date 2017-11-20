@@ -16,6 +16,7 @@ public interface EventBannerMapper {
 //    @Select("select id, title, banner, start_date, end_date from event where end_date >= CURRENT_TIMESTAMP and banner !='' order by id desc limit 0, 3")
 //    @Select("select id, title, banner, start_date, end_date from event where end_date >= CURRENT_TIMESTAMP and banner !='' order by id desc limit 0, 4")
 //    @Select("select id, title, banner, start_date, end_date from event where end_date >= CURRENT_TIMESTAMP and banner !='' and id >= 207 and id <=211 order by id asc")
-    @Select("select a.id, a.title, a.start_date, a.end_date, b.banner from event a, phoneweb_set b where a.id = b.event_id and a.id = 218 or a.id = b.event_id and a.id = 246 or a.id = b.event_id and a.id = 245 or a.id = b.event_id and a.id = 273 order by a.id asc")
+//    @Select("select a.id, a.title, a.start_date, a.end_date, b.banner from event a, phoneweb_set b where a.id = b.event_id and a.id = 218 or a.id = b.event_id and a.id = 246 or a.id = b.event_id and a.id = 245 or a.id = b.event_id and a.id = 273 or a.id = b.event_id and a.id = 332 order by a.id asc")
+    @Select("select a.id, a.title, a.start_date, a.end_date, b.banner from event a, phoneweb_set b where a.id = b.event_id and a.id = 218 or a.id = b.event_id and a.id = 354 or a.id = b.event_id and a.id = 298 or a.id = b.event_id and a.id = 332 or a.id = b.event_id and a.id = 356 order by a.id asc")
     List<EventBanner> getAllEventBanner();
 }

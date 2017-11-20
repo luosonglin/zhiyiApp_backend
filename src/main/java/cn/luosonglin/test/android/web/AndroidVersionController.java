@@ -66,18 +66,19 @@ public class AndroidVersionController {
     public ResultDate addNewPhoneInfo(@ModelAttribute AndroidPhoneInfo androidPhoneInfo) {
         ResultDate resultDate = new ResultDate();
 
-
-        androidPhoneInfoMapper.insertByNewPhoneInfo(androidPhoneInfo.getUserId(), androidPhoneInfo.getUniqueSerialNumber(),
-                androidPhoneInfo.getMetrics(),
-                androidPhoneInfo.getImei(),
-                androidPhoneInfo.getImsi(),
-                androidPhoneInfo.getMacAddress(),
-                androidPhoneInfo.getMccMnc(),
-                androidPhoneInfo.getSimOperatorName(),
-                androidPhoneInfo.getIsRoot());
+//        if (androidPhoneInfoMapper.selecePhoneInfoList(androidPhoneInfo.getUserId(), androidPhoneInfo.getImei()) == null)
+            androidPhoneInfoMapper.insertByNewPhoneInfo(androidPhoneInfo.getUserId(), androidPhoneInfo.getUniqueSerialNumber(),
+                    androidPhoneInfo.getMetrics(),
+                    androidPhoneInfo.getImei(),
+                    androidPhoneInfo.getImsi(),
+                    androidPhoneInfo.getMacAddress(),
+                    androidPhoneInfo.getMccMnc(),
+                    androidPhoneInfo.getSimOperatorName(),
+                    androidPhoneInfo.getIsRoot());
 
         resultDate.setCode(200);
         resultDate.setData("success");
+//        resultDate.setData(androidPhoneInfoMapper.selecePhoneInfoList(androidPhoneInfo.getUserId(), androidPhoneInfo.getImei()));
 
         return resultDate;
     }
